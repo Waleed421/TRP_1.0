@@ -1,0 +1,560 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="PrintJobDbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Cases">
+          <Key>
+            <PropertyRef Name="Case_No" />
+          </Key>
+          <Property Name="Case_No" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar(max)" />
+          <Property Name="Case_Comment" Type="nvarchar(max)" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="Type_Id" Type="int" />
+          <Property Name="Customer_Id" Type="int" />
+          <Property Name="Date_Time_Created" Type="datetime" />
+          <Property Name="Created_By_User_Id" Type="int" />
+          <Property Name="Last_Edit_Date_Time" Type="datetime" />
+          <Property Name="Last_Edit_By_User_Id" Type="int" />
+          <Property Name="Status" Type="nvarchar" MaxLength="50" />
+          <Property Name="Worked_Time_in_Minutes" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Customer_No" Type="nvarchar(max)" />
+          <Property Name="Customer_Name" Type="nvarchar(max)" />
+          <Property Name="Customer_Status" Type="nvarchar" MaxLength="50" />
+          <Property Name="User_Id" Type="int" />
+        </EntityType>
+        <EntityType Name="PrintJob">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Printer_Name" Type="nvarchar(max)" />
+          <Property Name="Document_Name" Type="nvarchar(max)" />
+          <Property Name="Document_Pages" Type="nvarchar(max)" />
+          <Property Name="Submitted_By" Type="nvarchar(max)" />
+          <Property Name="Submitted_At" Type="datetime" />
+          <Property Name="Username" Type="nvarchar(max)" />
+          <Property Name="Customer_Id" Type="int" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="TimeRegistration">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Case_No" Type="int" />
+          <Property Name="Start_Date_Time" Type="datetime" />
+          <Property Name="Stop_Date_Time" Type="datetime" />
+          <Property Name="Action_Comment" Type="nvarchar(max)" />
+          <Property Name="Invoice" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="TypeofCases">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Type" Type="nvarchar" MaxLength="50" />
+          <Property Name="Invoice_Type" Type="nvarchar" MaxLength="50" />
+          <Property Name="Status" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="Username" Type="nvarchar" MaxLength="50" />
+          <Property Name="Number" Type="nvarchar" MaxLength="50" />
+          <Property Name="Status" Type="nvarchar" MaxLength="50" />
+          <Property Name="Language" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'PrintJobDb.dbo.ViewReport' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="ViewReport">
+          <Property Name="Printer_Name" Type="nvarchar(max)" />
+          <Property Name="Document_Name" Type="nvarchar(max)" />
+          <Property Name="Document_Pages" Type="nvarchar(max)" />
+          <Property Name="Submitted_By" Type="nvarchar(max)" />
+          <Property Name="Submitted_At" Type="datetime" />
+          <Property Name="Username" Type="nvarchar(max)" />
+          <Property Name="Customer_Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Customer_No" Type="nvarchar(max)" />
+        </EntityType>-->
+        <Association Name="FK_Cases_Customer">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+          <End Role="Cases" Type="Self.Cases" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Cases">
+              <PropertyRef Name="Customer_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cases_TypeofCases1">
+          <End Role="TypeofCases" Type="Self.TypeofCases" Multiplicity="0..1" />
+          <End Role="Cases" Type="Self.Cases" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TypeofCases">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Cases">
+              <PropertyRef Name="Type_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cases_User">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Cases" Type="Self.Cases" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Cases">
+              <PropertyRef Name="Created_By_User_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cases_User1">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Cases" Type="Self.Cases" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Cases">
+              <PropertyRef Name="Last_Edit_By_User_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Customer_User">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Customer" Type="Self.Customer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Customer">
+              <PropertyRef Name="User_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PrintJob_Customer">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+          <End Role="PrintJob" Type="Self.PrintJob" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PrintJob">
+              <PropertyRef Name="Customer_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TimeRegistration_Cases">
+          <End Role="Cases" Type="Self.Cases" Multiplicity="0..1" />
+          <End Role="TimeRegistration" Type="Self.TimeRegistration" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cases">
+              <PropertyRef Name="Case_No" />
+            </Principal>
+            <Dependent Role="TimeRegistration">
+              <PropertyRef Name="Case_No" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="PrintJobDbModelStoreContainer">
+          <EntitySet Name="Cases" EntityType="Self.Cases" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PrintJob" EntityType="Self.PrintJob" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TimeRegistration" EntityType="Self.TimeRegistration" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TypeofCases" EntityType="Self.TypeofCases" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Cases_Customer" Association="Self.FK_Cases_Customer">
+            <End Role="Customer" EntitySet="Customer" />
+            <End Role="Cases" EntitySet="Cases" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cases_TypeofCases1" Association="Self.FK_Cases_TypeofCases1">
+            <End Role="TypeofCases" EntitySet="TypeofCases" />
+            <End Role="Cases" EntitySet="Cases" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cases_User" Association="Self.FK_Cases_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Cases" EntitySet="Cases" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cases_User1" Association="Self.FK_Cases_User1">
+            <End Role="User" EntitySet="User" />
+            <End Role="Cases" EntitySet="Cases" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Customer_User" Association="Self.FK_Customer_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Customer" EntitySet="Customer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PrintJob_Customer" Association="Self.FK_PrintJob_Customer">
+            <End Role="Customer" EntitySet="Customer" />
+            <End Role="PrintJob" EntitySet="PrintJob" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TimeRegistration_Cases" Association="Self.FK_TimeRegistration_Cases">
+            <End Role="Cases" EntitySet="Cases" />
+            <End Role="TimeRegistration" EntitySet="TimeRegistration" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="PrintJobDbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Case">
+          <Key>
+            <PropertyRef Name="Case_No" />
+          </Key>
+          <Property Name="Case_No" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Case_Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Type_Id" Type="Int32" />
+          <Property Name="Customer_Id" Type="Int32" />
+          <Property Name="Date_Time_Created" Type="DateTime" Precision="3" />
+          <Property Name="Created_By_User_Id" Type="Int32" />
+          <Property Name="Last_Edit_Date_Time" Type="DateTime" Precision="3" />
+          <Property Name="Last_Edit_By_User_Id" Type="Int32" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Worked_Time_in_Minutes" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Customer" Relationship="Self.FK_Cases_Customer" FromRole="Cases" ToRole="Customer" />
+          <NavigationProperty Name="TypeofCas" Relationship="Self.FK_Cases_TypeofCases1" FromRole="Cases" ToRole="TypeofCases" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Cases_User" FromRole="Cases" ToRole="User" />
+          <NavigationProperty Name="User1" Relationship="Self.FK_Cases_User1" FromRole="Cases" ToRole="User" />
+          <NavigationProperty Name="TimeRegistrations" Relationship="Self.FK_TimeRegistration_Cases" FromRole="Cases" ToRole="TimeRegistration" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Customer_No" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Customer_Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Customer_Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="User_Id" Type="Int32" />
+          <NavigationProperty Name="Cases" Relationship="Self.FK_Cases_Customer" FromRole="Customer" ToRole="Cases" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Customer_User" FromRole="Customer" ToRole="User" />
+          <NavigationProperty Name="PrintJobs" Relationship="Self.FK_PrintJob_Customer" FromRole="Customer" ToRole="PrintJob" />
+        </EntityType>
+        <EntityType Name="PrintJob">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Printer_Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Document_Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Document_Pages" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Submitted_By" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Submitted_At" Type="DateTime" Precision="3" />
+          <Property Name="Username" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Customer_Id" Type="Int32" />
+          <NavigationProperty Name="Customer" Relationship="Self.FK_PrintJob_Customer" FromRole="PrintJob" ToRole="Customer" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="TimeRegistration">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Case_No" Type="Int32" />
+          <Property Name="Start_Date_Time" Type="DateTime" Precision="3" />
+          <Property Name="Stop_Date_Time" Type="DateTime" Precision="3" />
+          <Property Name="Action_Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Invoice" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Case" Relationship="Self.FK_TimeRegistration_Cases" FromRole="TimeRegistration" ToRole="Cases" />
+        </EntityType>
+        <EntityType Name="TypeofCas">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Invoice_Type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Cases" Relationship="Self.FK_Cases_TypeofCases1" FromRole="TypeofCases" ToRole="Cases" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Number" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Language" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Cases" Relationship="Self.FK_Cases_User" FromRole="User" ToRole="Cases" />
+          <NavigationProperty Name="Cases1" Relationship="Self.FK_Cases_User1" FromRole="User" ToRole="Cases" />
+          <NavigationProperty Name="Customers" Relationship="Self.FK_Customer_User" FromRole="User" ToRole="Customer" />
+        </EntityType>
+        <Association Name="FK_Cases_Customer">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+          <End Role="Cases" Type="Self.Case" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Cases">
+              <PropertyRef Name="Customer_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cases_TypeofCases1">
+          <End Role="TypeofCases" Type="Self.TypeofCas" Multiplicity="0..1" />
+          <End Role="Cases" Type="Self.Case" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TypeofCases">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Cases">
+              <PropertyRef Name="Type_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cases_User">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Cases" Type="Self.Case" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Cases">
+              <PropertyRef Name="Created_By_User_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cases_User1">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Cases" Type="Self.Case" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Cases">
+              <PropertyRef Name="Last_Edit_By_User_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TimeRegistration_Cases">
+          <End Role="Cases" Type="Self.Case" Multiplicity="0..1" />
+          <End Role="TimeRegistration" Type="Self.TimeRegistration" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cases">
+              <PropertyRef Name="Case_No" />
+            </Principal>
+            <Dependent Role="TimeRegistration">
+              <PropertyRef Name="Case_No" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Customer_User">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Customer" Type="Self.Customer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Customer">
+              <PropertyRef Name="User_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PrintJob_Customer">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+          <End Role="PrintJob" Type="Self.PrintJob" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PrintJob">
+              <PropertyRef Name="Customer_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="PrintJobDbEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Cases" EntityType="Self.Case" />
+          <EntitySet Name="Customers" EntityType="Self.Customer" />
+          <EntitySet Name="PrintJobs" EntityType="Self.PrintJob" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="TimeRegistrations" EntityType="Self.TimeRegistration" />
+          <EntitySet Name="TypeofCases" EntityType="Self.TypeofCas" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <AssociationSet Name="FK_Cases_Customer" Association="Self.FK_Cases_Customer">
+            <End Role="Customer" EntitySet="Customers" />
+            <End Role="Cases" EntitySet="Cases" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cases_TypeofCases1" Association="Self.FK_Cases_TypeofCases1">
+            <End Role="TypeofCases" EntitySet="TypeofCases" />
+            <End Role="Cases" EntitySet="Cases" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cases_User" Association="Self.FK_Cases_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Cases" EntitySet="Cases" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cases_User1" Association="Self.FK_Cases_User1">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Cases" EntitySet="Cases" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TimeRegistration_Cases" Association="Self.FK_TimeRegistration_Cases">
+            <End Role="Cases" EntitySet="Cases" />
+            <End Role="TimeRegistration" EntitySet="TimeRegistrations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Customer_User" Association="Self.FK_Customer_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Customer" EntitySet="Customers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PrintJob_Customer" Association="Self.FK_PrintJob_Customer">
+            <End Role="Customer" EntitySet="Customers" />
+            <End Role="PrintJob" EntitySet="PrintJobs" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="PrintJobDbModelStoreContainer" CdmEntityContainer="PrintJobDbEntities">
+          <EntitySetMapping Name="Cases">
+            <EntityTypeMapping TypeName="PrintJobDbModel.Case">
+              <MappingFragment StoreEntitySet="Cases">
+                <ScalarProperty Name="Case_No" ColumnName="Case_No" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Case_Comment" ColumnName="Case_Comment" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Type_Id" ColumnName="Type_Id" />
+                <ScalarProperty Name="Customer_Id" ColumnName="Customer_Id" />
+                <ScalarProperty Name="Date_Time_Created" ColumnName="Date_Time_Created" />
+                <ScalarProperty Name="Created_By_User_Id" ColumnName="Created_By_User_Id" />
+                <ScalarProperty Name="Last_Edit_Date_Time" ColumnName="Last_Edit_Date_Time" />
+                <ScalarProperty Name="Last_Edit_By_User_Id" ColumnName="Last_Edit_By_User_Id" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Worked_Time_in_Minutes" ColumnName="Worked_Time_in_Minutes" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Customers">
+            <EntityTypeMapping TypeName="PrintJobDbModel.Customer">
+              <MappingFragment StoreEntitySet="Customer">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Customer_No" ColumnName="Customer_No" />
+                <ScalarProperty Name="Customer_Name" ColumnName="Customer_Name" />
+                <ScalarProperty Name="Customer_Status" ColumnName="Customer_Status" />
+                <ScalarProperty Name="User_Id" ColumnName="User_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PrintJobs">
+            <EntityTypeMapping TypeName="PrintJobDbModel.PrintJob">
+              <MappingFragment StoreEntitySet="PrintJob">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Printer_Name" ColumnName="Printer_Name" />
+                <ScalarProperty Name="Document_Name" ColumnName="Document_Name" />
+                <ScalarProperty Name="Document_Pages" ColumnName="Document_Pages" />
+                <ScalarProperty Name="Submitted_By" ColumnName="Submitted_By" />
+                <ScalarProperty Name="Submitted_At" ColumnName="Submitted_At" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Customer_Id" ColumnName="Customer_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="PrintJobDbModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TimeRegistrations">
+            <EntityTypeMapping TypeName="PrintJobDbModel.TimeRegistration">
+              <MappingFragment StoreEntitySet="TimeRegistration">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Case_No" ColumnName="Case_No" />
+                <ScalarProperty Name="Start_Date_Time" ColumnName="Start_Date_Time" />
+                <ScalarProperty Name="Stop_Date_Time" ColumnName="Stop_Date_Time" />
+                <ScalarProperty Name="Action_Comment" ColumnName="Action_Comment" />
+                <ScalarProperty Name="Invoice" ColumnName="Invoice" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TypeofCases">
+            <EntityTypeMapping TypeName="PrintJobDbModel.TypeofCas">
+              <MappingFragment StoreEntitySet="TypeofCases">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Invoice_Type" ColumnName="Invoice_Type" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="PrintJobDbModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Number" ColumnName="Number" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Language" ColumnName="Language" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
