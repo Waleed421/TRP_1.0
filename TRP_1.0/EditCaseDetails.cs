@@ -10,16 +10,11 @@ using System.Windows.Forms;
 
 namespace TRP_1._0
 {
-    public partial class Edit_Action_Report : Form
+    public partial class EditCaseDetails : Form
     {
-        public Edit_Action_Report()
+        public EditCaseDetails()
         {
             InitializeComponent();
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

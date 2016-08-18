@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="d766737606b945f592f7bb4a81f95526" Name="Diagram1">
+        <EntityTypeShape EntityType="TRPDbModel.Case" Width="1.5" PointX="5.25" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="TRPDbModel.Customer" Width="1.5" PointX="3" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="TRPDbModel.PrintJob" Width="1.5" PointX="5.25" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TRPDbModel.sysdiagram" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TRPDbModel.TypeofCas" Width="1.5" PointX="3" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="TRPDbModel.User" Width="1.5" PointX="0.75" PointY="3.625" IsExpanded="true" />
+        <AssociationConnector Association="TRPDbModel.FK_Cases_Customer" ManuallyRouted="false" />
+        <AssociationConnector Association="TRPDbModel.FK_Cases_TypeofCases1" ManuallyRouted="false" />
+        <AssociationConnector Association="TRPDbModel.FK_Cases_User" ManuallyRouted="false" />
+        <AssociationConnector Association="TRPDbModel.FK_Cases_User1" ManuallyRouted="false" />
+        <AssociationConnector Association="TRPDbModel.FK_Customer_User" ManuallyRouted="false" />
+        <AssociationConnector Association="TRPDbModel.FK_PrintJob_Customer" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="TRPDbModel.TimeRegistration" Width="1.5" PointX="7.5" PointY="4.125" />
+        <AssociationConnector Association="TRPDbModel.FK_TimeRegistration_Cases" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

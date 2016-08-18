@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="PrintJobDbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="TRPDbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Cases">
           <Key>
             <PropertyRef Name="Case_No" />
@@ -12,7 +12,6 @@
           <Property Name="Case_No" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Title" Type="nvarchar(max)" />
           <Property Name="Case_Comment" Type="nvarchar(max)" />
-          <Property Name="Description" Type="nvarchar(max)" />
           <Property Name="Type_Id" Type="int" />
           <Property Name="Customer_Id" Type="int" />
           <Property Name="Date_Time_Created" Type="datetime" />
@@ -65,6 +64,7 @@
           <Property Name="Stop_Date_Time" Type="datetime" />
           <Property Name="Action_Comment" Type="nvarchar(max)" />
           <Property Name="Invoice" Type="nvarchar" MaxLength="50" />
+          <Property Name="Time_In_Minutes" Type="time" Precision="7" />
         </EntityType>
         <EntityType Name="TypeofCases">
           <Key>
@@ -86,18 +86,6 @@
           <Property Name="Status" Type="nvarchar" MaxLength="50" />
           <Property Name="Language" Type="nvarchar" MaxLength="50" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6013: The table/view 'PrintJobDb.dbo.ViewReport' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
-        <EntityType Name="ViewReport">
-          <Property Name="Printer_Name" Type="nvarchar(max)" />
-          <Property Name="Document_Name" Type="nvarchar(max)" />
-          <Property Name="Document_Pages" Type="nvarchar(max)" />
-          <Property Name="Submitted_By" Type="nvarchar(max)" />
-          <Property Name="Submitted_At" Type="datetime" />
-          <Property Name="Username" Type="nvarchar(max)" />
-          <Property Name="Customer_Name" Type="nvarchar" MaxLength="50" />
-          <Property Name="Customer_No" Type="nvarchar(max)" />
-        </EntityType>-->
         <Association Name="FK_Cases_Customer">
           <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
           <End Role="Cases" Type="Self.Cases" Multiplicity="*" />
@@ -182,7 +170,7 @@ warning 6013: The table/view 'PrintJobDb.dbo.ViewReport' does not have a primary
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="PrintJobDbModelStoreContainer">
+        <EntityContainer Name="TRPDbModelStoreContainer">
           <EntitySet Name="Cases" EntityType="Self.Cases" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PrintJob" EntityType="Self.PrintJob" Schema="dbo" store:Type="Tables" />
@@ -219,11 +207,10 @@ warning 6013: The table/view 'PrintJobDb.dbo.ViewReport' does not have a primary
             <End Role="TimeRegistration" EntitySet="TimeRegistration" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="PrintJobDbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="TRPDbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Case">
           <Key>
             <PropertyRef Name="Case_No" />
@@ -231,7 +218,6 @@ warning 6013: The table/view 'PrintJobDb.dbo.ViewReport' does not have a primary
           <Property Name="Case_No" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Case_Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Type_Id" Type="Int32" />
           <Property Name="Customer_Id" Type="Int32" />
           <Property Name="Date_Time_Created" Type="DateTime" Precision="3" />
@@ -244,7 +230,7 @@ warning 6013: The table/view 'PrintJobDb.dbo.ViewReport' does not have a primary
           <NavigationProperty Name="TypeofCas" Relationship="Self.FK_Cases_TypeofCases1" FromRole="Cases" ToRole="TypeofCases" />
           <NavigationProperty Name="User" Relationship="Self.FK_Cases_User" FromRole="Cases" ToRole="User" />
           <NavigationProperty Name="User1" Relationship="Self.FK_Cases_User1" FromRole="Cases" ToRole="User" />
-          <NavigationProperty Name="TimeRegistrations" Relationship="Self.FK_TimeRegistration_Cases" FromRole="Cases" ToRole="TimeRegistration" />
+          <NavigationProperty Name="TimeRegistrations" Relationship="TRPDbModel.FK_TimeRegistration_Cases" FromRole="Case" ToRole="TimeRegistration" />
         </EntityType>
         <EntityType Name="Customer">
           <Key>
@@ -282,18 +268,6 @@ warning 6013: The table/view 'PrintJobDb.dbo.ViewReport' does not have a primary
           <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="version" Type="Int32" />
           <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
-        </EntityType>
-        <EntityType Name="TimeRegistration">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Case_No" Type="Int32" />
-          <Property Name="Start_Date_Time" Type="DateTime" Precision="3" />
-          <Property Name="Stop_Date_Time" Type="DateTime" Precision="3" />
-          <Property Name="Action_Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Invoice" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Case" Relationship="Self.FK_TimeRegistration_Cases" FromRole="TimeRegistration" ToRole="Cases" />
         </EntityType>
         <EntityType Name="TypeofCas">
           <Key>
@@ -367,18 +341,6 @@ warning 6013: The table/view 'PrintJobDb.dbo.ViewReport' does not have a primary
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_TimeRegistration_Cases">
-          <End Role="Cases" Type="Self.Case" Multiplicity="0..1" />
-          <End Role="TimeRegistration" Type="Self.TimeRegistration" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Cases">
-              <PropertyRef Name="Case_No" />
-            </Principal>
-            <Dependent Role="TimeRegistration">
-              <PropertyRef Name="Case_No" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Customer_User">
           <End Role="User" Type="Self.User" Multiplicity="0..1" />
           <End Role="Customer" Type="Self.Customer" Multiplicity="*" />
@@ -403,12 +365,11 @@ warning 6013: The table/view 'PrintJobDb.dbo.ViewReport' does not have a primary
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="PrintJobDbEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="TRPDbEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Cases" EntityType="Self.Case" />
           <EntitySet Name="Customers" EntityType="Self.Customer" />
           <EntitySet Name="PrintJobs" EntityType="Self.PrintJob" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
-          <EntitySet Name="TimeRegistrations" EntityType="Self.TimeRegistration" />
           <EntitySet Name="TypeofCases" EntityType="Self.TypeofCas" />
           <EntitySet Name="Users" EntityType="Self.User" />
           <AssociationSet Name="FK_Cases_Customer" Association="Self.FK_Cases_Customer">
@@ -427,10 +388,6 @@ warning 6013: The table/view 'PrintJobDb.dbo.ViewReport' does not have a primary
             <End Role="User" EntitySet="Users" />
             <End Role="Cases" EntitySet="Cases" />
           </AssociationSet>
-          <AssociationSet Name="FK_TimeRegistration_Cases" Association="Self.FK_TimeRegistration_Cases">
-            <End Role="Cases" EntitySet="Cases" />
-            <End Role="TimeRegistration" EntitySet="TimeRegistrations" />
-          </AssociationSet>
           <AssociationSet Name="FK_Customer_User" Association="Self.FK_Customer_User">
             <End Role="User" EntitySet="Users" />
             <End Role="Customer" EntitySet="Customers" />
@@ -439,20 +396,49 @@ warning 6013: The table/view 'PrintJobDb.dbo.ViewReport' does not have a primary
             <End Role="Customer" EntitySet="Customers" />
             <End Role="PrintJob" EntitySet="PrintJobs" />
           </AssociationSet>
+          <EntitySet Name="TimeRegistrations" EntityType="TRPDbModel.TimeRegistration" />
+          <AssociationSet Name="FK_TimeRegistration_Cases" Association="TRPDbModel.FK_TimeRegistration_Cases">
+            <End Role="Case" EntitySet="Cases" />
+            <End Role="TimeRegistration" EntitySet="TimeRegistrations" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="TimeRegistration">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Case_No" Type="Int32" />
+          <Property Name="Start_Date_Time" Type="DateTime" Precision="3" />
+          <Property Name="Stop_Date_Time" Type="DateTime" Precision="3" />
+          <Property Name="Action_Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Invoice" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Time_In_Minutes" Type="Time" Precision="7" />
+          <NavigationProperty Name="Case" Relationship="TRPDbModel.FK_TimeRegistration_Cases" FromRole="TimeRegistration" ToRole="Case" />
+        </EntityType>
+        <Association Name="FK_TimeRegistration_Cases">
+          <End Type="TRPDbModel.Case" Role="Case" Multiplicity="0..1" />
+          <End Type="TRPDbModel.TimeRegistration" Role="TimeRegistration" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Case">
+              <PropertyRef Name="Case_No" />
+            </Principal>
+            <Dependent Role="TimeRegistration">
+              <PropertyRef Name="Case_No" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="PrintJobDbModelStoreContainer" CdmEntityContainer="PrintJobDbEntities">
+        <EntityContainerMapping StorageEntityContainer="TRPDbModelStoreContainer" CdmEntityContainer="TRPDbEntities">
           <EntitySetMapping Name="Cases">
-            <EntityTypeMapping TypeName="PrintJobDbModel.Case">
+            <EntityTypeMapping TypeName="TRPDbModel.Case">
               <MappingFragment StoreEntitySet="Cases">
                 <ScalarProperty Name="Case_No" ColumnName="Case_No" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="Case_Comment" ColumnName="Case_Comment" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="Type_Id" ColumnName="Type_Id" />
                 <ScalarProperty Name="Customer_Id" ColumnName="Customer_Id" />
                 <ScalarProperty Name="Date_Time_Created" ColumnName="Date_Time_Created" />
@@ -465,7 +451,7 @@ warning 6013: The table/view 'PrintJobDb.dbo.ViewReport' does not have a primary
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Customers">
-            <EntityTypeMapping TypeName="PrintJobDbModel.Customer">
+            <EntityTypeMapping TypeName="TRPDbModel.Customer">
               <MappingFragment StoreEntitySet="Customer">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Customer_No" ColumnName="Customer_No" />
@@ -476,7 +462,7 @@ warning 6013: The table/view 'PrintJobDb.dbo.ViewReport' does not have a primary
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="PrintJobs">
-            <EntityTypeMapping TypeName="PrintJobDbModel.PrintJob">
+            <EntityTypeMapping TypeName="TRPDbModel.PrintJob">
               <MappingFragment StoreEntitySet="PrintJob">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Printer_Name" ColumnName="Printer_Name" />
@@ -490,7 +476,7 @@ warning 6013: The table/view 'PrintJobDb.dbo.ViewReport' does not have a primary
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="PrintJobDbModel.sysdiagram">
+            <EntityTypeMapping TypeName="TRPDbModel.sysdiagram">
               <MappingFragment StoreEntitySet="sysdiagrams">
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="principal_id" ColumnName="principal_id" />
@@ -500,20 +486,8 @@ warning 6013: The table/view 'PrintJobDb.dbo.ViewReport' does not have a primary
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="TimeRegistrations">
-            <EntityTypeMapping TypeName="PrintJobDbModel.TimeRegistration">
-              <MappingFragment StoreEntitySet="TimeRegistration">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Case_No" ColumnName="Case_No" />
-                <ScalarProperty Name="Start_Date_Time" ColumnName="Start_Date_Time" />
-                <ScalarProperty Name="Stop_Date_Time" ColumnName="Stop_Date_Time" />
-                <ScalarProperty Name="Action_Comment" ColumnName="Action_Comment" />
-                <ScalarProperty Name="Invoice" ColumnName="Invoice" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="TypeofCases">
-            <EntityTypeMapping TypeName="PrintJobDbModel.TypeofCas">
+            <EntityTypeMapping TypeName="TRPDbModel.TypeofCas">
               <MappingFragment StoreEntitySet="TypeofCases">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Type" ColumnName="Type" />
@@ -523,7 +497,7 @@ warning 6013: The table/view 'PrintJobDb.dbo.ViewReport' does not have a primary
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Users">
-            <EntityTypeMapping TypeName="PrintJobDbModel.User">
+            <EntityTypeMapping TypeName="TRPDbModel.User">
               <MappingFragment StoreEntitySet="User">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -531,6 +505,19 @@ warning 6013: The table/view 'PrintJobDb.dbo.ViewReport' does not have a primary
                 <ScalarProperty Name="Number" ColumnName="Number" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="Language" ColumnName="Language" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TimeRegistrations">
+            <EntityTypeMapping TypeName="TRPDbModel.TimeRegistration">
+              <MappingFragment StoreEntitySet="TimeRegistration">
+                <ScalarProperty Name="Time_In_Minutes" ColumnName="Time_In_Minutes" />
+                <ScalarProperty Name="Invoice" ColumnName="Invoice" />
+                <ScalarProperty Name="Action_Comment" ColumnName="Action_Comment" />
+                <ScalarProperty Name="Stop_Date_Time" ColumnName="Stop_Date_Time" />
+                <ScalarProperty Name="Start_Date_Time" ColumnName="Start_Date_Time" />
+                <ScalarProperty Name="Case_No" ColumnName="Case_No" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

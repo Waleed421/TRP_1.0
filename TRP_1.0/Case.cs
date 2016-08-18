@@ -23,7 +23,6 @@ namespace TRP_1._0
         public int Case_No { get; set; }
         public string Title { get; set; }
         public string Case_Comment { get; set; }
-        public string Description { get; set; }
         public Nullable<int> Type_Id { get; set; }
         public Nullable<int> Customer_Id { get; set; }
         public Nullable<System.DateTime> Date_Time_Created { get; set; }
