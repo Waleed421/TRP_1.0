@@ -28,6 +28,10 @@ namespace TRP_1._0
                 radioButtonYes.Checked = true;
             else if (edit.Invoice_Type == "No")
                 radioButtonNo.Checked = true;
+            if (edit.Status == "Active")
+                radioButtonActive.Checked = true;
+            else if (edit.Status == "Inactive")
+                radioButtonInactive.Checked = true;
             buttonSave.Enabled = true;
             textBoxType.ReadOnly = true;
         }
@@ -40,9 +44,13 @@ namespace TRP_1._0
                 save.Invoice_Type = "Yes";
             else if (radioButtonNo.Checked)
                 save.Invoice_Type = "No";
+            if (radioButtonActive.Checked)
+                save.Status = "Active";
+            else if (radioButtonInactive.Checked)
+                save.Status = "Inactive";
             db.SaveChanges();
             MessageBox.Show("Case Type successfully edited");
-            var type = (from t in db.TypeofCases select t).ToList();
+            var type = (from t in db.TypeofCases select new { t.Id, t.Type, t.Invoice_Type, t.Status }).ToList();
             gridControl1.DataSource = type;
             buttonSave.Enabled = false;
             textBoxType.ReadOnly = false;
@@ -51,9 +59,28 @@ namespace TRP_1._0
         private void EditCaseType_Load(object sender, EventArgs e)
         {
             buttonSave.Enabled = false;
-            var type = (from t in db.TypeofCases select t).ToList();
+            var type = (from t in db.TypeofCases select new { t.Id, t.Type, t.Invoice_Type, t.Status }).ToList();
             gridControl1.DataSource = type;           
                        
+        }
+
+        private void buttonAdd_Click(object sender, EventArgs e)
+        {
+            TypeofCas tc = new TypeofCas();
+            tc.Type = textBoxType.Text;
+            if (radioButtonYes.Checked)
+                tc.Invoice_Type = "Yes";
+            else if (radioButtonNo.Checked)
+                tc.Invoice_Type = "No";
+            if (radioButtonActive.Checked)
+                tc.Status = "Active";
+            else if (radioButtonInactive.Checked)
+                tc.Status = "Inactive";
+            db.TypeofCases.Add(tc);
+            db.SaveChanges();
+            MessageBox.Show("Case Type successfully added");
+            var type = (from t in db.TypeofCases select new { t.Id, t.Type, t.Invoice_Type, t.Status }).ToList();
+            gridControl1.DataSource = type;
         }
     }
 }

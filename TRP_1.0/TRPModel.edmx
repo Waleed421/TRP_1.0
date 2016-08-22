@@ -19,7 +19,8 @@
           <Property Name="Last_Edit_Date_Time" Type="datetime" />
           <Property Name="Last_Edit_By_User_Id" Type="int" />
           <Property Name="Status" Type="nvarchar" MaxLength="50" />
-          <Property Name="Worked_Time_in_Minutes" Type="nvarchar" MaxLength="50" />
+          <Property Name="Worked_Time_in_Minutes" Type="time" Precision="7" />
+          <Property Name="Manual_Work_Time" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Customer">
           <Key>
@@ -65,6 +66,7 @@
           <Property Name="Action_Comment" Type="nvarchar(max)" />
           <Property Name="Invoice" Type="nvarchar" MaxLength="50" />
           <Property Name="Time_In_Minutes" Type="time" Precision="7" />
+          <Property Name="User_Id" Type="int" />
         </EntityType>
         <EntityType Name="TypeofCases">
           <Key>
@@ -170,6 +172,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_TimeRegistration_User">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="TimeRegistration" Type="Self.TimeRegistration" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TimeRegistration">
+              <PropertyRef Name="User_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="TRPDbModelStoreContainer">
           <EntitySet Name="Cases" EntityType="Self.Cases" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
@@ -206,32 +220,15 @@
             <End Role="Cases" EntitySet="Cases" />
             <End Role="TimeRegistration" EntitySet="TimeRegistration" />
           </AssociationSet>
+          <AssociationSet Name="FK_TimeRegistration_User" Association="Self.FK_TimeRegistration_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="TimeRegistration" EntitySet="TimeRegistration" />
+          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="TRPDbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="Case">
-          <Key>
-            <PropertyRef Name="Case_No" />
-          </Key>
-          <Property Name="Case_No" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Case_Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Type_Id" Type="Int32" />
-          <Property Name="Customer_Id" Type="Int32" />
-          <Property Name="Date_Time_Created" Type="DateTime" Precision="3" />
-          <Property Name="Created_By_User_Id" Type="Int32" />
-          <Property Name="Last_Edit_Date_Time" Type="DateTime" Precision="3" />
-          <Property Name="Last_Edit_By_User_Id" Type="Int32" />
-          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Worked_Time_in_Minutes" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Customer" Relationship="Self.FK_Cases_Customer" FromRole="Cases" ToRole="Customer" />
-          <NavigationProperty Name="TypeofCas" Relationship="Self.FK_Cases_TypeofCases1" FromRole="Cases" ToRole="TypeofCases" />
-          <NavigationProperty Name="User" Relationship="Self.FK_Cases_User" FromRole="Cases" ToRole="User" />
-          <NavigationProperty Name="User1" Relationship="Self.FK_Cases_User1" FromRole="Cases" ToRole="User" />
-          <NavigationProperty Name="TimeRegistrations" Relationship="TRPDbModel.FK_TimeRegistration_Cases" FromRole="Case" ToRole="TimeRegistration" />
-        </EntityType>
         <EntityType Name="Customer">
           <Key>
             <PropertyRef Name="Id" />
@@ -241,9 +238,9 @@
           <Property Name="Customer_Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Customer_Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="User_Id" Type="Int32" />
-          <NavigationProperty Name="Cases" Relationship="Self.FK_Cases_Customer" FromRole="Customer" ToRole="Cases" />
           <NavigationProperty Name="User" Relationship="Self.FK_Customer_User" FromRole="Customer" ToRole="User" />
           <NavigationProperty Name="PrintJobs" Relationship="Self.FK_PrintJob_Customer" FromRole="Customer" ToRole="PrintJob" />
+          <NavigationProperty Name="Cases" Relationship="TRPDbModel.FK_Cases_Customer" FromRole="Customer" ToRole="Case" />
         </EntityType>
         <EntityType Name="PrintJob">
           <Key>
@@ -277,7 +274,7 @@
           <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Invoice_Type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Cases" Relationship="Self.FK_Cases_TypeofCases1" FromRole="TypeofCases" ToRole="Cases" />
+          <NavigationProperty Name="Cases" Relationship="TRPDbModel.FK_Cases_TypeofCases1" FromRole="TypeofCas" ToRole="Case" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -289,58 +286,11 @@
           <Property Name="Number" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Language" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Cases" Relationship="Self.FK_Cases_User" FromRole="User" ToRole="Cases" />
-          <NavigationProperty Name="Cases1" Relationship="Self.FK_Cases_User1" FromRole="User" ToRole="Cases" />
           <NavigationProperty Name="Customers" Relationship="Self.FK_Customer_User" FromRole="User" ToRole="Customer" />
+          <NavigationProperty Name="TimeRegistrations" Relationship="TRPDbModel.FK_TimeRegistration_User" FromRole="User" ToRole="TimeRegistration" />
+          <NavigationProperty Name="Cases" Relationship="TRPDbModel.FK_Cases_User" FromRole="User" ToRole="Case" />
+          <NavigationProperty Name="Cases1" Relationship="TRPDbModel.FK_Cases_User1" FromRole="User" ToRole="Case" />
         </EntityType>
-        <Association Name="FK_Cases_Customer">
-          <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
-          <End Role="Cases" Type="Self.Case" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Customer">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Cases">
-              <PropertyRef Name="Customer_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Cases_TypeofCases1">
-          <End Role="TypeofCases" Type="Self.TypeofCas" Multiplicity="0..1" />
-          <End Role="Cases" Type="Self.Case" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TypeofCases">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Cases">
-              <PropertyRef Name="Type_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Cases_User">
-          <End Role="User" Type="Self.User" Multiplicity="0..1" />
-          <End Role="Cases" Type="Self.Case" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Cases">
-              <PropertyRef Name="Created_By_User_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Cases_User1">
-          <End Role="User" Type="Self.User" Multiplicity="0..1" />
-          <End Role="Cases" Type="Self.Case" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Cases">
-              <PropertyRef Name="Last_Edit_By_User_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Customer_User">
           <End Role="User" Type="Self.User" Multiplicity="0..1" />
           <End Role="Customer" Type="Self.Customer" Multiplicity="*" />
@@ -366,28 +316,11 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="TRPDbEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Cases" EntityType="Self.Case" />
           <EntitySet Name="Customers" EntityType="Self.Customer" />
           <EntitySet Name="PrintJobs" EntityType="Self.PrintJob" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
           <EntitySet Name="TypeofCases" EntityType="Self.TypeofCas" />
           <EntitySet Name="Users" EntityType="Self.User" />
-          <AssociationSet Name="FK_Cases_Customer" Association="Self.FK_Cases_Customer">
-            <End Role="Customer" EntitySet="Customers" />
-            <End Role="Cases" EntitySet="Cases" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Cases_TypeofCases1" Association="Self.FK_Cases_TypeofCases1">
-            <End Role="TypeofCases" EntitySet="TypeofCases" />
-            <End Role="Cases" EntitySet="Cases" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Cases_User" Association="Self.FK_Cases_User">
-            <End Role="User" EntitySet="Users" />
-            <End Role="Cases" EntitySet="Cases" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Cases_User1" Association="Self.FK_Cases_User1">
-            <End Role="User" EntitySet="Users" />
-            <End Role="Cases" EntitySet="Cases" />
-          </AssociationSet>
           <AssociationSet Name="FK_Customer_User" Association="Self.FK_Customer_User">
             <End Role="User" EntitySet="Users" />
             <End Role="Customer" EntitySet="Customers" />
@@ -397,6 +330,27 @@
             <End Role="PrintJob" EntitySet="PrintJobs" />
           </AssociationSet>
           <EntitySet Name="TimeRegistrations" EntityType="TRPDbModel.TimeRegistration" />
+          <AssociationSet Name="FK_TimeRegistration_User" Association="TRPDbModel.FK_TimeRegistration_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="TimeRegistration" EntitySet="TimeRegistrations" />
+          </AssociationSet>
+          <EntitySet Name="Cases" EntityType="TRPDbModel.Case" />
+          <AssociationSet Name="FK_Cases_Customer" Association="TRPDbModel.FK_Cases_Customer">
+            <End Role="Customer" EntitySet="Customers" />
+            <End Role="Case" EntitySet="Cases" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cases_TypeofCases1" Association="TRPDbModel.FK_Cases_TypeofCases1">
+            <End Role="TypeofCas" EntitySet="TypeofCases" />
+            <End Role="Case" EntitySet="Cases" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cases_User" Association="TRPDbModel.FK_Cases_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Case" EntitySet="Cases" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cases_User1" Association="TRPDbModel.FK_Cases_User1">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Case" EntitySet="Cases" />
+          </AssociationSet>
           <AssociationSet Name="FK_TimeRegistration_Cases" Association="TRPDbModel.FK_TimeRegistration_Cases">
             <End Role="Case" EntitySet="Cases" />
             <End Role="TimeRegistration" EntitySet="TimeRegistrations" />
@@ -413,8 +367,92 @@
           <Property Name="Action_Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Invoice" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Time_In_Minutes" Type="Time" Precision="7" />
+          <Property Name="User_Id" Type="Int32" />
+          <NavigationProperty Name="User" Relationship="TRPDbModel.FK_TimeRegistration_User" FromRole="TimeRegistration" ToRole="User" />
           <NavigationProperty Name="Case" Relationship="TRPDbModel.FK_TimeRegistration_Cases" FromRole="TimeRegistration" ToRole="Case" />
         </EntityType>
+        <Association Name="FK_TimeRegistration_User">
+          <End Type="TRPDbModel.User" Role="User" Multiplicity="0..1" />
+          <End Type="TRPDbModel.TimeRegistration" Role="TimeRegistration" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TimeRegistration">
+              <PropertyRef Name="User_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Case">
+          <Key>
+            <PropertyRef Name="Case_No" />
+          </Key>
+          <Property Name="Case_No" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Case_Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Type_Id" Type="Int32" />
+          <Property Name="Customer_Id" Type="Int32" />
+          <Property Name="Date_Time_Created" Type="DateTime" Precision="3" />
+          <Property Name="Created_By_User_Id" Type="Int32" />
+          <Property Name="Last_Edit_Date_Time" Type="DateTime" Precision="3" />
+          <Property Name="Last_Edit_By_User_Id" Type="Int32" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Worked_Time_in_Minutes" Type="Time" Precision="7" />
+          <NavigationProperty Name="Customer" Relationship="TRPDbModel.FK_Cases_Customer" FromRole="Case" ToRole="Customer" />
+          <NavigationProperty Name="TypeofCas" Relationship="TRPDbModel.FK_Cases_TypeofCases1" FromRole="Case" ToRole="TypeofCas" />
+          <NavigationProperty Name="User" Relationship="TRPDbModel.FK_Cases_User" FromRole="Case" ToRole="User" />
+          <NavigationProperty Name="User1" Relationship="TRPDbModel.FK_Cases_User1" FromRole="Case" ToRole="User" />
+          <NavigationProperty Name="TimeRegistrations" Relationship="TRPDbModel.FK_TimeRegistration_Cases" FromRole="Case" ToRole="TimeRegistration" />
+          <Property Name="Manual_Work_Time" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="FK_Cases_Customer">
+          <End Type="TRPDbModel.Customer" Role="Customer" Multiplicity="0..1" />
+          <End Type="TRPDbModel.Case" Role="Case" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Case">
+              <PropertyRef Name="Customer_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cases_TypeofCases1">
+          <End Type="TRPDbModel.TypeofCas" Role="TypeofCas" Multiplicity="0..1" />
+          <End Type="TRPDbModel.Case" Role="Case" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TypeofCas">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Case">
+              <PropertyRef Name="Type_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cases_User">
+          <End Type="TRPDbModel.User" Role="User" Multiplicity="0..1" />
+          <End Type="TRPDbModel.Case" Role="Case" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Case">
+              <PropertyRef Name="Created_By_User_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cases_User1">
+          <End Type="TRPDbModel.User" Role="User" Multiplicity="0..1" />
+          <End Type="TRPDbModel.Case" Role="Case" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Case">
+              <PropertyRef Name="Last_Edit_By_User_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_TimeRegistration_Cases">
           <End Type="TRPDbModel.Case" Role="Case" Multiplicity="0..1" />
           <End Type="TRPDbModel.TimeRegistration" Role="TimeRegistration" Multiplicity="*" />
@@ -433,23 +471,6 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="TRPDbModelStoreContainer" CdmEntityContainer="TRPDbEntities">
-          <EntitySetMapping Name="Cases">
-            <EntityTypeMapping TypeName="TRPDbModel.Case">
-              <MappingFragment StoreEntitySet="Cases">
-                <ScalarProperty Name="Case_No" ColumnName="Case_No" />
-                <ScalarProperty Name="Title" ColumnName="Title" />
-                <ScalarProperty Name="Case_Comment" ColumnName="Case_Comment" />
-                <ScalarProperty Name="Type_Id" ColumnName="Type_Id" />
-                <ScalarProperty Name="Customer_Id" ColumnName="Customer_Id" />
-                <ScalarProperty Name="Date_Time_Created" ColumnName="Date_Time_Created" />
-                <ScalarProperty Name="Created_By_User_Id" ColumnName="Created_By_User_Id" />
-                <ScalarProperty Name="Last_Edit_Date_Time" ColumnName="Last_Edit_Date_Time" />
-                <ScalarProperty Name="Last_Edit_By_User_Id" ColumnName="Last_Edit_By_User_Id" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="Worked_Time_in_Minutes" ColumnName="Worked_Time_in_Minutes" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Customers">
             <EntityTypeMapping TypeName="TRPDbModel.Customer">
               <MappingFragment StoreEntitySet="Customer">
@@ -511,6 +532,7 @@
           <EntitySetMapping Name="TimeRegistrations">
             <EntityTypeMapping TypeName="TRPDbModel.TimeRegistration">
               <MappingFragment StoreEntitySet="TimeRegistration">
+                <ScalarProperty Name="User_Id" ColumnName="User_Id" />
                 <ScalarProperty Name="Time_In_Minutes" ColumnName="Time_In_Minutes" />
                 <ScalarProperty Name="Invoice" ColumnName="Invoice" />
                 <ScalarProperty Name="Action_Comment" ColumnName="Action_Comment" />
@@ -518,6 +540,24 @@
                 <ScalarProperty Name="Start_Date_Time" ColumnName="Start_Date_Time" />
                 <ScalarProperty Name="Case_No" ColumnName="Case_No" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cases">
+            <EntityTypeMapping TypeName="TRPDbModel.Case">
+              <MappingFragment StoreEntitySet="Cases">
+                <ScalarProperty Name="Manual_Work_Time" ColumnName="Manual_Work_Time" />
+                <ScalarProperty Name="Worked_Time_in_Minutes" ColumnName="Worked_Time_in_Minutes" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Last_Edit_By_User_Id" ColumnName="Last_Edit_By_User_Id" />
+                <ScalarProperty Name="Last_Edit_Date_Time" ColumnName="Last_Edit_Date_Time" />
+                <ScalarProperty Name="Created_By_User_Id" ColumnName="Created_By_User_Id" />
+                <ScalarProperty Name="Date_Time_Created" ColumnName="Date_Time_Created" />
+                <ScalarProperty Name="Customer_Id" ColumnName="Customer_Id" />
+                <ScalarProperty Name="Type_Id" ColumnName="Type_Id" />
+                <ScalarProperty Name="Case_Comment" ColumnName="Case_Comment" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Case_No" ColumnName="Case_No" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

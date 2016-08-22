@@ -38,6 +38,7 @@
             this.casesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tRPDbDataSet = new TRP_1._0.TRPDbDataSet();
             this.panelCaseList = new System.Windows.Forms.Panel();
+            this.label12 = new System.Windows.Forms.Label();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView3 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridControlRecentCases = new DevExpress.XtraGrid.GridControl();
@@ -71,8 +72,7 @@
             this.casesTableAdapter = new TRP_1._0.TRPDbDataSetTableAdapters.CasesTableAdapter();
             this.customerBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.customerTableAdapter = new TRP_1._0.TRPDbDataSetTableAdapters.CustomerTableAdapter();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label12 = new System.Windows.Forms.Label();
+            this.textBoxActionComment = new System.Windows.Forms.TextBox();
             this.panelOtherCase.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlAllCases)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
@@ -92,7 +92,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Verdana", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(343, 31);
+            this.label1.Location = new System.Drawing.Point(294, 31);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(441, 29);
             this.label1.TabIndex = 0;
@@ -103,17 +103,17 @@
             this.panelOtherCase.Controls.Add(this.gridControlAllCases);
             this.panelOtherCase.Controls.Add(this.buttonStartSearched);
             this.panelOtherCase.Controls.Add(this.label2);
-            this.panelOtherCase.Location = new System.Drawing.Point(15, 81);
+            this.panelOtherCase.Location = new System.Drawing.Point(13, 81);
             this.panelOtherCase.Name = "panelOtherCase";
-            this.panelOtherCase.Size = new System.Drawing.Size(1077, 191);
+            this.panelOtherCase.Size = new System.Drawing.Size(923, 191);
             this.panelOtherCase.TabIndex = 1;
             // 
             // gridControlAllCases
             // 
-            this.gridControlAllCases.Location = new System.Drawing.Point(8, 30);
+            this.gridControlAllCases.Location = new System.Drawing.Point(7, 30);
             this.gridControlAllCases.MainView = this.gridView1;
             this.gridControlAllCases.Name = "gridControlAllCases";
-            this.gridControlAllCases.Size = new System.Drawing.Size(625, 158);
+            this.gridControlAllCases.Size = new System.Drawing.Size(536, 158);
             this.gridControlAllCases.TabIndex = 23;
             this.gridControlAllCases.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -126,9 +126,9 @@
             // buttonStartSearched
             // 
             this.buttonStartSearched.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonStartSearched.Location = new System.Drawing.Point(639, 113);
+            this.buttonStartSearched.Location = new System.Drawing.Point(548, 113);
             this.buttonStartSearched.Name = "buttonStartSearched";
-            this.buttonStartSearched.Size = new System.Drawing.Size(130, 39);
+            this.buttonStartSearched.Size = new System.Drawing.Size(111, 39);
             this.buttonStartSearched.TabIndex = 22;
             this.buttonStartSearched.Text = "Start Date/Time Stamp";
             this.buttonStartSearched.UseVisualStyleBackColor = true;
@@ -162,17 +162,26 @@
             this.panelCaseList.Controls.Add(this.label17);
             this.panelCaseList.Controls.Add(this.buttonStartRecent);
             this.panelCaseList.Controls.Add(this.label3);
-            this.panelCaseList.Location = new System.Drawing.Point(15, 278);
+            this.panelCaseList.Location = new System.Drawing.Point(13, 278);
             this.panelCaseList.Name = "panelCaseList";
-            this.panelCaseList.Size = new System.Drawing.Size(787, 226);
+            this.panelCaseList.Size = new System.Drawing.Size(675, 226);
             this.panelCaseList.TabIndex = 2;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(588, 11);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(85, 13);
+            this.label12.TabIndex = 27;
+            this.label12.Text = "Action Comment";
             // 
             // gridControl1
             // 
-            this.gridControl1.Location = new System.Drawing.Point(115, 0);
+            this.gridControl1.Location = new System.Drawing.Point(99, 0);
             this.gridControl1.MainView = this.gridView3;
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(564, 82);
+            this.gridControl1.Size = new System.Drawing.Size(483, 82);
             this.gridControl1.TabIndex = 24;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView3});
@@ -181,13 +190,14 @@
             // 
             this.gridView3.GridControl = this.gridControl1;
             this.gridView3.Name = "gridView3";
+            this.gridView3.OptionsFilter.AllowFilterIncrementalSearch = false;
             // 
             // gridControlRecentCases
             // 
             this.gridControlRecentCases.Location = new System.Drawing.Point(3, 88);
             this.gridControlRecentCases.MainView = this.gridView2;
             this.gridControlRecentCases.Name = "gridControlRecentCases";
-            this.gridControlRecentCases.Size = new System.Drawing.Size(534, 135);
+            this.gridControlRecentCases.Size = new System.Drawing.Size(458, 135);
             this.gridControlRecentCases.TabIndex = 26;
             this.gridControlRecentCases.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView2});
@@ -210,9 +220,9 @@
             // buttonStartRecent
             // 
             this.buttonStartRecent.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonStartRecent.Location = new System.Drawing.Point(543, 138);
+            this.buttonStartRecent.Location = new System.Drawing.Point(465, 138);
             this.buttonStartRecent.Name = "buttonStartRecent";
-            this.buttonStartRecent.Size = new System.Drawing.Size(111, 39);
+            this.buttonStartRecent.Size = new System.Drawing.Size(95, 39);
             this.buttonStartRecent.TabIndex = 23;
             this.buttonStartRecent.Text = "Start Date /Time Stamp";
             this.buttonStartRecent.UseVisualStyleBackColor = true;
@@ -242,54 +252,54 @@
             this.panelCreateCase.Controls.Add(this.label8);
             this.panelCreateCase.Controls.Add(this.label6);
             this.panelCreateCase.Controls.Add(this.label4);
-            this.panelCreateCase.Location = new System.Drawing.Point(15, 507);
+            this.panelCreateCase.Location = new System.Drawing.Point(13, 507);
             this.panelCreateCase.Name = "panelCreateCase";
-            this.panelCreateCase.Size = new System.Drawing.Size(817, 104);
+            this.panelCreateCase.Size = new System.Drawing.Size(700, 104);
             this.panelCreateCase.TabIndex = 3;
             // 
             // comboBoxCustomerName
             // 
             this.comboBoxCustomerName.FormattingEnabled = true;
-            this.comboBoxCustomerName.Location = new System.Drawing.Point(116, 21);
+            this.comboBoxCustomerName.Location = new System.Drawing.Point(99, 21);
             this.comboBoxCustomerName.Name = "comboBoxCustomerName";
-            this.comboBoxCustomerName.Size = new System.Drawing.Size(121, 21);
+            this.comboBoxCustomerName.Size = new System.Drawing.Size(104, 21);
             this.comboBoxCustomerName.TabIndex = 15;
             // 
             // comboBoxCaseType
             // 
             this.comboBoxCaseType.FormattingEnabled = true;
-            this.comboBoxCaseType.Location = new System.Drawing.Point(319, 50);
+            this.comboBoxCaseType.Location = new System.Drawing.Point(273, 50);
             this.comboBoxCaseType.Name = "comboBoxCaseType";
-            this.comboBoxCaseType.Size = new System.Drawing.Size(101, 21);
+            this.comboBoxCaseType.Size = new System.Drawing.Size(87, 21);
             this.comboBoxCaseType.TabIndex = 14;
             // 
             // textTimeInMinutes
             // 
-            this.textTimeInMinutes.Location = new System.Drawing.Point(559, 50);
+            this.textTimeInMinutes.Location = new System.Drawing.Point(479, 50);
             this.textTimeInMinutes.Name = "textTimeInMinutes";
-            this.textTimeInMinutes.Size = new System.Drawing.Size(99, 21);
+            this.textTimeInMinutes.Size = new System.Drawing.Size(85, 21);
             this.textTimeInMinutes.TabIndex = 13;
             // 
             // textCaseComment
             // 
-            this.textCaseComment.Location = new System.Drawing.Point(559, 22);
+            this.textCaseComment.Location = new System.Drawing.Point(479, 22);
             this.textCaseComment.Name = "textCaseComment";
-            this.textCaseComment.Size = new System.Drawing.Size(100, 21);
+            this.textCaseComment.Size = new System.Drawing.Size(86, 21);
             this.textCaseComment.TabIndex = 12;
             // 
             // textCaseTitle
             // 
-            this.textCaseTitle.Location = new System.Drawing.Point(319, 19);
+            this.textCaseTitle.Location = new System.Drawing.Point(273, 19);
             this.textCaseTitle.Name = "textCaseTitle";
-            this.textCaseTitle.Size = new System.Drawing.Size(101, 21);
+            this.textCaseTitle.Size = new System.Drawing.Size(87, 21);
             this.textCaseTitle.TabIndex = 10;
             // 
             // buttonCreateCase
             // 
             this.buttonCreateCase.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonCreateCase.Location = new System.Drawing.Point(701, 27);
+            this.buttonCreateCase.Location = new System.Drawing.Point(601, 27);
             this.buttonCreateCase.Name = "buttonCreateCase";
-            this.buttonCreateCase.Size = new System.Drawing.Size(90, 35);
+            this.buttonCreateCase.Size = new System.Drawing.Size(77, 35);
             this.buttonCreateCase.TabIndex = 7;
             this.buttonCreateCase.Text = "Create Case";
             this.buttonCreateCase.UseVisualStyleBackColor = true;
@@ -298,45 +308,45 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(446, 52);
+            this.label11.Location = new System.Drawing.Point(382, 52);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(96, 13);
+            this.label11.Size = new System.Drawing.Size(80, 13);
             this.label11.TabIndex = 6;
             this.label11.Text = "Time in Minutes";
             // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(446, 22);
+            this.label10.Location = new System.Drawing.Point(382, 22);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(96, 13);
+            this.label10.Size = new System.Drawing.Size(79, 13);
             this.label10.TabIndex = 5;
             this.label10.Text = "Case Comment";
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(236, 52);
+            this.label9.Location = new System.Drawing.Point(202, 52);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(67, 13);
+            this.label9.Size = new System.Drawing.Size(58, 13);
             this.label9.TabIndex = 4;
             this.label9.Text = "Case Type";
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(236, 22);
+            this.label8.Location = new System.Drawing.Point(202, 22);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(64, 13);
+            this.label8.Size = new System.Drawing.Size(54, 13);
             this.label8.TabIndex = 3;
             this.label8.Text = "Case Title";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(9, 25);
+            this.label6.Location = new System.Drawing.Point(8, 25);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(100, 13);
+            this.label6.Size = new System.Drawing.Size(83, 13);
             this.label6.TabIndex = 1;
             this.label6.Text = "Customer Name";
             // 
@@ -344,7 +354,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(5, 0);
+            this.label4.Location = new System.Drawing.Point(4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(131, 16);
             this.label4.TabIndex = 0;
@@ -360,16 +370,16 @@
             this.panelEdit.Controls.Add(this.buttonEditCase);
             this.panelEdit.Controls.Add(this.buttonChangeUser);
             this.panelEdit.Controls.Add(this.label5);
-            this.panelEdit.Location = new System.Drawing.Point(15, 583);
+            this.panelEdit.Location = new System.Drawing.Point(13, 583);
             this.panelEdit.Name = "panelEdit";
-            this.panelEdit.Size = new System.Drawing.Size(1089, 72);
+            this.panelEdit.Size = new System.Drawing.Size(933, 72);
             this.panelEdit.TabIndex = 4;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(609, 15);
+            this.label7.Location = new System.Drawing.Point(522, 15);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(82, 13);
             this.label7.TabIndex = 7;
@@ -378,18 +388,18 @@
             // comboBoxUser
             // 
             this.comboBoxUser.FormattingEnabled = true;
-            this.comboBoxUser.Location = new System.Drawing.Point(612, 33);
+            this.comboBoxUser.Location = new System.Drawing.Point(525, 33);
             this.comboBoxUser.Name = "comboBoxUser";
-            this.comboBoxUser.Size = new System.Drawing.Size(157, 21);
+            this.comboBoxUser.Size = new System.Drawing.Size(135, 21);
             this.comboBoxUser.TabIndex = 6;
             this.comboBoxUser.SelectionChangeCommitted += new System.EventHandler(this.comboBoxUser_SelectionChangeCommitted);
             // 
             // btnEditActionReport
             // 
             this.btnEditActionReport.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEditActionReport.Location = new System.Drawing.Point(793, 16);
+            this.btnEditActionReport.Location = new System.Drawing.Point(680, 16);
             this.btnEditActionReport.Name = "btnEditActionReport";
-            this.btnEditActionReport.Size = new System.Drawing.Size(138, 38);
+            this.btnEditActionReport.Size = new System.Drawing.Size(118, 38);
             this.btnEditActionReport.TabIndex = 5;
             this.btnEditActionReport.Text = "Edit Action Report";
             this.btnEditActionReport.UseVisualStyleBackColor = true;
@@ -398,9 +408,9 @@
             // buttonCaseType
             // 
             this.buttonCaseType.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonCaseType.Location = new System.Drawing.Point(494, 16);
+            this.buttonCaseType.Location = new System.Drawing.Point(423, 16);
             this.buttonCaseType.Name = "buttonCaseType";
-            this.buttonCaseType.Size = new System.Drawing.Size(87, 38);
+            this.buttonCaseType.Size = new System.Drawing.Size(75, 38);
             this.buttonCaseType.TabIndex = 4;
             this.buttonCaseType.Text = "Case Type";
             this.buttonCaseType.UseVisualStyleBackColor = true;
@@ -409,9 +419,9 @@
             // buttonEditCustomer
             // 
             this.buttonEditCustomer.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonEditCustomer.Location = new System.Drawing.Point(368, 16);
+            this.buttonEditCustomer.Location = new System.Drawing.Point(315, 16);
             this.buttonEditCustomer.Name = "buttonEditCustomer";
-            this.buttonEditCustomer.Size = new System.Drawing.Size(92, 38);
+            this.buttonEditCustomer.Size = new System.Drawing.Size(79, 38);
             this.buttonEditCustomer.TabIndex = 3;
             this.buttonEditCustomer.Text = "Customer";
             this.buttonEditCustomer.UseVisualStyleBackColor = true;
@@ -420,9 +430,9 @@
             // buttonEditCase
             // 
             this.buttonEditCase.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonEditCase.Location = new System.Drawing.Point(239, 16);
+            this.buttonEditCase.Location = new System.Drawing.Point(205, 16);
             this.buttonEditCase.Name = "buttonEditCase";
-            this.buttonEditCase.Size = new System.Drawing.Size(87, 37);
+            this.buttonEditCase.Size = new System.Drawing.Size(75, 37);
             this.buttonEditCase.TabIndex = 2;
             this.buttonEditCase.Text = "Case";
             this.buttonEditCase.UseVisualStyleBackColor = true;
@@ -431,9 +441,9 @@
             // buttonChangeUser
             // 
             this.buttonChangeUser.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonChangeUser.Location = new System.Drawing.Point(98, 15);
+            this.buttonChangeUser.Location = new System.Drawing.Point(84, 15);
             this.buttonChangeUser.Name = "buttonChangeUser";
-            this.buttonChangeUser.Size = new System.Drawing.Size(102, 38);
+            this.buttonChangeUser.Size = new System.Drawing.Size(87, 38);
             this.buttonChangeUser.TabIndex = 1;
             this.buttonChangeUser.Text = "User";
             this.buttonChangeUser.UseVisualStyleBackColor = true;
@@ -443,7 +453,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(5, 23);
+            this.label5.Location = new System.Drawing.Point(4, 23);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(36, 16);
             this.label5.TabIndex = 0;
@@ -452,9 +462,9 @@
             // btnStopDateTime
             // 
             this.btnStopDateTime.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnStopDateTime.Location = new System.Drawing.Point(808, 343);
+            this.btnStopDateTime.Location = new System.Drawing.Point(693, 343);
             this.btnStopDateTime.Name = "btnStopDateTime";
-            this.btnStopDateTime.Size = new System.Drawing.Size(138, 73);
+            this.btnStopDateTime.Size = new System.Drawing.Size(118, 73);
             this.btnStopDateTime.TabIndex = 5;
             this.btnStopDateTime.Text = "Stop Date/Time Stamp";
             this.btnStopDateTime.UseVisualStyleBackColor = true;
@@ -473,35 +483,28 @@
             // 
             this.customerTableAdapter.ClearBeforeFill = true;
             // 
-            // textBox1
+            // textBoxActionComment
             // 
-            this.textBox1.Location = new System.Drawing.Point(809, 287);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 21);
-            this.textBox1.TabIndex = 6;
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(686, 11);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(102, 13);
-            this.label12.TabIndex = 27;
-            this.label12.Text = "Action Comment";
+            this.textBoxActionComment.Location = new System.Drawing.Point(693, 287);
+            this.textBoxActionComment.Name = "textBoxActionComment";
+            this.textBoxActionComment.Size = new System.Drawing.Size(86, 21);
+            this.textBoxActionComment.TabIndex = 6;
+            this.textBoxActionComment.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBoxActionComment_KeyDown);
+            this.textBoxActionComment.Leave += new System.EventHandler(this.textBoxActionComment_Leave);
             // 
             // Main
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(953, 667);
-            this.Controls.Add(this.textBox1);
+            this.ClientSize = new System.Drawing.Size(817, 667);
+            this.Controls.Add(this.textBoxActionComment);
             this.Controls.Add(this.btnStopDateTime);
             this.Controls.Add(this.panelEdit);
             this.Controls.Add(this.panelCreateCase);
             this.Controls.Add(this.panelCaseList);
             this.Controls.Add(this.panelOtherCase);
             this.Controls.Add(this.label1);
-            this.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "Main";
             this.Text = "Time Registration Program";
             this.Load += new System.EventHandler(this.Main_Load);
@@ -572,7 +575,7 @@
         private DevExpress.XtraGrid.GridControl gridControl1;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView3;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textBoxActionComment;
     }
 }
 

@@ -17,8 +17,8 @@ namespace TRP_1._0
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Customer()
         {
-            this.Cases = new HashSet<Case>();
             this.PrintJobs = new HashSet<PrintJob>();
+            this.Cases = new HashSet<Case>();
         }
     
         public int Id { get; set; }
@@ -27,10 +27,10 @@ namespace TRP_1._0
         public string Customer_Status { get; set; }
         public Nullable<int> User_Id { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Case> Cases { get; set; }
         public virtual User User { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PrintJob> PrintJobs { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Case> Cases { get; set; }
     }
 }

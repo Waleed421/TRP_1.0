@@ -12,7 +12,8 @@ namespace TRP_1._0
 {
     public partial class EditActionReport : Form
     {
-        int a = 0;
+        int a = 0, b=0, cId=0, caseId=0;
+        string invoice;
         TRPDbEntities db = new TRPDbEntities();
         public EditActionReport()
         {
@@ -26,13 +27,19 @@ namespace TRP_1._0
 
         private void EditActionReport_Load(object sender, EventArgs e)
         {
+            var res1 = (from ct in db.Customers
+                        select new { ct.Id, ct.Customer_Name }).ToList();
+            comboBoxName.DataSource = res1;
+            comboBoxName.DisplayMember = "Customer_Name";
+            comboBoxName.ValueMember = "Id";
+
             var use = (from u in db.Users where u.Status == "Active" select u).FirstOrDefault();
             labelActive.Text = use.Name;
             dateTimePicker1.Value = DateTime.Today.AddMonths(-1);
            // var ctr = (from c in db.Cases select new { c.Case_No, c.Customer.Customer_Name, c.Customer.Customer_No, c.Title, c.TypeofCas.Type, c.Case_Comment }).Take(20).ToList();
             var str = (from t in db.TimeRegistrations
                        where (t.Start_Date_Time >= dateTimePicker1.Value && t.Start_Date_Time <= dateTimePicker2.Value)
-                       select new { t.Case_No, t.Case.Customer.Customer_Name, t.Case.Customer.Customer_No, t.Case.Title, t.Case.TypeofCas.Type, t.Case.Case_Comment, t.Time_In_Minutes, t.Action_Comment }).ToList();
+                       select new { t.Id, t.Case_No, t.Case.Customer.Customer_Name, t.Case.Customer.Customer_No, t.Case.Title, t.Case.TypeofCas.Type, t.Case.Case_Comment, t.Time_In_Minutes, t.Action_Comment }).ToList();
             gridControl1.DataSource = str;
             var res = (from x in db.TypeofCases
                        select new { x.Id, x.Type }).ToList();
@@ -44,6 +51,29 @@ namespace TRP_1._0
 
         private void btnAddActionLine_Click(object sender, EventArgs e)
         {
+            TimeRegistration tr = new TimeRegistration();
+            tr.Case_No = caseId;
+           tr.Start_Date_Time = dateTimePicker1.Value;
+            double add = Convert.ToDouble(textBox5.Text);
+          //  var test = dateTimePicker1.Value.AddMinutes(add);
+            tr.Stop_Date_Time = dateTimePicker1.Value.AddMinutes(add);
+            tr.Time_In_Minutes = TimeSpan.FromMinutes(add);
+            tr.Invoice = invoice;
+            tr.Action_Comment = textBox7.Text;
+            var us = (from u in db.Users where u.Status == "Active" select u).FirstOrDefault();
+            tr.User_Id = us.Id;
+            db.TimeRegistrations.Add(tr);
+            db.SaveChanges();
+            MessageBox.Show("Action Successfully Added");
+            textBox7.Clear();
+            textBox6.Clear();
+            textBox5.Clear();
+            textBox3.Clear();
+            textBox2.Clear();
+            var str = (from t in db.TimeRegistrations
+                       where (t.Start_Date_Time >= dateTimePicker1.Value && t.Start_Date_Time <= dateTimePicker2.Value)
+                       select new { t.Id, t.Case_No, t.Case.Customer.Customer_Name, t.Case.Customer.Customer_No, t.Case.Title, t.Case.TypeofCas.Type, t.Case.Case_Comment, t.Time_In_Minutes, t.Action_Comment }).ToList();
+            gridControl1.DataSource = str;
 
         }
 
@@ -58,42 +88,83 @@ namespace TRP_1._0
 
         private void buttonEdit_Click(object sender, EventArgs e)
         {
+            b= Convert.ToInt32(gridView1.GetRowCellValue(gridView1.GetSelectedRows()[0], "Id"));
             a = Convert.ToInt32(gridView1.GetRowCellValue(gridView1.GetSelectedRows()[0], "Case_No"));
             var str = (from t in db.TimeRegistrations
-                       where (t.Case_No == a)
+                       where (t.Id==b)
                        select new { t.Case_No, t.Case.Customer.Customer_Name, t.Case.Customer.Customer_No, t.Case.Title, t.Case.Type_Id, t.Case.TypeofCas.Type, t.Case.Case_Comment, t.Time_In_Minutes, t.Action_Comment }).FirstOrDefault();
-            textBox1.Text = str.Customer_Name;
+            //textBox1.Text = str.Customer_Name;
             textBox2.Text = str.Customer_No;
             textBox3.Text = Convert.ToString(str.Case_No);
-            textBox4.Text = str.Title;
+            //textBox4.Text = str.Title;
             var stri = (from t in db.TimeRegistrations
-                        where t.Case_No == a
+                        where t.Id==b
                         select t).FirstOrDefault();
             textBox5.Text = Convert.ToString(stri.Time_In_Minutes);
             comboBoxCaseType.SelectedValue = str.Type_Id;
             textBox6.Text = str.Case_Comment;
             textBox7.Text = str.Action_Comment;
             buttonSave.Enabled = true;
-            textBox1.ReadOnly = true;
+            //textBox1.ReadOnly = true;
             textBox2.ReadOnly = true;
             textBox3.ReadOnly = true;
-            textBox4.ReadOnly = true;
+            //textBox4.ReadOnly = true;
             textBox6.ReadOnly = true;
+            dateTimePicker3.Enabled = false;
+            comboBoxCaseType.Enabled = false;
 
+        }
+
+        private void comboBoxName_SelectedIndexChanged(object sender, EventArgs e)
+        {
+                        
+        }
+
+        private void comboBoxCaseTitle_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            caseId = Convert.ToInt32(comboBoxCaseTitle.SelectedValue);
+            var res = (from c in db.Cases where c.Case_No == caseId select c).FirstOrDefault();
+            textBox3.Text = Convert.ToString(caseId);
+           // textBox5.Text = res.Worked_Time_in_Minutes;
+            textBox6.Text = res.Case_Comment;
+            comboBoxCaseType.SelectedValue = res.TypeofCas.Id;
+            invoice = res.TypeofCas.Invoice_Type;
+        }
+
+        private void comboBoxName_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            cId = Convert.ToInt32(comboBoxName.SelectedValue);
+            var res1 = (from c in db.Cases
+                        where c.Customer_Id == cId
+                        select new { c.Case_No, c.Title, c.TypeofCas.Type, c.Case_Comment, c.Customer.Customer_No}).ToList();
+            comboBoxCaseTitle.DataSource = res1;
+            comboBoxCaseTitle.DisplayMember = "Title";
+            comboBoxCaseTitle.ValueMember = "Case_No";
+            var res2 = (from ct in db.Customers where ct.Id == cId select ct).FirstOrDefault();
+            textBox2.Text = res2.Customer_No;
         }
 
         private void buttonSave_Click(object sender, EventArgs e)
         {
             var stri = (from t in db.TimeRegistrations
-                       where (t.Case_No == a)
+                       where (t.Id==b)
                        select t).FirstOrDefault();
             stri.Time_In_Minutes = TimeSpan.Parse(textBox5.Text);
             stri.Action_Comment = textBox7.Text;
             db.SaveChanges();
+            MessageBox.Show("Edit Action Successfully Edited");
             var str = (from t in db.TimeRegistrations
                        where (t.Start_Date_Time >= dateTimePicker1.Value && t.Start_Date_Time <= dateTimePicker2.Value)
-                       select new { t.Case_No, t.Case.Customer.Customer_Name, t.Case.Customer.Customer_No, t.Case.Title, t.Case.TypeofCas.Type, t.Case.Case_Comment, t.Time_In_Minutes, t.Action_Comment }).ToList();
+                       select new {t.Id, t.Case_No, t.Case.Customer.Customer_Name, t.Case.Customer.Customer_No, t.Case.Title, t.Case.TypeofCas.Type, t.Case.Case_Comment, t.Time_In_Minutes, t.Action_Comment }).ToList();
             gridControl1.DataSource = str;
+            buttonSave.Enabled = false;
+            //textBox1.ReadOnly = false;
+            textBox2.ReadOnly = false;
+            textBox3.ReadOnly = false;
+            //textBox4.ReadOnly = false;
+            textBox6.ReadOnly = false;
+            dateTimePicker3.Enabled = true;
+            comboBoxCaseType.Enabled = true;
         }
     }
 }

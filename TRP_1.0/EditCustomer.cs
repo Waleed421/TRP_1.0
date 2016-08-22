@@ -31,6 +31,9 @@ namespace TRP_1._0
                 c.Customer_Status= "Inactive";
             db.Customers.Add(c);
             db.SaveChanges();
+            MessageBox.Show("Customer successfully added");
+            var result = (from u in db.Customers select new { u.Id, u.Customer_Name, u.Customer_No, Customer_Manager = u.User.Name, u.Customer_Status }).ToList();
+            gridControl1.DataSource = result;
 
         }
 

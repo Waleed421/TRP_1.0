@@ -30,7 +30,8 @@ namespace TRP_1._0
         public Nullable<System.DateTime> Last_Edit_Date_Time { get; set; }
         public Nullable<int> Last_Edit_By_User_Id { get; set; }
         public string Status { get; set; }
-        public string Worked_Time_in_Minutes { get; set; }
+        public Nullable<System.TimeSpan> Worked_Time_in_Minutes { get; set; }
+        public string Manual_Work_Time { get; set; }
     
         public virtual Customer Customer { get; set; }
         public virtual TypeofCas TypeofCas { get; set; }

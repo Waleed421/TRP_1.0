@@ -45,11 +45,9 @@
             this.label12 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.dateTimePicker3 = new System.Windows.Forms.DateTimePicker();
             this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.comboBoxCaseType = new System.Windows.Forms.ComboBox();
             this.textBox6 = new System.Windows.Forms.TextBox();
@@ -61,6 +59,8 @@
             this.buttonSave = new System.Windows.Forms.Button();
             this.buttonSearch = new System.Windows.Forms.Button();
             this.buttonEdit = new System.Windows.Forms.Button();
+            this.comboBoxCaseTitle = new System.Windows.Forms.ComboBox();
+            this.comboBoxName = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             this.SuspendLayout();
@@ -221,13 +221,6 @@
             this.label14.TabIndex = 18;
             this.label14.Text = "Action Comment";
             // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(126, 481);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(124, 21);
-            this.textBox1.TabIndex = 3;
-            // 
             // textBox2
             // 
             this.textBox2.Location = new System.Drawing.Point(126, 512);
@@ -248,13 +241,6 @@
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(119, 21);
             this.textBox3.TabIndex = 5;
-            // 
-            // textBox4
-            // 
-            this.textBox4.Location = new System.Drawing.Point(365, 512);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(119, 21);
-            this.textBox4.TabIndex = 6;
             // 
             // textBox5
             // 
@@ -327,7 +313,7 @@
             this.buttonSave.Name = "buttonSave";
             this.buttonSave.Size = new System.Drawing.Size(75, 23);
             this.buttonSave.TabIndex = 21;
-            this.buttonSave.Text = "Save";
+            this.buttonSave.Text = "Update";
             this.buttonSave.UseVisualStyleBackColor = true;
             this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
             // 
@@ -353,11 +339,32 @@
             this.buttonEdit.UseVisualStyleBackColor = true;
             this.buttonEdit.Click += new System.EventHandler(this.buttonEdit_Click);
             // 
+            // comboBoxCaseTitle
+            // 
+            this.comboBoxCaseTitle.FormattingEnabled = true;
+            this.comboBoxCaseTitle.Location = new System.Drawing.Point(365, 512);
+            this.comboBoxCaseTitle.Name = "comboBoxCaseTitle";
+            this.comboBoxCaseTitle.Size = new System.Drawing.Size(119, 21);
+            this.comboBoxCaseTitle.TabIndex = 24;
+            this.comboBoxCaseTitle.SelectionChangeCommitted += new System.EventHandler(this.comboBoxCaseTitle_SelectionChangeCommitted);
+            // 
+            // comboBoxName
+            // 
+            this.comboBoxName.FormattingEnabled = true;
+            this.comboBoxName.Location = new System.Drawing.Point(127, 479);
+            this.comboBoxName.Name = "comboBoxName";
+            this.comboBoxName.Size = new System.Drawing.Size(121, 21);
+            this.comboBoxName.TabIndex = 25;
+            this.comboBoxName.SelectedIndexChanged += new System.EventHandler(this.comboBoxName_SelectedIndexChanged);
+            this.comboBoxName.SelectionChangeCommitted += new System.EventHandler(this.comboBoxName_SelectionChangeCommitted);
+            // 
             // EditActionReport
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 593);
+            this.Controls.Add(this.comboBoxName);
+            this.Controls.Add(this.comboBoxCaseTitle);
             this.Controls.Add(this.buttonEdit);
             this.Controls.Add(this.buttonSearch);
             this.Controls.Add(this.buttonSave);
@@ -368,11 +375,9 @@
             this.Controls.Add(this.textBox6);
             this.Controls.Add(this.comboBoxCaseType);
             this.Controls.Add(this.textBox5);
-            this.Controls.Add(this.textBox4);
             this.Controls.Add(this.textBox3);
             this.Controls.Add(this.dateTimePicker3);
             this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label14);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.label12);
@@ -420,11 +425,9 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.DateTimePicker dateTimePicker3;
         private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.TextBox textBox5;
         private System.Windows.Forms.ComboBox comboBoxCaseType;
         private System.Windows.Forms.TextBox textBox6;
@@ -436,5 +439,7 @@
         private System.Windows.Forms.Button buttonSave;
         private System.Windows.Forms.Button buttonSearch;
         private System.Windows.Forms.Button buttonEdit;
+        private System.Windows.Forms.ComboBox comboBoxCaseTitle;
+        private System.Windows.Forms.ComboBox comboBoxName;
     }
 }
