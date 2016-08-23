@@ -13,7 +13,8 @@ namespace TRP_1._0
 {
     public partial class Main : Form
     {
-        int a = 0, b = 0;
+        int a;
+        public int userID;
         TRPDbEntities db = new TRPDbEntities();
         public Main()
         {
@@ -27,7 +28,10 @@ namespace TRP_1._0
             e1.ShowDialog();
 
         }
+        private void gridsUpdate()
+        {
 
+        }
         private void buttonCreateCase_Click(object sender, EventArgs e)
         {
             //Stopping currently active case, changing status
@@ -42,15 +46,15 @@ namespace TRP_1._0
                 clos.Stop_Date_Time = DateTime.Now;
                 DateTime last = Convert.ToDateTime(clos.Start_Date_Time);
                 TimeSpan difference = DateTime.Now.Subtract(last);
-                clos.Time_In_Minutes = difference;
+                clos.Time_In_Minutes = Convert.ToString(difference);
                 db.SaveChanges();
                 var sumTime = (from t in db.TimeRegistrations where t.Case_No == stat.Case_No select t).ToList();
                 TimeSpan sum = TimeSpan.Zero;
                 foreach (var item in sumTime)
                 {
-                    sum += item.Time_In_Minutes.Value;
+                    sum += TimeSpan.Parse(item.Time_In_Minutes);
                 }
-                stat.Worked_Time_in_Minutes = sum;
+                stat.Worked_Time_in_Minutes = Convert.ToString(sum);
                 db.SaveChanges();
             }
             textBoxActionComment.Clear();
@@ -80,15 +84,24 @@ namespace TRP_1._0
                               
 
             //Changing currently active case grid
-            var activeCase = (from cas in db.Cases where cas.Status == "Open" select new { cas.Case_No, cas.Customer.Customer_Name, cas.Customer.Customer_No, cas.TypeofCas.Type, cas.Title, cas.Case_Comment }).ToList();
+            var activeCase = (from cas in db.Cases where cas.Status == "Open" && cas.Created_By_User_Id==userID select new { cas.Case_No, cas.Customer.Customer_Name, cas.Customer.Customer_No, cas.TypeofCas.Type, cas.Title, cas.Case_Comment }).ToList();
             gridControl1.DataSource = activeCase;
             
 
             
-            var allCase = (from x in db.Cases select new { x.Customer.Customer_Name, x.Customer.Customer_No, x.Case_No, x.Title, x.TypeofCas.Type, x.Case_Comment }).ToList();
+            var allCase = (from x in db.Cases where x.Created_By_User_Id==userID select new { x.Customer.Customer_Name, x.Customer.Customer_No, x.Case_No, x.Title, x.TypeofCas.Type, x.Case_Comment }).ToList();
             gridControlAllCases.DataSource = allCase;
-            var recCases = (from ca in db.Cases orderby ca.Case_No descending select new { ca.Case_No, ca.Customer.Customer_Name, ca.Customer.Customer_No, ca.TypeofCas.Type, ca.Title, ca.Case_Comment }).Take(5).ToList();
-            gridControlRecentCases.DataSource = recCases;
+            var getActiveCaseNo = (from ci in db.Cases where ci.Status == "Open" && ci.Created_By_User_Id == userID select ci).FirstOrDefault();
+
+            var rec = (dynamic)null;
+            if (getActiveCaseNo != null)
+            {
+                rec = (from t in db.TimeRegistrations orderby t.Start_Date_Time descending where t.User_Id == userID && t.Case_No != getActiveCaseNo.Case_No select new { t.Case_No, t.Case.Customer.Customer_Name, t.Case.Customer.Customer_No, t.Case.TypeofCas.Type, t.Case.Title, t.Case.Case_Comment, Time_In_Minutes = t.Case.Worked_Time_in_Minutes }).Distinct().Take(5).ToList();
+            }
+            else
+                rec = (from t in db.TimeRegistrations orderby t.Start_Date_Time descending where t.User_Id == userID select new { t.Case_No, t.Case.Customer.Customer_Name, t.Case.Customer.Customer_No, t.Case.TypeofCas.Type, t.Case.Title, t.Case.Case_Comment, Time_In_Minutes = t.Case.Worked_Time_in_Minutes }).Distinct().Take(5).ToList();
+            gridControlRecentCases.DataSource = rec;
+
             textCaseTitle.Clear();
             textTimeInMinutes.Clear();
             textCaseComment.Clear();
@@ -103,15 +116,34 @@ namespace TRP_1._0
             // TODO: This line of code loads data into the 'tRPDbDataSet.Cases' table. You can move, or remove it, as needed.
             this.casesTableAdapter.Fill(this.tRPDbDataSet.Cases);
             var ActiveUser = (from u in db.Users where u.Status == "Active" select new { u.Id, u.Name }).FirstOrDefault();
-            int userID = ActiveUser.Id;
-            var rec = (from t in db.TimeRegistrations orderby t.Start_Date_Time descending where t.User_Id == userID select new { t.Case_No, t.Case.Customer.Customer_Name, t.Case.Customer.Customer_No, t.Case.TypeofCas.Type, t.Case.Title, t.Case.Case_Comment, Time_In_Minutes=t.Case.Worked_Time_in_Minutes}).Distinct().Take(5).ToList();
-           // var recCases = (from c in db.Cases where c.Case_No== rec select new { c.Case_No, c.Customer.Customer_Name, c.Customer.Customer_No, c.TypeofCas.Type, c.Title, c.Case_Comment }).ToList();
-            gridControlRecentCases.DataSource = rec;
-            var allCase = (from x in db.Cases select new { x.Case_No, x.Customer.Customer_Name, x.Customer.Customer_No,  x.Title, x.TypeofCas.Type, x.Case_Comment }).ToList();
-            gridControlAllCases.DataSource = allCase;
+            userID = ActiveUser.Id;
+           
+            var rec= (dynamic)null; 
             var activeCase = (from c in db.Cases where c.Status == "Open" && c.Created_By_User_Id == userID select new { c.Case_No, c.Customer.Customer_Name, c.Customer.Customer_No, c.TypeofCas.Type, c.Title, c.Case_Comment }).ToList();
             gridControl1.DataSource = activeCase;
             var getActiveCaseNo = (from c in db.Cases where c.Status == "Open" && c.Created_By_User_Id == userID select c).FirstOrDefault();
+            if (getActiveCaseNo != null)
+            {
+                rec = (from t in db.TimeRegistrations orderby t.Start_Date_Time descending where t.User_Id == userID select new { t.Case_No, t.Case.Customer.Customer_Name, t.Case.Customer.Customer_No, t.Case.TypeofCas.Type, t.Case.Title, t.Case.Case_Comment, t.Case.Worked_Time_in_Minutes }).Take(5).ToList();
+                //rec = (from t in db.TimeRegistrations orderby t.Id descending where t.User_Id == userID && t.Case_No != getActiveCaseNo.Case_No select new { t.Case_No, t.Case.Customer.Customer_Name, t.Case.Customer.Customer_No, t.Case.TypeofCas.Type, t.Case.Title, t.Case.Case_Comment, t.Case.Worked_Time_in_Minutes }).Take(5).ToList();
+            }
+            else
+            {
+                rec = (from t in db.TimeRegistrations orderby t.Start_Date_Time descending where t.User_Id == userID  select new { t.Case_No, t.Case.Customer.Customer_Name, t.Case.Customer.Customer_No, t.Case.TypeofCas.Type, t.Case.Title, t.Case.Case_Comment, t.Case.Worked_Time_in_Minutes }).Take(5).ToList();
+
+            }
+            var recentCases = (from t in db.TimeRegistrations orderby t.Start_Date_Time descending where t.User_Id == userID select new { t.Case_No, t.Case.Customer.Customer_Name, t.Case.Customer.Customer_No, t.Case.TypeofCas.Type, t.Case.Title, t.Case.Case_Comment, t.Case.Worked_Time_in_Minutes }).Take(5).ToList();
+            var allCases = (from t in db.TimeRegistrations where t.User_Id == userID select new { t.Case_No, t.Case.Customer.Customer_Name, t.Case.Customer.Customer_No, t.Case.TypeofCas.Type, t.Case.Title, t.Case.Case_Comment, t.Case.Worked_Time_in_Minutes }).ToList();
+            //var allCase = (from x in db.Cases where x.Created_By_User_Id == userID select new { x.Case_No, x.Customer.Customer_Name, x.Customer.Customer_No, x.Title, x.TypeofCas.Type, x.Case_Comment }).ToList();
+          //  var recentCases = (from x in db.Cases orderby x.Case_No descending where x.Created_By_User_Id == userID select new { x.Case_No, x.Customer.Customer_Name, x.Customer.Customer_No, x.Title, x.TypeofCas.Type, x.Case_Comment }).Distinct().Take(5).ToList();
+            var test = allCases.Except(recentCases);
+            gridControlRecentCases.DataSource = rec;
+           
+             //var minus = allCase.Except(rec);
+            
+            gridControlAllCases.DataSource = test;
+
+
             if (getActiveCaseNo != null)
             {
                 var actionComment = (from tc in db.TimeRegistrations orderby tc.Id descending where tc.Case_No == getActiveCaseNo.Case_No select tc).Take(1).FirstOrDefault();
@@ -134,8 +166,8 @@ namespace TRP_1._0
 
             var resActiveUser = (from u in db.Users select new { u.Id, u.Name }).ToList();
             comboBoxUser.DataSource = resActiveUser;
-            //var changeActiveUser= (from u in db.Users where u.Status=="Active" select new { u.Id, u.Name }).FirstOrDefault();
-            //comboBoxUser.SelectedValue= changeActiveUser.Id;
+            var changeActiveUser= (from u in db.Users where u.Status=="Active" select new { u.Id, u.Name }).FirstOrDefault();
+            comboBoxUser.SelectedValue= changeActiveUser.Id;
         }
 
         private void buttonChangeUser_Click(object sender, EventArgs e)
@@ -148,11 +180,19 @@ namespace TRP_1._0
         {
             EditCase ec = new EditCase();
             ec.ShowDialog();
-            var recCases = (from c in db.Cases orderby c.Case_No descending select new { c.Case_No, c.Customer.Customer_Name, c.Customer.Customer_No, c.TypeofCas.Type, c.Title, c.Case_Comment }).Take(5).ToList();
+            var getActiveCaseNo = (from c in db.Cases where c.Status == "Open" && c.Created_By_User_Id == userID select c).FirstOrDefault();
+            var recCases = (dynamic)null;
+            if (getActiveCaseNo != null)
+            {
+                recCases = (from c in db.Cases orderby c.Case_No descending where c.Created_By_User_Id == userID && c.Case_No != getActiveCaseNo.Case_No select new { c.Case_No, c.Customer.Customer_Name, c.Customer.Customer_No, c.TypeofCas.Type, c.Title, c.Case_Comment }).Take(5).ToList();
+            }
+            else
+            recCases = (from c in db.Cases orderby c.Case_No descending where c.Created_By_User_Id == userID select new { c.Case_No, c.Customer.Customer_Name, c.Customer.Customer_No, c.TypeofCas.Type, c.Title, c.Case_Comment }).Take(5).ToList();
+            
             gridControlRecentCases.DataSource = recCases;
             var allCase = (from x in db.Cases select new { x.Case_No, x.Customer.Customer_Name, x.Customer.Customer_No, x.Title, x.TypeofCas.Type, x.Case_Comment }).ToList();
             gridControlAllCases.DataSource = allCase;
-            var activeCase = (from c in db.Cases where c.Status == "Open" select new { c.Case_No, c.Customer.Customer_Name, c.Customer.Customer_No, c.TypeofCas.Type, c.Title, c.Case_Comment }).ToList();
+            var activeCase = (from c in db.Cases where c.Status == "Open" && c.Created_By_User_Id==userID select new { c.Case_No, c.Customer.Customer_Name, c.Customer.Customer_No, c.TypeofCas.Type, c.Title, c.Case_Comment }).ToList();
             gridControl1.DataSource = activeCase;
         }
 
@@ -185,27 +225,33 @@ namespace TRP_1._0
                 var clos = (from t in db.TimeRegistrations orderby t.Id descending where t.Case_No == stat.Case_No select t).Take(1).FirstOrDefault();
 
                 clos.Stop_Date_Time = DateTime.Now;
-                var us = (from u in db.Users where u.Status == "Active" select u).FirstOrDefault();
-                clos.User_Id = us.Id;
+                
                 DateTime last = Convert.ToDateTime(clos.Start_Date_Time);
                 TimeSpan difference = DateTime.Now.Subtract(last);
-                clos.Time_In_Minutes = difference;
+                clos.Time_In_Minutes = Convert.ToString(difference);
                 db.SaveChanges();
 
                 var sumTime = (from t in db.TimeRegistrations where t.Case_No == stat.Case_No select t).ToList();
                 TimeSpan sum = TimeSpan.Zero;
                 foreach (var item in sumTime)
                 {
-                    if(item.Time_In_Minutes.Value!=null)
-                    sum += item.Time_In_Minutes.Value;
+                    if((item.Time_In_Minutes)!=null)
+                    sum += TimeSpan.Parse(item.Time_In_Minutes);
                 }
-                stat.Worked_Time_in_Minutes = sum;
+                stat.Worked_Time_in_Minutes = Convert.ToString(sum);
                 
                 db.SaveChanges();
             }
             textBoxActionComment.Clear();
+            var getActiveCaseNo = (from c in db.Cases where c.Status == "Open" && c.Created_By_User_Id == userID select c).FirstOrDefault();
+            var rec = (dynamic)null;
+            if (getActiveCaseNo != null)
+            {
+                rec = (from t in db.TimeRegistrations orderby t.Start_Date_Time descending where t.User_Id == userID && t.Case_No != getActiveCaseNo.Case_No select new { t.Case_No, t.Case.Customer.Customer_Name, t.Case.Customer.Customer_No, t.Case.TypeofCas.Type, t.Case.Title, t.Case.Case_Comment, Time_In_Minutes = t.Case.Worked_Time_in_Minutes }).Distinct().Take(5).ToList();
+            }
+            else
+                rec = (from t in db.TimeRegistrations orderby t.Start_Date_Time descending where t.User_Id == userID select new { t.Case_No, t.Case.Customer.Customer_Name, t.Case.Customer.Customer_No, t.Case.TypeofCas.Type, t.Case.Title, t.Case.Case_Comment, Time_In_Minutes = t.Case.Worked_Time_in_Minutes }).Distinct().Take(5).ToList();
 
-            var rec = (from t in db.TimeRegistrations orderby t.Start_Date_Time descending where t.User_Id == userID select new { t.Case_No, t.Case.Customer.Customer_Name, t.Case.Customer.Customer_No, t.Case.TypeofCas.Type, t.Case.Title, t.Case.Case_Comment, Time_In_Minutes = t.Case.Worked_Time_in_Minutes }).Distinct().Take(5).ToList();
             gridControlRecentCases.DataSource = rec;
 
             //Starting selected case, changing status
@@ -217,11 +263,14 @@ namespace TRP_1._0
             var up = (from c in db.Cases where c.Case_No == a select c).FirstOrDefault();
             up.Status = "Open";
             db.SaveChanges();
+
             TimeRegistration tr = new TimeRegistration();
             tr.Case_No = a;
             tr.Start_Date_Time = DateTime.Now;
             tr.Invoice = up.TypeofCas.Invoice_Type;
             db.TimeRegistrations.Add(tr);
+            var us = (from u in db.Users where u.Status == "Active" select u).FirstOrDefault();
+            tr.User_Id = us.Id;
             db.SaveChanges();
 
             //Changing currently active case grid
@@ -241,10 +290,26 @@ namespace TRP_1._0
                 item.Status = "Inactive";
             }
             db.SaveChanges();
-            int id = Convert.ToInt16(comboBoxUser.SelectedValue);
-            var res = (from u in db.Users where u.Id == id select u).FirstOrDefault();
+            userID = Convert.ToInt16(comboBoxUser.SelectedValue);
+            var res = (from u in db.Users where u.Id == userID select u).FirstOrDefault();
             res.Status = "Active";
             db.SaveChanges();
+
+            var getActiveCaseNo = (from c in db.Cases where c.Status == "Open" && c.Created_By_User_Id == userID select c).FirstOrDefault();
+            var rec = (dynamic)null;
+            if (getActiveCaseNo != null)
+            {
+                rec = (from t in db.TimeRegistrations orderby t.Start_Date_Time descending where t.User_Id == userID && t.Case_No != getActiveCaseNo.Case_No select new { t.Case_No, t.Case.Customer.Customer_Name, t.Case.Customer.Customer_No, t.Case.TypeofCas.Type, t.Case.Title, t.Case.Case_Comment, Time_In_Minutes = t.Case.Worked_Time_in_Minutes }).Distinct().Take(5).ToList();
+            }
+            else
+                rec = (from t in db.TimeRegistrations orderby t.Start_Date_Time descending where t.User_Id == userID select new { t.Case_No, t.Case.Customer.Customer_Name, t.Case.Customer.Customer_No, t.Case.TypeofCas.Type, t.Case.Title, t.Case.Case_Comment, Time_In_Minutes = t.Case.Worked_Time_in_Minutes }).Distinct().Take(5).ToList();
+
+            // var recCases = (from c in db.Cases where c.Case_No== rec select new { c.Case_No, c.Customer.Customer_Name, c.Customer.Customer_No, c.TypeofCas.Type, c.Title, c.Case_Comment }).ToList();
+            gridControlRecentCases.DataSource = rec;
+            var allCase = (from x in db.Cases where x.Created_By_User_Id == userID select new { x.Case_No, x.Customer.Customer_Name, x.Customer.Customer_No, x.Title, x.TypeofCas.Type, x.Case_Comment }).ToList();
+            gridControlAllCases.DataSource = allCase;
+            var activeCase = (from c in db.Cases where c.Status == "Open" && c.Created_By_User_Id == userID select new { c.Case_No, c.Customer.Customer_Name, c.Customer.Customer_No, c.TypeofCas.Type, c.Title, c.Case_Comment }).ToList();
+            gridControl1.DataSource = activeCase;
         }
 
         private void btnStopDateTime_Click(object sender, EventArgs e)
@@ -259,17 +324,16 @@ namespace TRP_1._0
                 clos.Stop_Date_Time = DateTime.Now;
                 DateTime last = Convert.ToDateTime(clos.Start_Date_Time);
                 TimeSpan difference = DateTime.Now.Subtract(last);
-                clos.Time_In_Minutes = difference;
+                clos.Time_In_Minutes = Convert.ToString(difference);
                 db.SaveChanges();
                 var sumTime = (from t in db.TimeRegistrations where t.Case_No == stopCase.Case_No select t).ToList();
                 TimeSpan sum = TimeSpan.Zero;
                 foreach (var item in sumTime)
                 {
-                    sum += item.Time_In_Minutes.Value;
+                    sum += TimeSpan.Parse(item.Time_In_Minutes);
                 }
-                stopCase.Worked_Time_in_Minutes = sum;
-                var us = (from u in db.Users where u.Status == "Active" select u).FirstOrDefault();
-                clos.User_Id = us.Id;
+                stopCase.Worked_Time_in_Minutes = Convert.ToString(sum);
+                
                 db.SaveChanges();
                 
             }
@@ -278,12 +342,7 @@ namespace TRP_1._0
             gridControl1.DataSource = activeCase;
         }
 
-        private void textBoxActionComment_Leave(object sender, EventArgs e)
-        {
-            
-
-        }
-
+       
         private void textBoxActionComment_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
@@ -299,7 +358,7 @@ namespace TRP_1._0
         {
             //Stopping currently active case, changing status
                //  b = Convert.ToInt32(gridView3.GetRowCellValue(gridView3.GetSelectedRows()[0], "Case_No"));
-            var stat = (from s in db.Cases where s.Status == "Open" select s).FirstOrDefault();
+            var stat = (from s in db.Cases where s.Status == "Open" && s.Created_By_User_Id==userID select s).FirstOrDefault();
             if (stat != null)
             {
                 stat.Status = "Closed";
@@ -309,17 +368,16 @@ namespace TRP_1._0
                 clos.Stop_Date_Time = DateTime.Now;
                 DateTime last = Convert.ToDateTime(clos.Start_Date_Time);
                 TimeSpan difference = DateTime.Now.Subtract(last);
-                clos.Time_In_Minutes = difference;
+                clos.Time_In_Minutes = Convert.ToString(difference);
                 db.SaveChanges();
                 var sumTime = (from t in db.TimeRegistrations where t.Case_No == stat.Case_No select t).ToList();
                 TimeSpan sum = TimeSpan.Zero;
                 foreach (var item in sumTime)
                 {
-                    sum += item.Time_In_Minutes.Value;
+                    sum += TimeSpan.Parse(item.Time_In_Minutes);
                 }
                 stat.Worked_Time_in_Minutes += sum;
-                var us = (from u in db.Users where u.Status == "Active" select u).FirstOrDefault();
-                clos.User_Id = us.Id;
+                
                 db.SaveChanges();
             }
             textBoxActionComment.Clear();
@@ -336,11 +394,13 @@ namespace TRP_1._0
             tr.Case_No = a;
             tr.Start_Date_Time = DateTime.Now;
             tr.Invoice = up.TypeofCas.Invoice_Type;
+            var us = (from u in db.Users where u.Status == "Active" select u).FirstOrDefault();
+            tr.User_Id = us.Id;
             db.TimeRegistrations.Add(tr);
             db.SaveChanges();
 
             //Changing currently active case grid
-            var activeCase = (from c in db.Cases where c.Status == "Open" select new { c.Case_No, c.Customer.Customer_Name, c.Customer.Customer_No, c.TypeofCas.Type, c.Title, c.Case_Comment }).ToList();
+            var activeCase = (from c in db.Cases where c.Status == "Open" && c.Created_By_User_Id==userID select new { c.Case_No, c.Customer.Customer_Name, c.Customer.Customer_No, c.TypeofCas.Type, c.Title, c.Case_Comment }).ToList();
             gridControl1.DataSource = activeCase;
         }
 

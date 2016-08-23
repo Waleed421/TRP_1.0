@@ -31,9 +31,6 @@
         {
             this.buttonEdit = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            this.Title = new System.Windows.Forms.Label();
-            this.No = new System.Windows.Forms.Label();
-            this.Name = new System.Windows.Forms.Label();
             this.comboBoxCaseType = new System.Windows.Forms.ComboBox();
             this.textBoxCaseComment = new System.Windows.Forms.TextBox();
             this.radioButtonClosed = new System.Windows.Forms.RadioButton();
@@ -46,6 +43,9 @@
             this.label1 = new System.Windows.Forms.Label();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.CustomerName = new System.Windows.Forms.TextBox();
+            this.CustomerNo = new System.Windows.Forms.TextBox();
+            this.CaseTitle = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             this.SuspendLayout();
@@ -70,33 +70,6 @@
             this.button1.Text = "Save";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // Title
-            // 
-            this.Title.AutoSize = true;
-            this.Title.Location = new System.Drawing.Point(186, 96);
-            this.Title.Name = "Title";
-            this.Title.Size = new System.Drawing.Size(71, 13);
-            this.Title.TabIndex = 26;
-            this.Title.Text = "Case Title";
-            // 
-            // No
-            // 
-            this.No.AutoSize = true;
-            this.No.Location = new System.Drawing.Point(186, 60);
-            this.No.Name = "No";
-            this.No.Size = new System.Drawing.Size(94, 13);
-            this.No.TabIndex = 25;
-            this.No.Text = "Customer No.";
-            // 
-            // Name
-            // 
-            this.Name.AutoSize = true;
-            this.Name.Location = new System.Drawing.Point(186, 26);
-            this.Name.Name = "Name";
-            this.Name.Size = new System.Drawing.Size(110, 13);
-            this.Name.TabIndex = 24;
-            this.Name.Text = "Customer Name";
             // 
             // comboBoxCaseType
             // 
@@ -189,7 +162,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(44, 26);
+            this.label1.Location = new System.Drawing.Point(44, 29);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(110, 13);
             this.label1.TabIndex = 14;
@@ -210,16 +183,40 @@
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.Name = "gridView1";
             // 
+            // CustomerName
+            // 
+            this.CustomerName.Enabled = false;
+            this.CustomerName.Location = new System.Drawing.Point(160, 26);
+            this.CustomerName.Name = "CustomerName";
+            this.CustomerName.Size = new System.Drawing.Size(150, 21);
+            this.CustomerName.TabIndex = 29;
+            // 
+            // CustomerNo
+            // 
+            this.CustomerNo.Enabled = false;
+            this.CustomerNo.Location = new System.Drawing.Point(160, 60);
+            this.CustomerNo.Name = "CustomerNo";
+            this.CustomerNo.Size = new System.Drawing.Size(150, 21);
+            this.CustomerNo.TabIndex = 30;
+            // 
+            // CaseTitle
+            // 
+            this.CaseTitle.Enabled = false;
+            this.CaseTitle.Location = new System.Drawing.Point(160, 96);
+            this.CaseTitle.Name = "CaseTitle";
+            this.CaseTitle.Size = new System.Drawing.Size(150, 21);
+            this.CaseTitle.TabIndex = 31;
+            // 
             // EditCase
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(812, 406);
+            this.Controls.Add(this.CaseTitle);
+            this.Controls.Add(this.CustomerNo);
+            this.Controls.Add(this.CustomerName);
             this.Controls.Add(this.gridControl1);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.Title);
-            this.Controls.Add(this.No);
-            this.Controls.Add(this.Name);
             this.Controls.Add(this.comboBoxCaseType);
             this.Controls.Add(this.textBoxCaseComment);
             this.Controls.Add(this.radioButtonClosed);
@@ -233,6 +230,7 @@
             this.Controls.Add(this.buttonEdit);
             this.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);
+            this.Name = "EditCase";
             this.Text = "Edit Case";
             this.Load += new System.EventHandler(this.EditCase_Load);
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
@@ -245,9 +243,6 @@
         #endregion
         private System.Windows.Forms.Button buttonEdit;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Label Title;
-        private System.Windows.Forms.Label No;
-        private System.Windows.Forms.Label Name;
         private System.Windows.Forms.ComboBox comboBoxCaseType;
         private System.Windows.Forms.TextBox textBoxCaseComment;
         private System.Windows.Forms.RadioButton radioButtonClosed;
@@ -260,5 +255,8 @@
         private System.Windows.Forms.Label label1;
         private DevExpress.XtraGrid.GridControl gridControl1;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
+        private System.Windows.Forms.TextBox CustomerName;
+        private System.Windows.Forms.TextBox CustomerNo;
+        private System.Windows.Forms.TextBox CaseTitle;
     }
 }

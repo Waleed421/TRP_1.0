@@ -39,7 +39,7 @@ namespace TRP_1._0
            // var ctr = (from c in db.Cases select new { c.Case_No, c.Customer.Customer_Name, c.Customer.Customer_No, c.Title, c.TypeofCas.Type, c.Case_Comment }).Take(20).ToList();
             var str = (from t in db.TimeRegistrations
                        where (t.Start_Date_Time >= dateTimePicker1.Value && t.Start_Date_Time <= dateTimePicker2.Value)
-                       select new { t.Id, t.Case_No, t.Case.Customer.Customer_Name, t.Case.Customer.Customer_No, t.Case.Title, t.Case.TypeofCas.Type, t.Case.Case_Comment, t.Time_In_Minutes, t.Action_Comment }).ToList();
+                       select new { t.Id, t.Case_No, t.Case.Customer.Customer_Name, t.Case.Customer.Customer_No, t.Case.Title, t.Case.TypeofCas.Type, t.Case.Case_Comment, t.Time_In_Minutes, t.Action_Comment }).Take(20).ToList();
             gridControl1.DataSource = str;
             var res = (from x in db.TypeofCases
                        select new { x.Id, x.Type }).ToList();
@@ -53,11 +53,11 @@ namespace TRP_1._0
         {
             TimeRegistration tr = new TimeRegistration();
             tr.Case_No = caseId;
-           tr.Start_Date_Time = dateTimePicker1.Value;
+            tr.Start_Date_Time = dateTimePicker1.Value;
             double add = Convert.ToDouble(textBox5.Text);
           //  var test = dateTimePicker1.Value.AddMinutes(add);
             tr.Stop_Date_Time = dateTimePicker1.Value.AddMinutes(add);
-            tr.Time_In_Minutes = TimeSpan.FromMinutes(add);
+            tr.Time_In_Minutes = textBox5.Text;
             tr.Invoice = invoice;
             tr.Action_Comment = textBox7.Text;
             var us = (from u in db.Users where u.Status == "Active" select u).FirstOrDefault();
@@ -72,7 +72,7 @@ namespace TRP_1._0
             textBox2.Clear();
             var str = (from t in db.TimeRegistrations
                        where (t.Start_Date_Time >= dateTimePicker1.Value && t.Start_Date_Time <= dateTimePicker2.Value)
-                       select new { t.Id, t.Case_No, t.Case.Customer.Customer_Name, t.Case.Customer.Customer_No, t.Case.Title, t.Case.TypeofCas.Type, t.Case.Case_Comment, t.Time_In_Minutes, t.Action_Comment }).ToList();
+                       select new { t.Id, t.Case_No, t.Case.Customer.Customer_Name, t.Case.Customer.Customer_No, t.Case.Title, t.Case.TypeofCas.Type, t.Case.Case_Comment, t.Time_In_Minutes, t.Action_Comment }).Take(20).ToList();
             gridControl1.DataSource = str;
 
         }
@@ -82,7 +82,7 @@ namespace TRP_1._0
             gridControl1.DataSource = "";
             var str = (from t in db.TimeRegistrations
                        where (t.Start_Date_Time >= dateTimePicker1.Value && t.Start_Date_Time <= dateTimePicker2.Value)
-                       select new { t.Case_No, t.Case.Customer.Customer_Name, t.Case.Customer.Customer_No, t.Case.Title, t.Case.TypeofCas.Type, t.Case.Case_Comment, t.Time_In_Minutes, t.Action_Comment }).ToList();
+                       select new { t.Case_No, t.Case.Customer.Customer_Name, t.Case.Customer.Customer_No, t.Case.Title, t.Case.TypeofCas.Type, t.Case.Case_Comment, t.Time_In_Minutes, t.Action_Comment }).Take(20).ToList();
             gridControl1.DataSource = str;
         }
 
@@ -149,13 +149,13 @@ namespace TRP_1._0
             var stri = (from t in db.TimeRegistrations
                        where (t.Id==b)
                        select t).FirstOrDefault();
-            stri.Time_In_Minutes = TimeSpan.Parse(textBox5.Text);
+            stri.Time_In_Minutes = textBox5.Text;
             stri.Action_Comment = textBox7.Text;
             db.SaveChanges();
             MessageBox.Show("Edit Action Successfully Edited");
             var str = (from t in db.TimeRegistrations
                        where (t.Start_Date_Time >= dateTimePicker1.Value && t.Start_Date_Time <= dateTimePicker2.Value)
-                       select new {t.Id, t.Case_No, t.Case.Customer.Customer_Name, t.Case.Customer.Customer_No, t.Case.Title, t.Case.TypeofCas.Type, t.Case.Case_Comment, t.Time_In_Minutes, t.Action_Comment }).ToList();
+                       select new {t.Id, t.Case_No, t.Case.Customer.Customer_Name, t.Case.Customer.Customer_No, t.Case.Title, t.Case.TypeofCas.Type, t.Case.Case_Comment, t.Time_In_Minutes, t.Action_Comment }).Take(20).ToList();
             gridControl1.DataSource = str;
             buttonSave.Enabled = false;
             //textBox1.ReadOnly = false;

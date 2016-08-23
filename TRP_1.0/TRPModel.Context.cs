@@ -30,7 +30,7 @@ namespace TRP_1._0
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<TypeofCas> TypeofCases { get; set; }
         public virtual DbSet<User> Users { get; set; }
-        public virtual DbSet<TimeRegistration> TimeRegistrations { get; set; }
         public virtual DbSet<Case> Cases { get; set; }
+        public virtual DbSet<TimeRegistration> TimeRegistrations { get; set; }
     }
 }

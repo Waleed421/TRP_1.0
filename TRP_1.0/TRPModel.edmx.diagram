@@ -12,15 +12,15 @@
         <EntityTypeShape EntityType="TRPDbModel.User" Width="1.5" PointX="0.75" PointY="3.625" IsExpanded="true" />
         <AssociationConnector Association="TRPDbModel.FK_Customer_User" ManuallyRouted="false" />
         <AssociationConnector Association="TRPDbModel.FK_PrintJob_Customer" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="TRPDbModel.TimeRegistration" Width="1.5" PointX="7.5" PointY="4.125" />
-        <AssociationConnector Association="TRPDbModel.FK_TimeRegistration_User" />
-        <EntityTypeShape EntityType="TRPDbModel.Case" Width="1.5" PointX="5.25" PointY="3.375" />
+        <EntityTypeShape EntityType="TRPDbModel.Case" Width="1.5" PointX="5.25" PointY="3.25" />
+        <EntityTypeShape EntityType="TRPDbModel.TimeRegistration" Width="1.5" PointX="7.5" PointY="3.875" />
         <AssociationConnector Association="TRPDbModel.FK_Cases_Customer" />
         <AssociationConnector Association="TRPDbModel.FK_Cases_TypeofCases1" />
         <AssociationConnector Association="TRPDbModel.FK_Cases_User" />
         <AssociationConnector Association="TRPDbModel.FK_Cases_User1" />
         <AssociationConnector Association="TRPDbModel.FK_TimeRegistration_Cases" />
-      </Diagram>
+        <AssociationConnector Association="TRPDbModel.FK_TimeRegistration_User" />
+        </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

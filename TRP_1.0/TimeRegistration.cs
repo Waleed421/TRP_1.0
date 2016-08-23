@@ -20,10 +20,10 @@ namespace TRP_1._0
         public Nullable<System.DateTime> Stop_Date_Time { get; set; }
         public string Action_Comment { get; set; }
         public string Invoice { get; set; }
-        public Nullable<System.TimeSpan> Time_In_Minutes { get; set; }
+        public string Time_In_Minutes { get; set; }
         public Nullable<int> User_Id { get; set; }
     
-        public virtual User User { get; set; }
         public virtual Case Case { get; set; }
+        public virtual User User { get; set; }
     }
 }

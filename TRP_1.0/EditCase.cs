@@ -12,6 +12,7 @@ namespace TRP_1._0
 {
     public partial class EditCase : Form
     {
+        public int userID;
         int a = 0;
         TRPDbEntities db = new TRPDbEntities();
         public EditCase()
@@ -23,9 +24,9 @@ namespace TRP_1._0
         {
             a = Convert.ToInt32(gridView1.GetRowCellValue(gridView1.GetSelectedRows()[0], "Case_No"));
             var edit = (from c in db.Cases where c.Case_No == a select c).FirstOrDefault();
-            Name.Text = edit.Customer.Customer_Name;
-            No.Text = edit.Customer.Customer_No;
-            Title.Text = edit.Title;
+            CustomerName.Text = edit.Customer.Customer_Name;
+            CustomerNo.Text = edit.Customer.Customer_No;
+            CaseTitle.Text = edit.Title;
             comboBoxCaseType.SelectedValue = edit.Type_Id;
             textBoxCaseComment.Text = edit.Case_Comment;
             if (edit.Status == "Open")
@@ -37,8 +38,10 @@ namespace TRP_1._0
 
         private void EditCase_Load(object sender, EventArgs e)
         {
+            var ActiveUser = (from u in db.Users where u.Status == "Active" select new { u.Id, u.Name }).FirstOrDefault();
+            userID = ActiveUser.Id;
             button1.Enabled = false;
-            var res = (from c in db.Cases select new { c.Case_No, c.Customer.Customer_Name,c.Customer.Customer_No, c.Title, c.TypeofCas.Type, c.Case_Comment, c.Status }).ToList();
+            var res = (from c in db.Cases where c.Created_By_User_Id==userID select new { c.Case_No, c.Customer.Customer_Name,c.Customer.Customer_No, c.Title, c.TypeofCas.Type, c.Case_Comment, c.Status }).ToList();
             gridControl1.DataSource = res;
             var res1= (from x in db.TypeofCases
                        select new { x.Id, x.Type }).ToList();
@@ -61,7 +64,7 @@ namespace TRP_1._0
             db.SaveChanges();
             MessageBox.Show("Case Successfully Edited");
             button1.Enabled = false;
-            var res = (from c in db.Cases select new { c.Case_No, c.Customer.Customer_Name, c.Customer.Customer_No, c.Title, c.TypeofCas.Type, c.Case_Comment, c.Status }).ToList();
+            var res = (from c in db.Cases where c.Created_By_User_Id == userID select new { c.Case_No, c.Customer.Customer_Name, c.Customer.Customer_No, c.Title, c.TypeofCas.Type, c.Case_Comment, c.Status }).ToList();
             gridControl1.DataSource = res;
         }
     }
