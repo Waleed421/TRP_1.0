@@ -28,9 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.buttonPrevious = new System.Windows.Forms.Button();
+            this.buttonNext = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
@@ -54,13 +55,16 @@
             this.textBox7 = new System.Windows.Forms.TextBox();
             this.btnAddActionLine = new System.Windows.Forms.Button();
             this.labelActive = new System.Windows.Forms.Label();
-            this.gridControl1 = new DevExpress.XtraGrid.GridControl();
-            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.xpPageSelector1 = new DevExpress.Xpo.XPPageSelector(this.components);
+            this.xpCollection1 = new DevExpress.Xpo.XPCollection(this.components);
             this.buttonSave = new System.Windows.Forms.Button();
             this.buttonSearch = new System.Windows.Forms.Button();
             this.buttonEdit = new System.Windows.Forms.Button();
             this.comboBoxCaseTitle = new System.Windows.Forms.ComboBox();
             this.comboBoxName = new System.Windows.Forms.ComboBox();
+            this.gridControl1 = new DevExpress.XtraGrid.GridControl();
+            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            ((System.ComponentModel.ISupportInitialize)(this.xpCollection1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             this.SuspendLayout();
@@ -76,25 +80,27 @@
             this.label1.Text = "Edit Action Report";
             this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
-            // button1
+            // buttonPrevious
             // 
-            this.button1.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(561, 102);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(102, 23);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "Previous 20";
-            this.button1.UseVisualStyleBackColor = true;
+            this.buttonPrevious.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonPrevious.Location = new System.Drawing.Point(568, 102);
+            this.buttonPrevious.Name = "buttonPrevious";
+            this.buttonPrevious.Size = new System.Drawing.Size(102, 23);
+            this.buttonPrevious.TabIndex = 1;
+            this.buttonPrevious.Text = "Previous 20";
+            this.buttonPrevious.UseVisualStyleBackColor = true;
+            this.buttonPrevious.Click += new System.EventHandler(this.buttonPrevious_Click);
             // 
-            // button2
+            // buttonNext
             // 
-            this.button2.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(681, 102);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 2;
-            this.button2.Text = "Next 20";
-            this.button2.UseVisualStyleBackColor = true;
+            this.buttonNext.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonNext.Location = new System.Drawing.Point(681, 102);
+            this.buttonNext.Name = "buttonNext";
+            this.buttonNext.Size = new System.Drawing.Size(75, 23);
+            this.buttonNext.TabIndex = 2;
+            this.buttonNext.Text = "Next 20";
+            this.buttonNext.UseVisualStyleBackColor = true;
+            this.buttonNext.Click += new System.EventHandler(this.buttonNext_Click);
             // 
             // label2
             // 
@@ -291,20 +297,13 @@
             this.labelActive.TabIndex = 19;
             this.labelActive.Text = "Currently active user";
             // 
-            // gridControl1
+            // xpPageSelector1
             // 
-            this.gridControl1.Location = new System.Drawing.Point(19, 138);
-            this.gridControl1.MainView = this.gridView1;
-            this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(737, 305);
-            this.gridControl1.TabIndex = 20;
-            this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gridView1});
+            this.xpPageSelector1.Collection = this.xpCollection1;
             // 
-            // gridView1
+            // xpCollection1
             // 
-            this.gridView1.GridControl = this.gridControl1;
-            this.gridView1.Name = "gridView1";
+            this.xpCollection1.ObjectType = typeof(TRP_1._0.TRPDbDataSet.TimeRegistrationDataTable);
             // 
             // buttonSave
             // 
@@ -320,7 +319,7 @@
             // buttonSearch
             // 
             this.buttonSearch.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonSearch.Location = new System.Drawing.Point(678, 72);
+            this.buttonSearch.Location = new System.Drawing.Point(681, 73);
             this.buttonSearch.Name = "buttonSearch";
             this.buttonSearch.Size = new System.Drawing.Size(75, 23);
             this.buttonSearch.TabIndex = 22;
@@ -355,20 +354,34 @@
             this.comboBoxName.Name = "comboBoxName";
             this.comboBoxName.Size = new System.Drawing.Size(121, 21);
             this.comboBoxName.TabIndex = 25;
-            this.comboBoxName.SelectedIndexChanged += new System.EventHandler(this.comboBoxName_SelectedIndexChanged);
             this.comboBoxName.SelectionChangeCommitted += new System.EventHandler(this.comboBoxName_SelectionChangeCommitted);
+            // 
+            // gridControl1
+            // 
+            this.gridControl1.Location = new System.Drawing.Point(12, 146);
+            this.gridControl1.MainView = this.gridView1;
+            this.gridControl1.Name = "gridControl1";
+            this.gridControl1.Size = new System.Drawing.Size(744, 297);
+            this.gridControl1.TabIndex = 27;
+            this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gridView1});
+            // 
+            // gridView1
+            // 
+            this.gridView1.GridControl = this.gridControl1;
+            this.gridView1.Name = "gridView1";
             // 
             // EditActionReport
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 593);
+            this.Controls.Add(this.gridControl1);
             this.Controls.Add(this.comboBoxName);
             this.Controls.Add(this.comboBoxCaseTitle);
             this.Controls.Add(this.buttonEdit);
             this.Controls.Add(this.buttonSearch);
             this.Controls.Add(this.buttonSave);
-            this.Controls.Add(this.gridControl1);
             this.Controls.Add(this.labelActive);
             this.Controls.Add(this.btnAddActionLine);
             this.Controls.Add(this.textBox7);
@@ -392,13 +405,14 @@
             this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.buttonNext);
+            this.Controls.Add(this.buttonPrevious);
             this.Controls.Add(this.label1);
             this.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "EditActionReport";
             this.Text = "Edit Action Report";
             this.Load += new System.EventHandler(this.EditActionReport_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.xpCollection1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             this.ResumeLayout(false);
@@ -409,8 +423,8 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button buttonPrevious;
+        private System.Windows.Forms.Button buttonNext;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
@@ -434,12 +448,14 @@
         private System.Windows.Forms.TextBox textBox7;
         private System.Windows.Forms.Button btnAddActionLine;
         private System.Windows.Forms.Label labelActive;
-        private DevExpress.XtraGrid.GridControl gridControl1;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
         private System.Windows.Forms.Button buttonSave;
         private System.Windows.Forms.Button buttonSearch;
         private System.Windows.Forms.Button buttonEdit;
         private System.Windows.Forms.ComboBox comboBoxCaseTitle;
         private System.Windows.Forms.ComboBox comboBoxName;
+        private DevExpress.Xpo.XPCollection xpCollection1;
+        private DevExpress.Xpo.XPPageSelector xpPageSelector1;
+        private DevExpress.XtraGrid.GridControl gridControl1;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
     }
 }

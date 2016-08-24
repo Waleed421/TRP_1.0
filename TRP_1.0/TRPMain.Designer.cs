@@ -31,8 +31,6 @@
             this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.panelOtherCase = new System.Windows.Forms.Panel();
-            this.gridControlAllCases = new DevExpress.XtraGrid.GridControl();
-            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.buttonStartSearched = new System.Windows.Forms.Button();
             this.btnEditActionReport = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
@@ -73,9 +71,9 @@
             this.casesTableAdapter = new TRP_1._0.TRPDbDataSetTableAdapters.CasesTableAdapter();
             this.customerBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.customerTableAdapter = new TRP_1._0.TRPDbDataSetTableAdapters.CustomerTableAdapter();
+            this.gridControlAllCases = new DevExpress.XtraGrid.GridControl();
+            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.panelOtherCase.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gridControlAllCases)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.casesBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tRPDbDataSet)).BeginInit();
             this.panelCaseList.SuspendLayout();
@@ -86,6 +84,8 @@
             this.panelCreateCase.SuspendLayout();
             this.panelEdit.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.customerBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridControlAllCases)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -108,21 +108,6 @@
             this.panelOtherCase.Name = "panelOtherCase";
             this.panelOtherCase.Size = new System.Drawing.Size(677, 191);
             this.panelOtherCase.TabIndex = 1;
-            // 
-            // gridControlAllCases
-            // 
-            this.gridControlAllCases.Location = new System.Drawing.Point(7, 30);
-            this.gridControlAllCases.MainView = this.gridView1;
-            this.gridControlAllCases.Name = "gridControlAllCases";
-            this.gridControlAllCases.Size = new System.Drawing.Size(536, 158);
-            this.gridControlAllCases.TabIndex = 23;
-            this.gridControlAllCases.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gridView1});
-            // 
-            // gridView1
-            // 
-            this.gridView1.GridControl = this.gridControlAllCases;
-            this.gridView1.Name = "gridView1";
             // 
             // buttonStartSearched
             // 
@@ -494,6 +479,21 @@
             // 
             this.customerTableAdapter.ClearBeforeFill = true;
             // 
+            // gridControlAllCases
+            // 
+            this.gridControlAllCases.Location = new System.Drawing.Point(2, 22);
+            this.gridControlAllCases.MainView = this.gridView1;
+            this.gridControlAllCases.Name = "gridControlAllCases";
+            this.gridControlAllCases.Size = new System.Drawing.Size(541, 166);
+            this.gridControlAllCases.TabIndex = 23;
+            this.gridControlAllCases.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gridView1});
+            // 
+            // gridView1
+            // 
+            this.gridView1.GridControl = this.gridControlAllCases;
+            this.gridView1.Name = "gridView1";
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -511,8 +511,6 @@
             this.Load += new System.EventHandler(this.Main_Load);
             this.panelOtherCase.ResumeLayout(false);
             this.panelOtherCase.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gridControlAllCases)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.casesBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tRPDbDataSet)).EndInit();
             this.panelCaseList.ResumeLayout(false);
@@ -526,6 +524,8 @@
             this.panelEdit.ResumeLayout(false);
             this.panelEdit.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.customerBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridControlAllCases)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -566,8 +566,6 @@
         private TRPDbDataSetTableAdapters.CasesTableAdapter casesTableAdapter;
         private System.Windows.Forms.BindingSource customerBindingSource;
         private TRPDbDataSetTableAdapters.CustomerTableAdapter customerTableAdapter;
-        private DevExpress.XtraGrid.GridControl gridControlAllCases;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
         private System.Windows.Forms.ComboBox comboBoxCustomerName;
         private DevExpress.XtraGrid.GridControl gridControlRecentCases;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView2;
@@ -577,6 +575,8 @@
         private DevExpress.XtraGrid.Views.Grid.GridView gridView3;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.TextBox textBoxActionComment;
+        private DevExpress.XtraGrid.GridControl gridControlAllCases;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
     }
 }
 

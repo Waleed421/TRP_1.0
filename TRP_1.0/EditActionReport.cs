@@ -7,12 +7,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DevExpress.Xpo;
 
 namespace TRP_1._0
 {
     public partial class EditActionReport : Form
     {
-        int a = 0, b=0, cId=0, caseId=0;
+        int a = 0, b=0, cId=0, caseId=0, userID;
+        public int pageSize = 20; // set your page size, which is number of records per page
+
+        int page = 1; // set current page number, must be >= 1
+        int skip;
+        
         string invoice;
         TRPDbEntities db = new TRPDbEntities();
         public EditActionReport()
@@ -34,19 +40,71 @@ namespace TRP_1._0
             comboBoxName.ValueMember = "Id";
 
             var use = (from u in db.Users where u.Status == "Active" select u).FirstOrDefault();
+          
+            userID = use.Id;
             labelActive.Text = use.Name;
             dateTimePicker1.Value = DateTime.Today.AddMonths(-1);
-           // var ctr = (from c in db.Cases select new { c.Case_No, c.Customer.Customer_Name, c.Customer.Customer_No, c.Title, c.TypeofCas.Type, c.Case_Comment }).Take(20).ToList();
+            // var ctr = (from c in db.Cases select new { c.Case_No, c.Customer.Customer_Name, c.Customer.Customer_No, c.Title, c.TypeofCas.Type, c.Case_Comment }).Take(20).ToList();
+
+            skip = pageSize * (page - 1);
+            if (page == 1)
+                buttonPrevious.Enabled = false;
             var str = (from t in db.TimeRegistrations
-                       where (t.Start_Date_Time >= dateTimePicker1.Value && t.Start_Date_Time <= dateTimePicker2.Value)
-                       select new { t.Id, t.Case_No, t.Case.Customer.Customer_Name, t.Case.Customer.Customer_No, t.Case.Title, t.Case.TypeofCas.Type, t.Case.Case_Comment, t.Time_In_Minutes, t.Action_Comment }).Take(20).ToList();
+                       orderby t.Id
+                       where (t.User_Id==userID && t.Start_Date_Time >= dateTimePicker1.Value && t.Start_Date_Time <= dateTimePicker2.Value)
+                       select new { t.Id, t.Case_No, t.Case.Customer.Customer_Name, t.Case.Customer.Customer_No, t.Case.Title, t.Case.TypeofCas.Type, t.Case.Case_Comment, t.Time_In_Minutes, t.Action_Comment }).Skip(skip).Take(pageSize).ToList();
+            //XPQuery<TimeRegistration> tr = Session.DefaultSession.Query<TimeRegistration>();
+            //xpCollection1.ObjectClassInfo = str;
+            //xpPageSelector1.Collection = xpCollection1;
             gridControl1.DataSource = str;
+            var Remaining = str.Count();
+            if(Remaining<=skip)
+                buttonNext.Enabled = false;
+            
+
             var res = (from x in db.TypeofCases
                        select new { x.Id, x.Type }).ToList();
             comboBoxCaseType.DataSource = res;
             comboBoxCaseType.DisplayMember = "Type";
             comboBoxCaseType.ValueMember = "Id";
             buttonSave.Enabled = false;
+            
+        }
+        private void buttonPrevious_Click(object sender, EventArgs e)
+        {
+            page--;
+            skip = pageSize * (page - 1);
+            var str = (from t in db.TimeRegistrations
+                       orderby t.Id
+                       where (t.User_Id == userID && t.Start_Date_Time >= dateTimePicker1.Value && t.Start_Date_Time <= dateTimePicker2.Value)
+                       select new { t.Id, t.Case_No, t.Case.Customer.Customer_Name, t.Case.Customer.Customer_No, t.Case.Title, t.Case.TypeofCas.Type, t.Case.Case_Comment, t.Time_In_Minutes, t.Action_Comment }).Skip(skip).Take(pageSize).ToList();
+            gridControl1.DataSource = str;
+            if (page == 1)
+            {
+                buttonPrevious.Enabled = false;
+                buttonNext.Enabled = true;
+            }
+            else
+                buttonPrevious.Enabled = true;
+        }
+
+       
+
+        private void buttonNext_Click(object sender, EventArgs e)
+        {
+            page++;
+            skip = pageSize * (page - 1);
+
+            var str = (from t in db.TimeRegistrations
+                       orderby t.Id
+                       where (t.User_Id == userID && t.Start_Date_Time >= dateTimePicker1.Value && t.Start_Date_Time <= dateTimePicker2.Value)
+                       select new { t.Id, t.Case_No, t.Case.Customer.Customer_Name, t.Case.Customer.Customer_No, t.Case.Title, t.Case.TypeofCas.Type, t.Case.Case_Comment, t.Time_In_Minutes, t.Action_Comment }).Skip(skip).Take(pageSize).ToList();
+            gridControl1.DataSource = str;
+            var Remaining = str.Count();
+            if (Remaining <= skip)
+                buttonNext.Enabled = false;
+            if (page > 1)
+                buttonPrevious.Enabled = true;
         }
 
         private void btnAddActionLine_Click(object sender, EventArgs e)
@@ -104,6 +162,15 @@ namespace TRP_1._0
             comboBoxCaseType.SelectedValue = str.Type_Id;
             textBox6.Text = str.Case_Comment;
             textBox7.Text = str.Action_Comment;
+            comboBoxName.SelectedValue = stri.Case.Customer_Id;
+            cId = Convert.ToInt32(comboBoxName.SelectedValue);
+            var res1 = (from c in db.Cases
+                        where c.Customer_Id == cId
+                        select new { c.Case_No, c.Title, c.TypeofCas.Type, c.Case_Comment, c.Customer.Customer_No }).ToList();
+            comboBoxCaseTitle.DataSource = res1;
+            comboBoxCaseTitle.DisplayMember = "Title";
+            comboBoxCaseTitle.ValueMember = "Case_No";
+            comboBoxCaseTitle.SelectedValue = str.Case_No;
             buttonSave.Enabled = true;
             //textBox1.ReadOnly = true;
             textBox2.ReadOnly = true;
@@ -112,13 +179,11 @@ namespace TRP_1._0
             textBox6.ReadOnly = true;
             dateTimePicker3.Enabled = false;
             comboBoxCaseType.Enabled = false;
-
+            comboBoxName.Enabled = false;
+            comboBoxCaseTitle.Enabled = false;
         }
 
-        private void comboBoxName_SelectedIndexChanged(object sender, EventArgs e)
-        {
-                        
-        }
+        
 
         private void comboBoxCaseTitle_SelectionChangeCommitted(object sender, EventArgs e)
         {

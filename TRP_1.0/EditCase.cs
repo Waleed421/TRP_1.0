@@ -61,6 +61,8 @@ namespace TRP_1._0
             }
             else if (radioButtonClosed.Checked)
                 save.Status = "Closed";
+            save.Last_Edit_Date_Time = DateTime.Now;
+            save.Last_Edit_By_User_Id = userID;
             db.SaveChanges();
             MessageBox.Show("Case Successfully Edited");
             button1.Enabled = false;
