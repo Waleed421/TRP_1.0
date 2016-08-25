@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using TRP_1._0;
+using DevExpress.XtraGrid.Columns;
 
 namespace TRP_1._0
 {
@@ -34,7 +35,7 @@ namespace TRP_1._0
             gridControl1.DataSource = null;
             gridControlRecentCases.DataSource = null;
             gridControlAllCases.DataSource = null;
-
+            
 
             userID = Convert.ToInt32(comboBoxUser.SelectedValue);
 
@@ -152,10 +153,11 @@ namespace TRP_1._0
         {
             gridView3.OptionsView.ShowGroupPanel = false;
             gridView2.OptionsView.ShowGroupPanel = false;
-            // TODO: This line of code loads data into the 'tRPDbDataSet.Customer' table. You can move, or remove it, as needed.
-            this.customerTableAdapter.Fill(this.tRPDbDataSet.Customer);
-            // TODO: This line of code loads data into the 'tRPDbDataSet.Cases' table. You can move, or remove it, as needed.
-            this.casesTableAdapter.Fill(this.tRPDbDataSet.Cases);
+            
+            //// TODO: This line of code loads data into the 'tRPDbDataSet.Customer' table. You can move, or remove it, as needed.
+            //this.customerTableAdapter.Fill(this.tRPDbDataSet.Customer);
+            //// TODO: This line of code loads data into the 'tRPDbDataSet.Cases' table. You can move, or remove it, as needed.
+            //this.casesTableAdapter.Fill(this.tRPDbDataSet.Cases);
             comboBoxUser.DisplayMember = "Name";
             comboBoxUser.ValueMember = "Id";
 

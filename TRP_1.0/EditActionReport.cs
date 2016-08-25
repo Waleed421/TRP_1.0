@@ -59,6 +59,8 @@ namespace TRP_1._0
                        where (t.User_Id==userID && t.Start_Date_Time >= dateTimePicker1.Value && t.Start_Date_Time <= dateTimePicker2.Value)
                        select new { t.Id, t.Case_No, t.Case.Customer.Customer_Name, t.Case.Customer.Customer_No, t.Case.Title, t.Case.TypeofCas.Type, t.Case.Case_Comment, t.Time_In_Minutes, t.Action_Comment }).Skip(skip).Take(pageSize).ToList();
             gridControl1.DataSource = str;
+            gridView1.Columns["Id"].Visible = false;
+
             var Remaining = str.Count();
             if(Remaining<20)
                 buttonNext.Enabled = false;

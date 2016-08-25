@@ -21,10 +21,11 @@ namespace TRP_1._0
 
         private void EditUser_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'tRPDbDataSet.User' table. You can move, or remove it, as needed.
-            this.userTableAdapter.Fill(this.tRPDbDataSet.User);
+            //// TODO: This line of code loads data into the 'tRPDbDataSet.User' table. You can move, or remove it, as needed.
+            //this.userTableAdapter.Fill(this.tRPDbDataSet.User);
             var res = (from u in db.Users select new {u.Id, u.Name, u.Status, u.Language }).ToList();
             gridControlUsers.DataSource = res;
+            gridView1.Columns["Id"].Visible = false;
 
         }
 
@@ -52,6 +53,8 @@ namespace TRP_1._0
                 MessageBox.Show("New User Added");
                 textBoxName.Clear();
                 textBoxNumber.Clear();
+                var res = (from ur in db.Users select new { ur.Id, ur.Name, ur.Status, ur.Language }).ToList();
+                gridControlUsers.DataSource = res;
             }
             else
                 MessageBox.Show("Enter User Name and No.");

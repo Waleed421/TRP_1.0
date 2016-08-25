@@ -44,10 +44,10 @@ namespace TRP_1._0
 
         private void EditCustomer_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'tRPDbDataSet.Cases' table. You can move, or remove it, as needed.
-            this.casesTableAdapter.Fill(this.tRPDbDataSet.Cases);
-            // TODO: This line of code loads data into the 'tRPDbDataSet.Customer' table. You can move, or remove it, as needed.
-            this.customerTableAdapter.Fill(this.tRPDbDataSet.Customer);
+            //// TODO: This line of code loads data into the 'tRPDbDataSet.Cases' table. You can move, or remove it, as needed.
+            //this.casesTableAdapter.Fill(this.tRPDbDataSet.Cases);
+            //// TODO: This line of code loads data into the 'tRPDbDataSet.Customer' table. You can move, or remove it, as needed.
+            //this.customerTableAdapter.Fill(this.tRPDbDataSet.Customer);
             var res = (from u in db.Users
                        select new { u.Id, u.Name }).ToList();
             comboBoxUsers.DataSource = res;
@@ -55,6 +55,8 @@ namespace TRP_1._0
             comboBoxUsers.ValueMember = "Id";
             var result = (from u in db.Customers select new { u.Id, u.Customer_Name, u.Customer_No,Customer_Manager=u.User.Name, u.Customer_Status }).ToList();
             gridControl1.DataSource = result;
+            gridView1.Columns["Id"].Visible = false;
+
         }
 
         private void button1_Click(object sender, EventArgs e)

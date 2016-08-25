@@ -53,6 +53,8 @@ namespace TRP_1._0
             MessageBox.Show("Case Type successfully edited");
             var type = (from t in db.TypeofCases select new { t.Id, t.Type, t.Invoice_Type, t.Status }).ToList();
             gridControl1.DataSource = type;
+            gridView1.Columns["Id"].Visible = false;
+
             buttonSave.Enabled = false;
             textBoxType.ReadOnly = false;
             buttonAdd.Enabled = true;
