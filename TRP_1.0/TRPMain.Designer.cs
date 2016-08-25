@@ -31,6 +31,8 @@
             this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.panelOtherCase = new System.Windows.Forms.Panel();
+            this.gridControlAllCases = new DevExpress.XtraGrid.GridControl();
+            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.buttonStartSearched = new System.Windows.Forms.Button();
             this.btnEditActionReport = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
@@ -71,9 +73,9 @@
             this.casesTableAdapter = new TRP_1._0.TRPDbDataSetTableAdapters.CasesTableAdapter();
             this.customerBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.customerTableAdapter = new TRP_1._0.TRPDbDataSetTableAdapters.CustomerTableAdapter();
-            this.gridControlAllCases = new DevExpress.XtraGrid.GridControl();
-            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.panelOtherCase.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gridControlAllCases)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.casesBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tRPDbDataSet)).BeginInit();
             this.panelCaseList.SuspendLayout();
@@ -84,8 +86,6 @@
             this.panelCreateCase.SuspendLayout();
             this.panelEdit.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.customerBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridControlAllCases)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -100,14 +100,30 @@
             // 
             // panelOtherCase
             // 
+            this.panelOtherCase.Controls.Add(this.label7);
+            this.panelOtherCase.Controls.Add(this.comboBoxUser);
             this.panelOtherCase.Controls.Add(this.gridControlAllCases);
             this.panelOtherCase.Controls.Add(this.buttonStartSearched);
-            this.panelOtherCase.Controls.Add(this.btnEditActionReport);
             this.panelOtherCase.Controls.Add(this.label2);
             this.panelOtherCase.Location = new System.Drawing.Point(11, 45);
             this.panelOtherCase.Name = "panelOtherCase";
             this.panelOtherCase.Size = new System.Drawing.Size(677, 191);
             this.panelOtherCase.TabIndex = 1;
+            // 
+            // gridControlAllCases
+            // 
+            this.gridControlAllCases.Location = new System.Drawing.Point(2, 22);
+            this.gridControlAllCases.MainView = this.gridView1;
+            this.gridControlAllCases.Name = "gridControlAllCases";
+            this.gridControlAllCases.Size = new System.Drawing.Size(541, 166);
+            this.gridControlAllCases.TabIndex = 23;
+            this.gridControlAllCases.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gridView1});
+            // 
+            // gridView1
+            // 
+            this.gridView1.GridControl = this.gridControlAllCases;
+            this.gridView1.Name = "gridView1";
             // 
             // buttonStartSearched
             // 
@@ -123,9 +139,9 @@
             // btnEditActionReport
             // 
             this.btnEditActionReport.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEditActionReport.Location = new System.Drawing.Point(549, 0);
+            this.btnEditActionReport.Location = new System.Drawing.Point(518, 4);
             this.btnEditActionReport.Name = "btnEditActionReport";
-            this.btnEditActionReport.Size = new System.Drawing.Size(107, 43);
+            this.btnEditActionReport.Size = new System.Drawing.Size(138, 38);
             this.btnEditActionReport.TabIndex = 5;
             this.btnEditActionReport.Text = "Edit Action Report";
             this.btnEditActionReport.UseVisualStyleBackColor = true;
@@ -162,7 +178,7 @@
             this.panelCaseList.Controls.Add(this.buttonStartRecent);
             this.panelCaseList.Location = new System.Drawing.Point(13, 261);
             this.panelCaseList.Name = "panelCaseList";
-            this.panelCaseList.Size = new System.Drawing.Size(675, 240);
+            this.panelCaseList.Size = new System.Drawing.Size(675, 229);
             this.panelCaseList.TabIndex = 2;
             // 
             // btnStopDateTime
@@ -180,7 +196,7 @@
             // 
             this.textBoxActionComment.Location = new System.Drawing.Point(550, 19);
             this.textBoxActionComment.Name = "textBoxActionComment";
-            this.textBoxActionComment.Size = new System.Drawing.Size(97, 21);
+            this.textBoxActionComment.Size = new System.Drawing.Size(104, 21);
             this.textBoxActionComment.TabIndex = 6;
             this.textBoxActionComment.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBoxActionComment_KeyDown);
             // 
@@ -199,7 +215,7 @@
             this.gridControl1.Location = new System.Drawing.Point(0, 3);
             this.gridControl1.MainView = this.gridView3;
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(541, 56);
+            this.gridControl1.Size = new System.Drawing.Size(541, 46);
             this.gridControl1.TabIndex = 24;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView3});
@@ -212,10 +228,10 @@
             // 
             // gridControlRecentCases
             // 
-            this.gridControlRecentCases.Location = new System.Drawing.Point(1, 84);
+            this.gridControlRecentCases.Location = new System.Drawing.Point(1, 74);
             this.gridControlRecentCases.MainView = this.gridView2;
             this.gridControlRecentCases.Name = "gridControlRecentCases";
-            this.gridControlRecentCases.Size = new System.Drawing.Size(540, 153);
+            this.gridControlRecentCases.Size = new System.Drawing.Size(540, 130);
             this.gridControlRecentCases.TabIndex = 26;
             this.gridControlRecentCases.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView2});
@@ -229,7 +245,7 @@
             // 
             this.label17.AutoSize = true;
             this.label17.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.Location = new System.Drawing.Point(1, 62);
+            this.label17.Location = new System.Drawing.Point(1, 52);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(118, 19);
             this.label17.TabIndex = 24;
@@ -258,6 +274,7 @@
             // 
             // panelCreateCase
             // 
+            this.panelCreateCase.BackColor = System.Drawing.SystemColors.ControlLight;
             this.panelCreateCase.Controls.Add(this.comboBoxCustomerName);
             this.panelCreateCase.Controls.Add(this.comboBoxCaseType);
             this.panelCreateCase.Controls.Add(this.textTimeInMinutes);
@@ -271,15 +288,15 @@
             this.panelCreateCase.Controls.Add(this.label6);
             this.panelCreateCase.Controls.Add(this.label4);
             this.panelCreateCase.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panelCreateCase.Location = new System.Drawing.Point(13, 507);
+            this.panelCreateCase.Location = new System.Drawing.Point(13, 471);
             this.panelCreateCase.Name = "panelCreateCase";
-            this.panelCreateCase.Size = new System.Drawing.Size(675, 87);
+            this.panelCreateCase.Size = new System.Drawing.Size(675, 108);
             this.panelCreateCase.TabIndex = 3;
             // 
             // comboBoxCustomerName
             // 
             this.comboBoxCustomerName.FormattingEnabled = true;
-            this.comboBoxCustomerName.Location = new System.Drawing.Point(99, 21);
+            this.comboBoxCustomerName.Location = new System.Drawing.Point(99, 27);
             this.comboBoxCustomerName.Name = "comboBoxCustomerName";
             this.comboBoxCustomerName.Size = new System.Drawing.Size(109, 24);
             this.comboBoxCustomerName.TabIndex = 15;
@@ -287,28 +304,28 @@
             // comboBoxCaseType
             // 
             this.comboBoxCaseType.FormattingEnabled = true;
-            this.comboBoxCaseType.Location = new System.Drawing.Point(315, 15);
+            this.comboBoxCaseType.Location = new System.Drawing.Point(315, 27);
             this.comboBoxCaseType.Name = "comboBoxCaseType";
             this.comboBoxCaseType.Size = new System.Drawing.Size(121, 24);
             this.comboBoxCaseType.TabIndex = 14;
             // 
             // textTimeInMinutes
             // 
-            this.textTimeInMinutes.Location = new System.Drawing.Point(547, 17);
+            this.textTimeInMinutes.Location = new System.Drawing.Point(545, 24);
             this.textTimeInMinutes.Name = "textTimeInMinutes";
-            this.textTimeInMinutes.Size = new System.Drawing.Size(102, 23);
+            this.textTimeInMinutes.Size = new System.Drawing.Size(109, 23);
             this.textTimeInMinutes.TabIndex = 13;
             // 
             // textCaseComment
             // 
-            this.textCaseComment.Location = new System.Drawing.Point(315, 45);
+            this.textCaseComment.Location = new System.Drawing.Point(315, 75);
             this.textCaseComment.Name = "textCaseComment";
             this.textCaseComment.Size = new System.Drawing.Size(121, 23);
             this.textCaseComment.TabIndex = 12;
             // 
             // textCaseTitle
             // 
-            this.textCaseTitle.Location = new System.Drawing.Point(99, 47);
+            this.textCaseTitle.Location = new System.Drawing.Point(99, 75);
             this.textCaseTitle.Name = "textCaseTitle";
             this.textCaseTitle.Size = new System.Drawing.Size(109, 23);
             this.textCaseTitle.TabIndex = 10;
@@ -316,9 +333,9 @@
             // buttonCreateCase
             // 
             this.buttonCreateCase.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonCreateCase.Location = new System.Drawing.Point(547, 48);
+            this.buttonCreateCase.Location = new System.Drawing.Point(550, 63);
             this.buttonCreateCase.Name = "buttonCreateCase";
-            this.buttonCreateCase.Size = new System.Drawing.Size(100, 35);
+            this.buttonCreateCase.Size = new System.Drawing.Size(104, 35);
             this.buttonCreateCase.TabIndex = 7;
             this.buttonCreateCase.Text = "Create Case";
             this.buttonCreateCase.UseVisualStyleBackColor = true;
@@ -327,7 +344,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(442, 20);
+            this.label11.Location = new System.Drawing.Point(440, 27);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(99, 16);
             this.label11.TabIndex = 6;
@@ -336,7 +353,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(214, 45);
+            this.label10.Location = new System.Drawing.Point(214, 78);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(95, 16);
             this.label10.TabIndex = 5;
@@ -345,7 +362,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(214, 23);
+            this.label9.Location = new System.Drawing.Point(214, 32);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(68, 16);
             this.label9.TabIndex = 4;
@@ -354,7 +371,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(5, 50);
+            this.label8.Location = new System.Drawing.Point(3, 82);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(65, 16);
             this.label8.TabIndex = 3;
@@ -363,7 +380,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(2, 24);
+            this.label6.Location = new System.Drawing.Point(2, 32);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(100, 16);
             this.label6.TabIndex = 1;
@@ -373,7 +390,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(4, 0);
+            this.label4.Location = new System.Drawing.Point(1, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(147, 19);
             this.label4.TabIndex = 0;
@@ -381,23 +398,22 @@
             // 
             // panelEdit
             // 
-            this.panelEdit.Controls.Add(this.label7);
-            this.panelEdit.Controls.Add(this.comboBoxUser);
             this.panelEdit.Controls.Add(this.buttonCaseType);
             this.panelEdit.Controls.Add(this.buttonEditCustomer);
+            this.panelEdit.Controls.Add(this.btnEditActionReport);
             this.panelEdit.Controls.Add(this.buttonEditCase);
             this.panelEdit.Controls.Add(this.buttonChangeUser);
             this.panelEdit.Controls.Add(this.label5);
-            this.panelEdit.Location = new System.Drawing.Point(11, 596);
+            this.panelEdit.Location = new System.Drawing.Point(11, 585);
             this.panelEdit.Name = "panelEdit";
-            this.panelEdit.Size = new System.Drawing.Size(677, 59);
+            this.panelEdit.Size = new System.Drawing.Size(677, 57);
             this.panelEdit.TabIndex = 4;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(521, 3);
+            this.label7.Location = new System.Drawing.Point(460, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(83, 16);
             this.label7.TabIndex = 7;
@@ -406,7 +422,7 @@
             // comboBoxUser
             // 
             this.comboBoxUser.FormattingEnabled = true;
-            this.comboBoxUser.Location = new System.Drawing.Point(524, 22);
+            this.comboBoxUser.Location = new System.Drawing.Point(542, -1);
             this.comboBoxUser.Name = "comboBoxUser";
             this.comboBoxUser.Size = new System.Drawing.Size(135, 21);
             this.comboBoxUser.TabIndex = 6;
@@ -479,21 +495,6 @@
             // 
             this.customerTableAdapter.ClearBeforeFill = true;
             // 
-            // gridControlAllCases
-            // 
-            this.gridControlAllCases.Location = new System.Drawing.Point(2, 22);
-            this.gridControlAllCases.MainView = this.gridView1;
-            this.gridControlAllCases.Name = "gridControlAllCases";
-            this.gridControlAllCases.Size = new System.Drawing.Size(541, 166);
-            this.gridControlAllCases.TabIndex = 23;
-            this.gridControlAllCases.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gridView1});
-            // 
-            // gridView1
-            // 
-            this.gridView1.GridControl = this.gridControlAllCases;
-            this.gridView1.Name = "gridView1";
-            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -507,10 +508,13 @@
             this.Controls.Add(this.label1);
             this.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "Main";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Time Registration Program";
             this.Load += new System.EventHandler(this.Main_Load);
             this.panelOtherCase.ResumeLayout(false);
             this.panelOtherCase.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gridControlAllCases)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.casesBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tRPDbDataSet)).EndInit();
             this.panelCaseList.ResumeLayout(false);
@@ -524,8 +528,6 @@
             this.panelEdit.ResumeLayout(false);
             this.panelEdit.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.customerBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridControlAllCases)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

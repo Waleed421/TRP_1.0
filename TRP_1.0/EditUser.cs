@@ -37,19 +37,24 @@ namespace TRP_1._0
 
         private void button1_Click(object sender, EventArgs e)
         {
-            User u = new User();
-            u.Name = textBoxName.Text;
-            u.Number = textBoxNumber.Text;
-            u.Language = comboBoxLanguage.Text;
-            if (radioButtonActive.Checked)
-                u.Status = "Active";
-            else if (radioButtonInactive.Checked)
-                u.Status = "Inactive";
-            db.Users.Add(u);
-            db.SaveChanges();
-            MessageBox.Show("New User Added");
-            textBoxName.Clear();
-            textBoxNumber.Clear();
+            if (textBoxName.Text != "" && textBoxNumber.Text != "")
+            {
+                User u = new User();
+                u.Name = textBoxName.Text;
+                u.Number = textBoxNumber.Text;
+                u.Language = comboBoxLanguage.Text;
+                if (radioButtonActive.Checked)
+                    u.Status = "Active";
+                else if (radioButtonInactive.Checked)
+                    u.Status = "Inactive";
+                db.Users.Add(u);
+                db.SaveChanges();
+                MessageBox.Show("New User Added");
+                textBoxName.Clear();
+                textBoxNumber.Clear();
+            }
+            else
+                MessageBox.Show("Enter User Name and No.");
         }
 
         private void button2_Click_1(object sender, EventArgs e)
@@ -84,6 +89,23 @@ namespace TRP_1._0
             textBoxNumber.ReadOnly = false;
             textBoxName.Clear();
             textBoxNumber.Clear();
+        }
+
+        private void textBoxName_Leave(object sender, EventArgs e)
+        {
+            if(textBoxName.ReadOnly==false)
+            {
+                var user = from u in db.Users select u;
+                foreach(var item in user)
+                {
+                    if(string.Equals(textBoxName.Text, item.Name, StringComparison.CurrentCultureIgnoreCase))
+                    {
+                        MessageBox.Show("Name already exists");
+                        textBoxName.Focus();
+                    }
+                }
+            }
+
         }
     }
 }

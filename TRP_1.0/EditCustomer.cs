@@ -21,17 +21,22 @@ namespace TRP_1._0
 
         private void buttonAdd_Click(object sender, EventArgs e)
         {
-            Customer c = new Customer();
-            c.Customer_Name = Name.Text;
-            c.Customer_No = Number.Text;
-            c.User_Id = Convert.ToInt16(comboBoxUsers.SelectedValue);
-            if (radioButtonActive.Checked)
-                c.Customer_Status = "Active";
-            else if (radioButtonInactive.Checked)
-                c.Customer_Status= "Inactive";
-            db.Customers.Add(c);
-            db.SaveChanges();
-            MessageBox.Show("Customer successfully added");
+            if (Name.Text !="" && Number.Text != "")
+            {
+                Customer c = new Customer();
+                c.Customer_Name = Name.Text;
+                c.Customer_No = Number.Text;
+                c.User_Id = Convert.ToInt16(comboBoxUsers.SelectedValue);
+                if (radioButtonActive.Checked)
+                    c.Customer_Status = "Active";
+                else if (radioButtonInactive.Checked)
+                    c.Customer_Status = "Inactive";
+                db.Customers.Add(c);
+                db.SaveChanges();
+                MessageBox.Show("Customer successfully added");
+            }
+            else
+                MessageBox.Show("Enter Customer Name and No.");
             var result = (from u in db.Customers select new { u.Id, u.Customer_Name, u.Customer_No, Customer_Manager = u.User.Name, u.Customer_Status }).ToList();
             gridControl1.DataSource = result;
 
@@ -94,6 +99,20 @@ namespace TRP_1._0
             Number.Clear();            
         }
 
-       
+        private void Number_Leave(object sender, EventArgs e)
+        {
+            if (Number.ReadOnly == false)
+            {
+                var customer = from c in db.Customers select c;
+                foreach (var item in customer)
+                {
+                    if (string.Equals(Number.Text, item.Customer_No, StringComparison.CurrentCultureIgnoreCase))
+                    {
+                        MessageBox.Show("Customer Number already exists");
+                        Number.Focus();
+                    }
+                }
+            }
+        }
     }
 }

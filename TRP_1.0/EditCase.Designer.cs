@@ -52,9 +52,11 @@
             // 
             // buttonEdit
             // 
-            this.buttonEdit.Location = new System.Drawing.Point(713, 359);
+            this.buttonEdit.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonEdit.Location = new System.Drawing.Point(624, 442);
+            this.buttonEdit.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.buttonEdit.Name = "buttonEdit";
-            this.buttonEdit.Size = new System.Drawing.Size(89, 35);
+            this.buttonEdit.Size = new System.Drawing.Size(78, 43);
             this.buttonEdit.TabIndex = 9;
             this.buttonEdit.Text = "Edit";
             this.buttonEdit.UseVisualStyleBackColor = true;
@@ -62,10 +64,11 @@
             // 
             // button1
             // 
-            this.button1.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(713, 96);
+            this.button1.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(624, 118);
+            this.button1.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(87, 28);
+            this.button1.Size = new System.Drawing.Size(76, 34);
             this.button1.TabIndex = 27;
             this.button1.Text = "Save";
             this.button1.UseVisualStyleBackColor = true;
@@ -74,24 +77,27 @@
             // comboBoxCaseType
             // 
             this.comboBoxCaseType.FormattingEnabled = true;
-            this.comboBoxCaseType.Location = new System.Drawing.Point(443, 26);
+            this.comboBoxCaseType.Location = new System.Drawing.Point(402, 36);
+            this.comboBoxCaseType.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.comboBoxCaseType.Name = "comboBoxCaseType";
-            this.comboBoxCaseType.Size = new System.Drawing.Size(192, 21);
+            this.comboBoxCaseType.Size = new System.Drawing.Size(168, 24);
             this.comboBoxCaseType.TabIndex = 15;
             // 
             // textBoxCaseComment
             // 
-            this.textBoxCaseComment.Location = new System.Drawing.Point(443, 60);
+            this.textBoxCaseComment.Location = new System.Drawing.Point(402, 68);
+            this.textBoxCaseComment.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.textBoxCaseComment.Name = "textBoxCaseComment";
-            this.textBoxCaseComment.Size = new System.Drawing.Size(192, 21);
+            this.textBoxCaseComment.Size = new System.Drawing.Size(168, 23);
             this.textBoxCaseComment.TabIndex = 17;
             // 
             // radioButtonClosed
             // 
             this.radioButtonClosed.AutoSize = true;
-            this.radioButtonClosed.Location = new System.Drawing.Point(520, 96);
+            this.radioButtonClosed.Location = new System.Drawing.Point(472, 114);
+            this.radioButtonClosed.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.radioButtonClosed.Name = "radioButtonClosed";
-            this.radioButtonClosed.Size = new System.Drawing.Size(68, 17);
+            this.radioButtonClosed.Size = new System.Drawing.Size(64, 20);
             this.radioButtonClosed.TabIndex = 23;
             this.radioButtonClosed.TabStop = true;
             this.radioButtonClosed.Text = "Closed";
@@ -100,9 +106,10 @@
             // radioButtonOpen
             // 
             this.radioButtonOpen.AutoSize = true;
-            this.radioButtonOpen.Location = new System.Drawing.Point(443, 96);
+            this.radioButtonOpen.Location = new System.Drawing.Point(402, 114);
+            this.radioButtonOpen.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.radioButtonOpen.Name = "radioButtonOpen";
-            this.radioButtonOpen.Size = new System.Drawing.Size(58, 17);
+            this.radioButtonOpen.Size = new System.Drawing.Size(56, 20);
             this.radioButtonOpen.TabIndex = 22;
             this.radioButtonOpen.TabStop = true;
             this.radioButtonOpen.Text = "Open";
@@ -111,69 +118,77 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(334, 96);
+            this.label6.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(292, 114);
+            this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(83, 13);
+            this.label6.Size = new System.Drawing.Size(86, 16);
             this.label6.TabIndex = 21;
             this.label6.Text = "Case Status";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(334, 60);
+            this.label5.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(292, 74);
+            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(103, 13);
+            this.label5.Size = new System.Drawing.Size(103, 16);
             this.label5.TabIndex = 20;
             this.label5.Text = "Case Comment";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(334, 26);
+            this.label4.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(292, 32);
+            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(74, 13);
+            this.label4.Size = new System.Drawing.Size(74, 16);
             this.label4.TabIndex = 19;
             this.label4.Text = "Case Type";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(44, 96);
+            this.label3.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(38, 114);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(71, 13);
+            this.label3.Size = new System.Drawing.Size(70, 16);
             this.label3.TabIndex = 18;
             this.label3.Text = "Case Title";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(44, 60);
+            this.label2.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(38, 74);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(94, 13);
+            this.label2.Size = new System.Drawing.Size(94, 16);
             this.label2.TabIndex = 16;
             this.label2.Text = "Customer No.";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(44, 29);
+            this.label1.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(38, 36);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(110, 13);
+            this.label1.Size = new System.Drawing.Size(109, 16);
             this.label1.TabIndex = 14;
             this.label1.Text = "Customer Name";
             // 
             // gridControl1
             // 
-            this.gridControl1.Location = new System.Drawing.Point(14, 138);
+            this.gridControl1.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
+            this.gridControl1.Location = new System.Drawing.Point(12, 170);
             this.gridControl1.MainView = this.gridView1;
+            this.gridControl1.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(788, 215);
+            this.gridControl1.Size = new System.Drawing.Size(689, 265);
             this.gridControl1.TabIndex = 28;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -186,32 +201,35 @@
             // CustomerName
             // 
             this.CustomerName.Enabled = false;
-            this.CustomerName.Location = new System.Drawing.Point(160, 26);
+            this.CustomerName.Location = new System.Drawing.Point(151, 32);
+            this.CustomerName.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.CustomerName.Name = "CustomerName";
-            this.CustomerName.Size = new System.Drawing.Size(150, 21);
+            this.CustomerName.Size = new System.Drawing.Size(132, 23);
             this.CustomerName.TabIndex = 29;
             // 
             // CustomerNo
             // 
             this.CustomerNo.Enabled = false;
-            this.CustomerNo.Location = new System.Drawing.Point(160, 60);
+            this.CustomerNo.Location = new System.Drawing.Point(151, 71);
+            this.CustomerNo.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.CustomerNo.Name = "CustomerNo";
-            this.CustomerNo.Size = new System.Drawing.Size(150, 21);
+            this.CustomerNo.Size = new System.Drawing.Size(132, 23);
             this.CustomerNo.TabIndex = 30;
             // 
             // CaseTitle
             // 
             this.CaseTitle.Enabled = false;
-            this.CaseTitle.Location = new System.Drawing.Point(160, 96);
+            this.CaseTitle.Location = new System.Drawing.Point(151, 114);
+            this.CaseTitle.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.CaseTitle.Name = "CaseTitle";
-            this.CaseTitle.Size = new System.Drawing.Size(150, 21);
+            this.CaseTitle.Size = new System.Drawing.Size(132, 23);
             this.CaseTitle.TabIndex = 31;
             // 
             // EditCase
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(812, 406);
+            this.ClientSize = new System.Drawing.Size(710, 500);
             this.Controls.Add(this.CaseTitle);
             this.Controls.Add(this.CustomerNo);
             this.Controls.Add(this.CustomerName);
@@ -228,9 +246,10 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.buttonEdit);
-            this.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);
+            this.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.Name = "EditCase";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Edit Case";
             this.Load += new System.EventHandler(this.EditCase_Load);
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();

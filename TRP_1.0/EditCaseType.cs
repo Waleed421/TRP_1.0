@@ -34,6 +34,7 @@ namespace TRP_1._0
                 radioButtonInactive.Checked = true;
             buttonSave.Enabled = true;
             textBoxType.ReadOnly = true;
+            buttonAdd.Enabled = false;
         }
 
         private void buttonSave_Click(object sender, EventArgs e)
@@ -54,14 +55,15 @@ namespace TRP_1._0
             gridControl1.DataSource = type;
             buttonSave.Enabled = false;
             textBoxType.ReadOnly = false;
+            buttonAdd.Enabled = true;
         }
 
         private void EditCaseType_Load(object sender, EventArgs e)
         {
             buttonSave.Enabled = false;
             var type = (from t in db.TypeofCases select new { t.Id, t.Type, t.Invoice_Type, t.Status }).ToList();
-            gridControl1.DataSource = type;           
-                       
+            gridControl1.DataSource = type;
+
         }
 
         private void buttonAdd_Click(object sender, EventArgs e)
@@ -81,6 +83,22 @@ namespace TRP_1._0
             MessageBox.Show("Case Type successfully added");
             var type = (from t in db.TypeofCases select new { t.Id, t.Type, t.Invoice_Type, t.Status }).ToList();
             gridControl1.DataSource = type;
+        }
+
+        private void textBoxType_Leave(object sender, EventArgs e)
+        {
+            if (textBoxType.ReadOnly == false)
+            {
+                var type = from t in db.TypeofCases select t;
+                foreach (var item in type)
+                {
+                    if (string.Equals(textBoxType.Text, item.Type, StringComparison.CurrentCultureIgnoreCase))
+                    {
+                        MessageBox.Show("Description already exists");
+                        textBoxType.Focus();
+                    }
+                }
+            }
         }
     }
 }

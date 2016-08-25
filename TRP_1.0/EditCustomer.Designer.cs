@@ -60,64 +60,68 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(386, 119);
+            this.label4.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(368, 129);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(63, 13);
+            this.label4.Size = new System.Drawing.Size(65, 16);
             this.label4.TabIndex = 20;
             this.label4.Text = "Manager";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(29, 77);
+            this.label6.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(34, 73);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(44, 13);
+            this.label6.Size = new System.Drawing.Size(43, 16);
             this.label6.TabIndex = 21;
             this.label6.Text = "Name";
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(29, 119);
+            this.label7.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(34, 129);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(58, 13);
+            this.label7.Size = new System.Drawing.Size(57, 16);
             this.label7.TabIndex = 22;
             this.label7.Text = "Number";
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(386, 77);
+            this.label8.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(368, 73);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(48, 13);
+            this.label8.Size = new System.Drawing.Size(51, 16);
             this.label8.TabIndex = 20;
             this.label8.Text = "Status";
             // 
             // Name
             // 
-            this.Name.Location = new System.Drawing.Point(116, 74);
+            this.Name.Location = new System.Drawing.Point(119, 73);
+            this.Name.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name.Name = "Name";
-            this.Name.Size = new System.Drawing.Size(157, 20);
+            this.Name.Size = new System.Drawing.Size(179, 23);
             this.Name.TabIndex = 1;
             // 
             // Number
             // 
-            this.Number.Location = new System.Drawing.Point(116, 117);
+            this.Number.Location = new System.Drawing.Point(119, 129);
+            this.Number.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Number.Name = "Number";
-            this.Number.Size = new System.Drawing.Size(157, 20);
+            this.Number.Size = new System.Drawing.Size(179, 23);
             this.Number.TabIndex = 2;
+            this.Number.Leave += new System.EventHandler(this.Number_Leave);
             // 
             // radioButtonActive
             // 
             this.radioButtonActive.AutoSize = true;
-            this.radioButtonActive.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioButtonActive.Location = new System.Drawing.Point(6, 16);
+            this.radioButtonActive.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radioButtonActive.Location = new System.Drawing.Point(7, 20);
+            this.radioButtonActive.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.radioButtonActive.Name = "radioButtonActive";
-            this.radioButtonActive.Size = new System.Drawing.Size(66, 17);
+            this.radioButtonActive.Size = new System.Drawing.Size(60, 20);
             this.radioButtonActive.TabIndex = 3;
             this.radioButtonActive.Text = "Active";
             this.radioButtonActive.UseVisualStyleBackColor = true;
@@ -125,10 +129,11 @@
             // radioButtonInactive
             // 
             this.radioButtonInactive.AutoSize = true;
-            this.radioButtonInactive.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioButtonInactive.Location = new System.Drawing.Point(115, 16);
+            this.radioButtonInactive.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radioButtonInactive.Location = new System.Drawing.Point(131, 20);
+            this.radioButtonInactive.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.radioButtonInactive.Name = "radioButtonInactive";
-            this.radioButtonInactive.Size = new System.Drawing.Size(79, 17);
+            this.radioButtonInactive.Size = new System.Drawing.Size(70, 20);
             this.radioButtonInactive.TabIndex = 4;
             this.radioButtonInactive.Text = "Inactive";
             this.radioButtonInactive.UseVisualStyleBackColor = true;
@@ -136,17 +141,19 @@
             // comboBoxUsers
             // 
             this.comboBoxUsers.FormattingEnabled = true;
-            this.comboBoxUsers.Location = new System.Drawing.Point(484, 116);
+            this.comboBoxUsers.Location = new System.Drawing.Point(473, 124);
+            this.comboBoxUsers.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.comboBoxUsers.Name = "comboBoxUsers";
-            this.comboBoxUsers.Size = new System.Drawing.Size(234, 21);
+            this.comboBoxUsers.Size = new System.Drawing.Size(267, 24);
             this.comboBoxUsers.TabIndex = 5;
             // 
             // button1
             // 
-            this.button1.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(588, 390);
+            this.button1.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(672, 542);
+            this.button1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(130, 27);
+            this.button1.Size = new System.Drawing.Size(149, 33);
             this.button1.TabIndex = 5;
             this.button1.Text = "Edit Customer";
             this.button1.UseVisualStyleBackColor = true;
@@ -156,9 +163,12 @@
             // 
             this.groupBox1.Controls.Add(this.radioButtonActive);
             this.groupBox1.Controls.Add(this.radioButtonInactive);
-            this.groupBox1.Location = new System.Drawing.Point(484, 59);
+            this.groupBox1.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox1.Location = new System.Drawing.Point(473, 53);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(200, 51);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.groupBox1.Size = new System.Drawing.Size(229, 63);
             this.groupBox1.TabIndex = 24;
             this.groupBox1.TabStop = false;
             // 
@@ -187,10 +197,12 @@
             // 
             // gridControl1
             // 
-            this.gridControl1.Location = new System.Drawing.Point(32, 206);
+            this.gridControl1.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.gridControl1.Location = new System.Drawing.Point(12, 254);
             this.gridControl1.MainView = this.gridView1;
+            this.gridControl1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(686, 178);
+            this.gridControl1.Size = new System.Drawing.Size(809, 266);
             this.gridControl1.TabIndex = 25;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -202,10 +214,11 @@
             // 
             // buttonAdd
             // 
-            this.buttonAdd.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonAdd.Location = new System.Drawing.Point(484, 143);
+            this.buttonAdd.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonAdd.Location = new System.Drawing.Point(553, 176);
+            this.buttonAdd.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.buttonAdd.Name = "buttonAdd";
-            this.buttonAdd.Size = new System.Drawing.Size(130, 27);
+            this.buttonAdd.Size = new System.Drawing.Size(149, 33);
             this.buttonAdd.TabIndex = 5;
             this.buttonAdd.Text = "Add Customer";
             this.buttonAdd.UseVisualStyleBackColor = true;
@@ -214,9 +227,11 @@
             // buttonSave
             // 
             this.buttonSave.Enabled = false;
-            this.buttonSave.Location = new System.Drawing.Point(621, 144);
+            this.buttonSave.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonSave.Location = new System.Drawing.Point(710, 177);
+            this.buttonSave.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.buttonSave.Name = "buttonSave";
-            this.buttonSave.Size = new System.Drawing.Size(97, 23);
+            this.buttonSave.Size = new System.Drawing.Size(111, 32);
             this.buttonSave.TabIndex = 26;
             this.buttonSave.Text = "Save";
             this.buttonSave.UseVisualStyleBackColor = true;
@@ -224,9 +239,9 @@
             // 
             // EditCustomer
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(739, 488);
+            this.ClientSize = new System.Drawing.Size(837, 601);
             this.Controls.Add(this.buttonSave);
             this.Controls.Add(this.gridControl1);
             this.Controls.Add(this.groupBox1);
@@ -239,8 +254,9 @@
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label4);
-            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
- //           this.Name = "EditCustomer";
+            this.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Customer";
             this.Load += new System.EventHandler(this.EditCustomer_Load);
             this.groupBox1.ResumeLayout(false);

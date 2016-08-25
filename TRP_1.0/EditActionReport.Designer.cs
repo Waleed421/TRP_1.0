@@ -73,7 +73,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Verdana", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(304, 22);
+            this.label1.Location = new System.Drawing.Point(261, 22);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(225, 25);
             this.label1.TabIndex = 0;
@@ -83,9 +83,9 @@
             // buttonPrevious
             // 
             this.buttonPrevious.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonPrevious.Location = new System.Drawing.Point(568, 102);
+            this.buttonPrevious.Location = new System.Drawing.Point(487, 102);
             this.buttonPrevious.Name = "buttonPrevious";
-            this.buttonPrevious.Size = new System.Drawing.Size(102, 23);
+            this.buttonPrevious.Size = new System.Drawing.Size(87, 23);
             this.buttonPrevious.TabIndex = 1;
             this.buttonPrevious.Text = "Previous 20";
             this.buttonPrevious.UseVisualStyleBackColor = true;
@@ -94,9 +94,9 @@
             // buttonNext
             // 
             this.buttonNext.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonNext.Location = new System.Drawing.Point(681, 102);
+            this.buttonNext.Location = new System.Drawing.Point(584, 102);
             this.buttonNext.Name = "buttonNext";
-            this.buttonNext.Size = new System.Drawing.Size(75, 23);
+            this.buttonNext.Size = new System.Drawing.Size(64, 23);
             this.buttonNext.TabIndex = 2;
             this.buttonNext.Text = "Next 20";
             this.buttonNext.UseVisualStyleBackColor = true;
@@ -106,7 +106,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(13, 111);
+            this.label2.Location = new System.Drawing.Point(11, 111);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(37, 13);
             this.label2.TabIndex = 3;
@@ -116,7 +116,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(47, 78);
+            this.label3.Location = new System.Drawing.Point(40, 78);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(73, 13);
             this.label3.TabIndex = 4;
@@ -124,16 +124,16 @@
             // 
             // dateTimePicker1
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(139, 72);
+            this.dateTimePicker1.Location = new System.Drawing.Point(119, 72);
             this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(212, 21);
+            this.dateTimePicker1.Size = new System.Drawing.Size(182, 21);
             this.dateTimePicker1.TabIndex = 1;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(376, 80);
+            this.label4.Location = new System.Drawing.Point(322, 80);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(65, 13);
             this.label4.TabIndex = 6;
@@ -141,148 +141,149 @@
             // 
             // dateTimePicker2
             // 
-            this.dateTimePicker2.Location = new System.Drawing.Point(458, 72);
+            this.dateTimePicker2.Location = new System.Drawing.Point(393, 72);
             this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(214, 21);
+            this.dateTimePicker2.Size = new System.Drawing.Size(184, 21);
             this.dateTimePicker2.TabIndex = 2;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(20, 485);
+            this.label6.Location = new System.Drawing.Point(17, 485);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(100, 13);
+            this.label6.Size = new System.Drawing.Size(83, 13);
             this.label6.TabIndex = 10;
             this.label6.Text = "Customer Name";
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(20, 512);
+            this.label7.Location = new System.Drawing.Point(17, 512);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(86, 13);
+            this.label7.Size = new System.Drawing.Size(73, 13);
             this.label7.TabIndex = 11;
             this.label7.Text = "Customer No.";
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(266, 485);
+            this.label8.Location = new System.Drawing.Point(228, 485);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(59, 13);
+            this.label8.Size = new System.Drawing.Size(51, 13);
             this.label8.TabIndex = 12;
             this.label8.Text = "Case No.";
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(266, 512);
+            this.label9.Location = new System.Drawing.Point(228, 512);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(64, 13);
+            this.label9.Size = new System.Drawing.Size(54, 13);
             this.label9.TabIndex = 13;
             this.label9.Text = "Case Title";
             // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(513, 515);
+            this.label10.Location = new System.Drawing.Point(440, 515);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(96, 13);
+            this.label10.Size = new System.Drawing.Size(79, 13);
             this.label10.TabIndex = 14;
             this.label10.Text = "Case Comment";
             // 
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(513, 488);
+            this.label11.Location = new System.Drawing.Point(440, 488);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(67, 13);
+            this.label11.Size = new System.Drawing.Size(58, 13);
             this.label11.TabIndex = 15;
             this.label11.Text = "Case Type";
             // 
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(20, 539);
+            this.label12.Location = new System.Drawing.Point(17, 539);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(99, 13);
+            this.label12.Size = new System.Drawing.Size(83, 13);
             this.label12.TabIndex = 16;
             this.label12.Text = "Start Date/Time";
             // 
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(266, 539);
+            this.label13.Location = new System.Drawing.Point(228, 539);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(96, 13);
+            this.label13.Size = new System.Drawing.Size(80, 13);
             this.label13.TabIndex = 17;
             this.label13.Text = "Time in Minutes";
             // 
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(513, 542);
+            this.label14.Location = new System.Drawing.Point(440, 542);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(102, 13);
+            this.label14.Size = new System.Drawing.Size(85, 13);
             this.label14.TabIndex = 18;
             this.label14.Text = "Action Comment";
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(126, 512);
+            this.textBox2.Location = new System.Drawing.Point(108, 512);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(124, 21);
+            this.textBox2.Size = new System.Drawing.Size(107, 21);
             this.textBox2.TabIndex = 4;
             // 
             // dateTimePicker3
             // 
-            this.dateTimePicker3.Location = new System.Drawing.Point(126, 539);
+            this.dateTimePicker3.Location = new System.Drawing.Point(108, 539);
             this.dateTimePicker3.Name = "dateTimePicker3";
-            this.dateTimePicker3.Size = new System.Drawing.Size(124, 21);
+            this.dateTimePicker3.Size = new System.Drawing.Size(107, 21);
             this.dateTimePicker3.TabIndex = 9;
             // 
             // textBox3
             // 
-            this.textBox3.Location = new System.Drawing.Point(365, 485);
+            this.textBox3.Location = new System.Drawing.Point(313, 485);
             this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(119, 21);
+            this.textBox3.Size = new System.Drawing.Size(103, 21);
             this.textBox3.TabIndex = 5;
             // 
             // textBox5
             // 
-            this.textBox5.Location = new System.Drawing.Point(365, 539);
+            this.textBox5.Location = new System.Drawing.Point(313, 539);
             this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(119, 21);
+            this.textBox5.Size = new System.Drawing.Size(103, 21);
             this.textBox5.TabIndex = 10;
             // 
             // comboBoxCaseType
             // 
             this.comboBoxCaseType.FormattingEnabled = true;
-            this.comboBoxCaseType.Location = new System.Drawing.Point(633, 485);
+            this.comboBoxCaseType.Location = new System.Drawing.Point(543, 485);
             this.comboBoxCaseType.Name = "comboBoxCaseType";
-            this.comboBoxCaseType.Size = new System.Drawing.Size(121, 21);
+            this.comboBoxCaseType.Size = new System.Drawing.Size(104, 21);
             this.comboBoxCaseType.TabIndex = 7;
             // 
             // textBox6
             // 
-            this.textBox6.Location = new System.Drawing.Point(633, 513);
+            this.textBox6.Location = new System.Drawing.Point(543, 513);
             this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(121, 21);
+            this.textBox6.Size = new System.Drawing.Size(104, 21);
             this.textBox6.TabIndex = 8;
             // 
             // textBox7
             // 
-            this.textBox7.Location = new System.Drawing.Point(633, 540);
+            this.textBox7.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox7.Location = new System.Drawing.Point(543, 540);
             this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(121, 21);
+            this.textBox7.Size = new System.Drawing.Size(104, 21);
             this.textBox7.TabIndex = 11;
             // 
             // btnAddActionLine
             // 
             this.btnAddActionLine.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAddActionLine.Location = new System.Drawing.Point(595, 567);
+            this.btnAddActionLine.Location = new System.Drawing.Point(510, 567);
             this.btnAddActionLine.Name = "btnAddActionLine";
-            this.btnAddActionLine.Size = new System.Drawing.Size(75, 23);
+            this.btnAddActionLine.Size = new System.Drawing.Size(64, 23);
             this.btnAddActionLine.TabIndex = 12;
             this.btnAddActionLine.Text = "Add";
             this.btnAddActionLine.UseVisualStyleBackColor = true;
@@ -291,9 +292,9 @@
             // labelActive
             // 
             this.labelActive.AutoSize = true;
-            this.labelActive.Location = new System.Drawing.Point(77, 110);
+            this.labelActive.Location = new System.Drawing.Point(66, 110);
             this.labelActive.Name = "labelActive";
-            this.labelActive.Size = new System.Drawing.Size(128, 13);
+            this.labelActive.Size = new System.Drawing.Size(108, 13);
             this.labelActive.TabIndex = 19;
             this.labelActive.Text = "Currently active user";
             // 
@@ -308,9 +309,9 @@
             // buttonSave
             // 
             this.buttonSave.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonSave.Location = new System.Drawing.Point(676, 567);
+            this.buttonSave.Location = new System.Drawing.Point(579, 567);
             this.buttonSave.Name = "buttonSave";
-            this.buttonSave.Size = new System.Drawing.Size(75, 23);
+            this.buttonSave.Size = new System.Drawing.Size(64, 23);
             this.buttonSave.TabIndex = 21;
             this.buttonSave.Text = "Update";
             this.buttonSave.UseVisualStyleBackColor = true;
@@ -319,9 +320,9 @@
             // buttonSearch
             // 
             this.buttonSearch.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonSearch.Location = new System.Drawing.Point(681, 73);
+            this.buttonSearch.Location = new System.Drawing.Point(584, 73);
             this.buttonSearch.Name = "buttonSearch";
-            this.buttonSearch.Size = new System.Drawing.Size(75, 23);
+            this.buttonSearch.Size = new System.Drawing.Size(64, 23);
             this.buttonSearch.TabIndex = 22;
             this.buttonSearch.Text = "Search";
             this.buttonSearch.UseVisualStyleBackColor = true;
@@ -330,9 +331,9 @@
             // buttonEdit
             // 
             this.buttonEdit.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonEdit.Location = new System.Drawing.Point(676, 449);
+            this.buttonEdit.Location = new System.Drawing.Point(579, 449);
             this.buttonEdit.Name = "buttonEdit";
-            this.buttonEdit.Size = new System.Drawing.Size(75, 23);
+            this.buttonEdit.Size = new System.Drawing.Size(64, 23);
             this.buttonEdit.TabIndex = 23;
             this.buttonEdit.Text = "Edit";
             this.buttonEdit.UseVisualStyleBackColor = true;
@@ -341,27 +342,27 @@
             // comboBoxCaseTitle
             // 
             this.comboBoxCaseTitle.FormattingEnabled = true;
-            this.comboBoxCaseTitle.Location = new System.Drawing.Point(365, 512);
+            this.comboBoxCaseTitle.Location = new System.Drawing.Point(313, 512);
             this.comboBoxCaseTitle.Name = "comboBoxCaseTitle";
-            this.comboBoxCaseTitle.Size = new System.Drawing.Size(119, 21);
+            this.comboBoxCaseTitle.Size = new System.Drawing.Size(103, 21);
             this.comboBoxCaseTitle.TabIndex = 24;
             this.comboBoxCaseTitle.SelectionChangeCommitted += new System.EventHandler(this.comboBoxCaseTitle_SelectionChangeCommitted);
             // 
             // comboBoxName
             // 
             this.comboBoxName.FormattingEnabled = true;
-            this.comboBoxName.Location = new System.Drawing.Point(127, 479);
+            this.comboBoxName.Location = new System.Drawing.Point(109, 479);
             this.comboBoxName.Name = "comboBoxName";
-            this.comboBoxName.Size = new System.Drawing.Size(121, 21);
+            this.comboBoxName.Size = new System.Drawing.Size(104, 21);
             this.comboBoxName.TabIndex = 25;
             this.comboBoxName.SelectionChangeCommitted += new System.EventHandler(this.comboBoxName_SelectionChangeCommitted);
             // 
             // gridControl1
             // 
-            this.gridControl1.Location = new System.Drawing.Point(12, 146);
+            this.gridControl1.Location = new System.Drawing.Point(10, 146);
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(744, 297);
+            this.gridControl1.Size = new System.Drawing.Size(638, 297);
             this.gridControl1.TabIndex = 27;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -373,9 +374,9 @@
             // 
             // EditActionReport
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(784, 593);
+            this.ClientSize = new System.Drawing.Size(672, 593);
             this.Controls.Add(this.gridControl1);
             this.Controls.Add(this.comboBoxName);
             this.Controls.Add(this.comboBoxCaseTitle);
@@ -408,8 +409,9 @@
             this.Controls.Add(this.buttonNext);
             this.Controls.Add(this.buttonPrevious);
             this.Controls.Add(this.label1);
-            this.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "EditActionReport";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Edit Action Report";
             this.Load += new System.EventHandler(this.EditActionReport_Load);
             ((System.ComponentModel.ISupportInitialize)(this.xpCollection1)).EndInit();
