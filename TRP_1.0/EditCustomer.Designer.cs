@@ -61,7 +61,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(368, 129);
+            this.label4.Location = new System.Drawing.Point(337, 126);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(65, 16);
             this.label4.TabIndex = 20;
@@ -91,7 +91,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(368, 73);
+            this.label8.Location = new System.Drawing.Point(337, 73);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(51, 16);
             this.label8.TabIndex = 20;
@@ -99,7 +99,7 @@
             // 
             // Name
             // 
-            this.Name.Location = new System.Drawing.Point(119, 73);
+            this.Name.Location = new System.Drawing.Point(108, 73);
             this.Name.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name.Name = "Name";
             this.Name.Size = new System.Drawing.Size(179, 23);
@@ -107,7 +107,7 @@
             // 
             // Number
             // 
-            this.Number.Location = new System.Drawing.Point(119, 129);
+            this.Number.Location = new System.Drawing.Point(108, 126);
             this.Number.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Number.Name = "Number";
             this.Number.Size = new System.Drawing.Size(179, 23);
@@ -141,7 +141,7 @@
             // comboBoxUsers
             // 
             this.comboBoxUsers.FormattingEnabled = true;
-            this.comboBoxUsers.Location = new System.Drawing.Point(473, 124);
+            this.comboBoxUsers.Location = new System.Drawing.Point(412, 121);
             this.comboBoxUsers.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.comboBoxUsers.Name = "comboBoxUsers";
             this.comboBoxUsers.Size = new System.Drawing.Size(267, 24);
@@ -150,7 +150,7 @@
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(672, 542);
+            this.button1.Location = new System.Drawing.Point(536, 537);
             this.button1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(149, 33);
@@ -164,7 +164,7 @@
             this.groupBox1.Controls.Add(this.radioButtonActive);
             this.groupBox1.Controls.Add(this.radioButtonInactive);
             this.groupBox1.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(473, 53);
+            this.groupBox1.Location = new System.Drawing.Point(412, 53);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -202,7 +202,7 @@
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(809, 266);
+            this.gridControl1.Size = new System.Drawing.Size(673, 266);
             this.gridControl1.TabIndex = 25;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -215,7 +215,7 @@
             // buttonAdd
             // 
             this.buttonAdd.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonAdd.Location = new System.Drawing.Point(553, 176);
+            this.buttonAdd.Location = new System.Drawing.Point(419, 176);
             this.buttonAdd.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.buttonAdd.Name = "buttonAdd";
             this.buttonAdd.Size = new System.Drawing.Size(149, 33);
@@ -228,7 +228,7 @@
             // 
             this.buttonSave.Enabled = false;
             this.buttonSave.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonSave.Location = new System.Drawing.Point(710, 177);
+            this.buttonSave.Location = new System.Drawing.Point(574, 176);
             this.buttonSave.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.buttonSave.Name = "buttonSave";
             this.buttonSave.Size = new System.Drawing.Size(111, 32);
@@ -241,7 +241,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(837, 601);
+            this.ClientSize = new System.Drawing.Size(698, 583);
             this.Controls.Add(this.buttonSave);
             this.Controls.Add(this.gridControl1);
             this.Controls.Add(this.groupBox1);

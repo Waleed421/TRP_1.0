@@ -65,26 +65,32 @@ namespace TRP_1._0
             buttonSave.Enabled = false;
             var type = (from t in db.TypeofCases select new { t.Id, t.Type, t.Invoice_Type, t.Status }).ToList();
             gridControl1.DataSource = type;
-
+            gridView1.Columns["Id"].Visible = false;
         }
 
         private void buttonAdd_Click(object sender, EventArgs e)
         {
-            TypeofCas tc = new TypeofCas();
-            tc.Type = textBoxType.Text;
-            if (radioButtonYes.Checked)
-                tc.Invoice_Type = "Yes";
-            else if (radioButtonNo.Checked)
-                tc.Invoice_Type = "No";
-            if (radioButtonActive.Checked)
-                tc.Status = "Active";
-            else if (radioButtonInactive.Checked)
-                tc.Status = "Inactive";
-            db.TypeofCases.Add(tc);
-            db.SaveChanges();
-            MessageBox.Show("Case Type successfully added");
+            if (textBoxType.Text != "")
+            {
+                TypeofCas tc = new TypeofCas();
+                tc.Type = textBoxType.Text;
+                if (radioButtonYes.Checked)
+                    tc.Invoice_Type = "Yes";
+                else if (radioButtonNo.Checked)
+                    tc.Invoice_Type = "No";
+                if (radioButtonActive.Checked)
+                    tc.Status = "Active";
+                else if (radioButtonInactive.Checked)
+                    tc.Status = "Inactive";
+                db.TypeofCases.Add(tc);
+                db.SaveChanges();
+                MessageBox.Show("Case Type successfully added");
+            }
+            else
+                MessageBox.Show("Enter Case Type Description");
             var type = (from t in db.TypeofCases select new { t.Id, t.Type, t.Invoice_Type, t.Status }).ToList();
             gridControl1.DataSource = type;
+            gridView1.Columns["Id"].Visible = false;
         }
 
         private void textBoxType_Leave(object sender, EventArgs e)

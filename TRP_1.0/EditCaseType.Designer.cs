@@ -50,7 +50,7 @@
             // buttonAdd
             // 
             this.buttonAdd.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonAdd.Location = new System.Drawing.Point(446, 193);
+            this.buttonAdd.Location = new System.Drawing.Point(393, 193);
             this.buttonAdd.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.buttonAdd.Name = "buttonAdd";
             this.buttonAdd.Size = new System.Drawing.Size(152, 33);
@@ -108,7 +108,7 @@
             // buttonEdit
             // 
             this.buttonEdit.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonEdit.Location = new System.Drawing.Point(604, 505);
+            this.buttonEdit.Location = new System.Drawing.Point(552, 500);
             this.buttonEdit.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.buttonEdit.Name = "buttonEdit";
             this.buttonEdit.Size = new System.Drawing.Size(121, 36);
@@ -119,7 +119,7 @@
             // 
             // textBoxType
             // 
-            this.textBoxType.Location = new System.Drawing.Point(286, 57);
+            this.textBoxType.Location = new System.Drawing.Point(242, 57);
             this.textBoxType.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.textBoxType.Name = "textBoxType";
             this.textBoxType.Size = new System.Drawing.Size(303, 23);
@@ -129,11 +129,11 @@
             // gridControl1
             // 
             this.gridControl1.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.gridControl1.Location = new System.Drawing.Point(43, 234);
+            this.gridControl1.Location = new System.Drawing.Point(12, 234);
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(682, 246);
+            this.gridControl1.Size = new System.Drawing.Size(660, 246);
             this.gridControl1.TabIndex = 40;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -146,7 +146,7 @@
             // buttonSave
             // 
             this.buttonSave.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonSave.Location = new System.Drawing.Point(604, 193);
+            this.buttonSave.Location = new System.Drawing.Point(551, 193);
             this.buttonSave.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.buttonSave.Name = "buttonSave";
             this.buttonSave.Size = new System.Drawing.Size(121, 33);
@@ -169,7 +169,7 @@
             // 
             this.radioButtonActive.AutoSize = true;
             this.radioButtonActive.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioButtonActive.Location = new System.Drawing.Point(286, 150);
+            this.radioButtonActive.Location = new System.Drawing.Point(242, 150);
             this.radioButtonActive.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.radioButtonActive.Name = "radioButtonActive";
             this.radioButtonActive.Size = new System.Drawing.Size(60, 20);
@@ -182,7 +182,7 @@
             // 
             this.radioButtonInactive.AutoSize = true;
             this.radioButtonInactive.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioButtonInactive.Location = new System.Drawing.Point(402, 150);
+            this.radioButtonInactive.Location = new System.Drawing.Point(358, 150);
             this.radioButtonInactive.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.radioButtonInactive.Name = "radioButtonInactive";
             this.radioButtonInactive.Size = new System.Drawing.Size(70, 20);
@@ -196,7 +196,7 @@
             this.panel1.Controls.Add(this.radioButtonYes);
             this.panel1.Controls.Add(this.radioButtonNo);
             this.panel1.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panel1.Location = new System.Drawing.Point(286, 89);
+            this.panel1.Location = new System.Drawing.Point(242, 89);
             this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(200, 54);
@@ -206,7 +206,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(764, 549);
+            this.ClientSize = new System.Drawing.Size(685, 549);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.radioButtonInactive);
             this.Controls.Add(this.radioButtonActive);

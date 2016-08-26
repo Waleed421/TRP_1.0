@@ -62,9 +62,6 @@ namespace TRP_1._0
         private void button1_Click(object sender, EventArgs e)
         {
             a = Convert.ToInt32(gridView1.GetRowCellValue(gridView1.GetSelectedRows()[0], "Id"));
-            //EditCustomerDetails ecd = new EditCustomerDetails();
-            //this.Hide();
-            //ecd.ShowDialog();
             var resActiveUser = (from u in db.Users select new { u.Id, u.Name }).ToList();
             comboBoxUsers.DataSource = resActiveUser;
             comboBoxUsers.DisplayMember = "Name";
@@ -79,6 +76,7 @@ namespace TRP_1._0
             buttonSave.Enabled = true;
             Name.ReadOnly = true;
             Number.ReadOnly = true;
+            buttonAdd.Enabled = false;
 
         }
 
@@ -97,6 +95,7 @@ namespace TRP_1._0
             Name.ReadOnly = false;
             Number.ReadOnly = false;
             buttonSave.Enabled = false;
+            buttonAdd.Enabled = true;
             Name.Clear();
             Number.Clear();            
         }

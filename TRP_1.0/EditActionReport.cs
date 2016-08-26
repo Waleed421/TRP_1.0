@@ -118,7 +118,7 @@ namespace TRP_1._0
             tr.Start_Date_Time = dateTimePicker1.Value;
             double add = Convert.ToDouble(textBox5.Text);
             tr.Stop_Date_Time = dateTimePicker1.Value.AddMinutes(add);
-            tr.Time_In_Minutes = textBox5.Text;
+            tr.Time_In_Minutes = Convert.ToString(TimeSpan.FromMinutes(add));
             tr.Invoice = invoice;
             tr.Action_Comment = textBox7.Text;
             var us = (from u in db.Users where u.Status == "Active" select u).FirstOrDefault();
@@ -131,6 +131,10 @@ namespace TRP_1._0
             textBox5.Clear();
             textBox3.Clear();
             textBox2.Clear();
+            textBox2.ReadOnly = false;
+            textBox3.ReadOnly = false;
+            textBox6.ReadOnly = false;
+               
             var str = (from t in db.TimeRegistrations
                        where (t.Start_Date_Time >= dateTimePicker1.Value && t.Start_Date_Time <= dateTimePicker2.Value)
                        select new { t.Id, t.Case_No, t.Case.Customer.Customer_Name, t.Case.Customer.Customer_No, t.Case.Title, t.Case.TypeofCas.Type, t.Case.Case_Comment, t.Time_In_Minutes, t.Action_Comment }).Take(20).ToList();
@@ -193,6 +197,9 @@ namespace TRP_1._0
             textBox6.Text = res.Case_Comment;
             comboBoxCaseType.SelectedValue = res.TypeofCas.Id;
             invoice = res.TypeofCas.Invoice_Type;
+            textBox3.ReadOnly = true;
+            textBox6.ReadOnly = true;
+            textBox5.Focus();
         }
 
         private void comboBoxName_SelectionChangeCommitted(object sender, EventArgs e)
@@ -206,6 +213,8 @@ namespace TRP_1._0
             comboBoxCaseTitle.ValueMember = "Case_No";
             var res2 = (from ct in db.Customers where ct.Id == cId select ct).FirstOrDefault();
             textBox2.Text = res2.Customer_No;
+            textBox2.ReadOnly = true;
+            comboBoxCaseTitle.Focus();
         }
 
         private void buttonSave_Click(object sender, EventArgs e)

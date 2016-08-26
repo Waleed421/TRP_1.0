@@ -31,11 +31,13 @@
             this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.panelOtherCase = new System.Windows.Forms.Panel();
+            this.label7 = new System.Windows.Forms.Label();
+            this.comboBoxUser = new System.Windows.Forms.ComboBox();
             this.gridControlAllCases = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.buttonStartSearched = new System.Windows.Forms.Button();
-            this.btnEditActionReport = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
+            this.btnEditActionReport = new System.Windows.Forms.Button();
             this.casesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tRPDbDataSet = new TRP_1._0.TRPDbDataSet();
             this.panelCaseList = new System.Windows.Forms.Panel();
@@ -63,8 +65,6 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.panelEdit = new System.Windows.Forms.Panel();
-            this.label7 = new System.Windows.Forms.Label();
-            this.comboBoxUser = new System.Windows.Forms.ComboBox();
             this.buttonCaseType = new System.Windows.Forms.Button();
             this.buttonEditCustomer = new System.Windows.Forms.Button();
             this.buttonEditCase = new System.Windows.Forms.Button();
@@ -110,6 +110,25 @@
             this.panelOtherCase.Size = new System.Drawing.Size(677, 191);
             this.panelOtherCase.TabIndex = 1;
             // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(460, 0);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(83, 16);
+            this.label7.TabIndex = 7;
+            this.label7.Text = "Active User";
+            // 
+            // comboBoxUser
+            // 
+            this.comboBoxUser.FormattingEnabled = true;
+            this.comboBoxUser.Location = new System.Drawing.Point(542, -1);
+            this.comboBoxUser.Name = "comboBoxUser";
+            this.comboBoxUser.Size = new System.Drawing.Size(135, 21);
+            this.comboBoxUser.TabIndex = 6;
+            this.comboBoxUser.SelectionChangeCommitted += new System.EventHandler(this.comboBoxUser_SelectionChangeCommitted);
+            // 
             // gridControlAllCases
             // 
             this.gridControlAllCases.Location = new System.Drawing.Point(2, 22);
@@ -136,17 +155,6 @@
             this.buttonStartSearched.UseVisualStyleBackColor = true;
             this.buttonStartSearched.Click += new System.EventHandler(this.buttonStartSearched_Click);
             // 
-            // btnEditActionReport
-            // 
-            this.btnEditActionReport.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEditActionReport.Location = new System.Drawing.Point(518, 4);
-            this.btnEditActionReport.Name = "btnEditActionReport";
-            this.btnEditActionReport.Size = new System.Drawing.Size(138, 38);
-            this.btnEditActionReport.TabIndex = 5;
-            this.btnEditActionReport.Text = "Edit Action Report";
-            this.btnEditActionReport.UseVisualStyleBackColor = true;
-            this.btnEditActionReport.Click += new System.EventHandler(this.btnEditActionReport_Click);
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -156,6 +164,17 @@
             this.label2.Size = new System.Drawing.Size(179, 19);
             this.label2.TabIndex = 0;
             this.label2.Text = "Other Case Selection";
+            // 
+            // btnEditActionReport
+            // 
+            this.btnEditActionReport.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEditActionReport.Location = new System.Drawing.Point(518, 4);
+            this.btnEditActionReport.Name = "btnEditActionReport";
+            this.btnEditActionReport.Size = new System.Drawing.Size(138, 38);
+            this.btnEditActionReport.TabIndex = 11;
+            this.btnEditActionReport.Text = "Edit Action Report";
+            this.btnEditActionReport.UseVisualStyleBackColor = true;
+            this.btnEditActionReport.Click += new System.EventHandler(this.btnEditActionReport_Click);
             // 
             // casesBindingSource
             // 
@@ -307,28 +326,28 @@
             this.comboBoxCaseType.Location = new System.Drawing.Point(315, 27);
             this.comboBoxCaseType.Name = "comboBoxCaseType";
             this.comboBoxCaseType.Size = new System.Drawing.Size(121, 24);
-            this.comboBoxCaseType.TabIndex = 14;
+            this.comboBoxCaseType.TabIndex = 3;
             // 
             // textTimeInMinutes
             // 
             this.textTimeInMinutes.Location = new System.Drawing.Point(545, 24);
             this.textTimeInMinutes.Name = "textTimeInMinutes";
             this.textTimeInMinutes.Size = new System.Drawing.Size(109, 23);
-            this.textTimeInMinutes.TabIndex = 13;
+            this.textTimeInMinutes.TabIndex = 5;
             // 
             // textCaseComment
             // 
             this.textCaseComment.Location = new System.Drawing.Point(315, 75);
             this.textCaseComment.Name = "textCaseComment";
             this.textCaseComment.Size = new System.Drawing.Size(121, 23);
-            this.textCaseComment.TabIndex = 12;
+            this.textCaseComment.TabIndex = 4;
             // 
             // textCaseTitle
             // 
             this.textCaseTitle.Location = new System.Drawing.Point(99, 75);
             this.textCaseTitle.Name = "textCaseTitle";
             this.textCaseTitle.Size = new System.Drawing.Size(109, 23);
-            this.textCaseTitle.TabIndex = 10;
+            this.textCaseTitle.TabIndex = 2;
             // 
             // buttonCreateCase
             // 
@@ -336,7 +355,7 @@
             this.buttonCreateCase.Location = new System.Drawing.Point(550, 63);
             this.buttonCreateCase.Name = "buttonCreateCase";
             this.buttonCreateCase.Size = new System.Drawing.Size(104, 35);
-            this.buttonCreateCase.TabIndex = 7;
+            this.buttonCreateCase.TabIndex = 6;
             this.buttonCreateCase.Text = "Create Case";
             this.buttonCreateCase.UseVisualStyleBackColor = true;
             this.buttonCreateCase.Click += new System.EventHandler(this.buttonCreateCase_Click);
@@ -409,32 +428,13 @@
             this.panelEdit.Size = new System.Drawing.Size(677, 57);
             this.panelEdit.TabIndex = 4;
             // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(460, 0);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(83, 16);
-            this.label7.TabIndex = 7;
-            this.label7.Text = "Active User";
-            // 
-            // comboBoxUser
-            // 
-            this.comboBoxUser.FormattingEnabled = true;
-            this.comboBoxUser.Location = new System.Drawing.Point(542, -1);
-            this.comboBoxUser.Name = "comboBoxUser";
-            this.comboBoxUser.Size = new System.Drawing.Size(135, 21);
-            this.comboBoxUser.TabIndex = 6;
-            this.comboBoxUser.SelectionChangeCommitted += new System.EventHandler(this.comboBoxUser_SelectionChangeCommitted);
-            // 
             // buttonCaseType
             // 
             this.buttonCaseType.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonCaseType.Location = new System.Drawing.Point(414, 5);
             this.buttonCaseType.Name = "buttonCaseType";
             this.buttonCaseType.Size = new System.Drawing.Size(83, 37);
-            this.buttonCaseType.TabIndex = 4;
+            this.buttonCaseType.TabIndex = 10;
             this.buttonCaseType.Text = "Case Type";
             this.buttonCaseType.UseVisualStyleBackColor = true;
             this.buttonCaseType.Click += new System.EventHandler(this.buttonCaseType_Click);
@@ -445,7 +445,7 @@
             this.buttonEditCustomer.Location = new System.Drawing.Point(314, 5);
             this.buttonEditCustomer.Name = "buttonEditCustomer";
             this.buttonEditCustomer.Size = new System.Drawing.Size(79, 38);
-            this.buttonEditCustomer.TabIndex = 3;
+            this.buttonEditCustomer.TabIndex = 9;
             this.buttonEditCustomer.Text = "Customer";
             this.buttonEditCustomer.UseVisualStyleBackColor = true;
             this.buttonEditCustomer.Click += new System.EventHandler(this.buttonEditCustomer_Click);
@@ -456,7 +456,7 @@
             this.buttonEditCase.Location = new System.Drawing.Point(204, 5);
             this.buttonEditCase.Name = "buttonEditCase";
             this.buttonEditCase.Size = new System.Drawing.Size(75, 37);
-            this.buttonEditCase.TabIndex = 2;
+            this.buttonEditCase.TabIndex = 8;
             this.buttonEditCase.Text = "Case";
             this.buttonEditCase.UseVisualStyleBackColor = true;
             this.buttonEditCase.Click += new System.EventHandler(this.buttonEditCase_Click);
@@ -467,7 +467,7 @@
             this.buttonChangeUser.Location = new System.Drawing.Point(83, 4);
             this.buttonChangeUser.Name = "buttonChangeUser";
             this.buttonChangeUser.Size = new System.Drawing.Size(87, 38);
-            this.buttonChangeUser.TabIndex = 1;
+            this.buttonChangeUser.TabIndex = 7;
             this.buttonChangeUser.Text = "User";
             this.buttonChangeUser.UseVisualStyleBackColor = true;
             this.buttonChangeUser.Click += new System.EventHandler(this.buttonChangeUser_Click);

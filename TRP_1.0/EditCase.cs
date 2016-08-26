@@ -57,15 +57,80 @@ namespace TRP_1._0
             save.Case_Comment = textBoxCaseComment.Text;
             if (radioButtonOpen.Checked)
             {
-                save.Status = "Open";                
+                //Stopping currently active case(if any), changing status
+                var stat = (from s in db.Cases where s.Status == "Open" && s.Created_By_User_Id == userID select s).FirstOrDefault();
+
+                if (stat != null)
+                {
+                    stat.Status = "Closed";
+                    var clos = (from tra in db.TimeRegistrations orderby tra.Id descending where tra.Case_No == stat.Case_No && tra.User_Id == userID select tra).Take(1).FirstOrDefault();
+                    clos.Stop_Date_Time = DateTime.Now;
+                    DateTime last = Convert.ToDateTime(clos.Start_Date_Time);
+                    TimeSpan difference = DateTime.Now.Subtract(last);
+                    clos.Time_In_Minutes = Convert.ToString(difference);
+                    db.SaveChanges();
+
+                    var sumTime = (from t in db.TimeRegistrations where t.Case_No == stat.Case_No select t).ToList();
+                    TimeSpan sum = TimeSpan.Zero;
+                    foreach (var item in sumTime)
+                    {
+                        if ((item.Time_In_Minutes) != null)
+                            sum += TimeSpan.Parse(item.Time_In_Minutes);
+                    }
+                    stat.Worked_Time_in_Minutes = Convert.ToString(sum);
+                    db.SaveChanges();
+                }
+
+                //Starting selected case, changing status
+                save.Status = "Open";
+                TimeRegistration tr = new TimeRegistration();
+                tr.Case_No = a;
+                tr.User_Id = userID;
+                tr.Start_Date_Time = DateTime.Now;
+                tr.Invoice = save.TypeofCas.Invoice_Type;
+                db.TimeRegistrations.Add(tr);
+                db.SaveChanges();
+
             }
             else if (radioButtonClosed.Checked)
+            {
                 save.Status = "Closed";
+                //Stopping currently active case, changing status
+                var stat = (from s in db.Cases where s.Status == "Open" && s.Created_By_User_Id == userID select s).FirstOrDefault();
+
+                if (stat != null)
+                {
+                    stat.Status = "Closed";
+                    var clos = (from tra in db.TimeRegistrations orderby tra.Id descending where tra.Case_No == stat.Case_No && tra.User_Id == userID select tra).Take(1).FirstOrDefault();
+                    clos.Stop_Date_Time = DateTime.Now;
+                    DateTime last = Convert.ToDateTime(clos.Start_Date_Time);
+                    TimeSpan difference = DateTime.Now.Subtract(last);
+                    clos.Time_In_Minutes = Convert.ToString(difference);
+                    db.SaveChanges();
+
+                    var sumTime = (from t in db.TimeRegistrations where t.Case_No == stat.Case_No select t).ToList();
+                    TimeSpan sum = TimeSpan.Zero;
+                    foreach (var item in sumTime)
+                    {
+                        if ((item.Time_In_Minutes) != null)
+                            sum += TimeSpan.Parse(item.Time_In_Minutes);
+                    }
+                    stat.Worked_Time_in_Minutes = Convert.ToString(sum);
+                    db.SaveChanges();
+                }
+
+
+
+            }
             save.Last_Edit_Date_Time = DateTime.Now;
             save.Last_Edit_By_User_Id = userID;
             db.SaveChanges();
             MessageBox.Show("Case Successfully Edited");
             button1.Enabled = false;
+            CustomerName.Clear();
+            CustomerNo.Clear();
+            CaseTitle.Clear();
+            textBoxCaseComment.Clear();
             var res = (from c in db.Cases where c.Created_By_User_Id == userID select new { c.Case_No, c.Customer.Customer_Name, c.Customer.Customer_No, c.Title, c.TypeofCas.Type, c.Case_Comment, c.Status }).ToList();
             gridControl1.DataSource = res;
         }
