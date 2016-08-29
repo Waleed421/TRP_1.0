@@ -118,23 +118,11 @@
     <Compile Include="EditCase.Designer.cs">
       <DependentUpon>EditCase.cs</DependentUpon>
     </Compile>
-    <Compile Include="EditCaseDetails.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="EditCaseDetails.Designer.cs">
-      <DependentUpon>EditCaseDetails.cs</DependentUpon>
-    </Compile>
     <Compile Include="EditCaseType.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="EditCaseType.Designer.cs">
       <DependentUpon>EditCaseType.cs</DependentUpon>
-    </Compile>
-    <Compile Include="EditCaseTypeDetails.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="EditCaseTypeDetails.Designer.cs">
-      <DependentUpon>EditCaseTypeDetails.cs</DependentUpon>
     </Compile>
     <Compile Include="EditCustomer.cs">
       <SubType>Form</SubType>
@@ -142,23 +130,11 @@
     <Compile Include="EditCustomer.Designer.cs">
       <DependentUpon>EditCustomer.cs</DependentUpon>
     </Compile>
-    <Compile Include="EditCustomerDetails.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="EditCustomerDetails.Designer.cs">
-      <DependentUpon>EditCustomerDetails.cs</DependentUpon>
-    </Compile>
     <Compile Include="EditUser.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="EditUser.Designer.cs">
       <DependentUpon>EditUser.cs</DependentUpon>
-    </Compile>
-    <Compile Include="EditUserDetails.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="EditUserDetails.Designer.cs">
-      <DependentUpon>EditUserDetails.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="PrintJob.cs">
@@ -212,26 +188,14 @@
       <DependentUpon>EditCase.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="EditCaseDetails.resx">
-      <DependentUpon>EditCaseDetails.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="EditCaseType.resx">
       <DependentUpon>EditCaseType.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="EditCaseTypeDetails.resx">
-      <DependentUpon>EditCaseTypeDetails.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="EditCustomer.resx">
       <DependentUpon>EditCustomer.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="EditCustomerDetails.resx">
-      <DependentUpon>EditCustomerDetails.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="EditUser.resx">
       <DependentUpon>EditUser.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="EditUserDetails.resx">
-      <DependentUpon>EditUserDetails.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="TRPMain.resx">

@@ -17,6 +17,7 @@ namespace TRP_1._0
         public EditCustomer()
         {
             InitializeComponent();
+            this.ShowInTaskbar = false;
         }
 
         private void buttonAdd_Click(object sender, EventArgs e)
@@ -37,6 +38,8 @@ namespace TRP_1._0
             }
             else
                 MessageBox.Show("Enter Customer Name and No.");
+            Name.Clear();
+            Number.Clear();
             var result = (from u in db.Customers select new { u.Id, u.Customer_Name, u.Customer_No, Customer_Manager = u.User.Name, u.Customer_Status }).ToList();
             gridControl1.DataSource = result;
 

@@ -14,13 +14,13 @@ namespace TRP_1._0
 {
     public partial class Main : Form
     {
-        int a;
+        int? a;
         public int userID;
         TRPDbEntities db = new TRPDbEntities();
         public Main()
         {
             InitializeComponent();
-
+            this.ShowInTaskbar = false;
         }
 
         private void btnEditActionReport_Click(object sender, EventArgs e)
@@ -49,7 +49,7 @@ namespace TRP_1._0
             if (getActiveCaseNo != null)
             {
                 var actionComment = (from tc in db.TimeRegistrations orderby tc.Id descending where tc.Case_No == getActiveCaseNo.Case_No select tc).Skip(1).Take(1).FirstOrDefault();
-                textBoxActionComment.Text = actionComment.Action_Comment;
+                textBoxActionComment.Text = actionComment == null ? " " : actionComment.Action_Comment ;
                 this.ActiveControl = textBoxActionComment;
             }
 
@@ -154,29 +154,16 @@ namespace TRP_1._0
             gridView3.OptionsView.ShowGroupPanel = false;
             gridView2.OptionsView.ShowGroupPanel = false;
             
-            //// TODO: This line of code loads data into the 'tRPDbDataSet.Customer' table. You can move, or remove it, as needed.
-            //this.customerTableAdapter.Fill(this.tRPDbDataSet.Customer);
-            //// TODO: This line of code loads data into the 'tRPDbDataSet.Cases' table. You can move, or remove it, as needed.
-            //this.casesTableAdapter.Fill(this.tRPDbDataSet.Cases);
             comboBoxUser.DisplayMember = "Name";
             comboBoxUser.ValueMember = "Id";
 
-            var resActiveUser = (from u in db.Users select new { u.Id, u.Name }).ToList();
+            var resActiveUser = (from u in db.Users where u.Status == "Active" select new { u.Id, u.Name }).ToList();
             comboBoxUser.DataSource = resActiveUser;
             var changeActiveUser = (from u in db.Users where u.Status == "Active" select new { u.Id, u.Name }).FirstOrDefault();
             comboBoxUser.SelectedValue = changeActiveUser.Id;
-            
 
             gridsUpdate();
 
-            //var getActiveCaseNo = (from c in db.Cases where c.Status == "Open" && c.Created_By_User_Id == userID select c).FirstOrDefault();
-
-            //if (getActiveCaseNo != null)
-            //{
-            //    var actionComment = (from tc in db.TimeRegistrations orderby tc.Id descending where tc.Case_No == getActiveCaseNo.Case_No select tc).Take(1).FirstOrDefault();
-            //    textBoxActionComment.Text = actionComment.Action_Comment;
-            //    this.ActiveControl = textBoxActionComment;
-            //}
             var res = (from x in db.TypeofCases
                        select new { x.Id, x.Type }).ToList();
             comboBoxCaseType.DataSource = res;
@@ -195,10 +182,17 @@ namespace TRP_1._0
         {
             EditUser eu = new EditUser();
             eu.ShowDialog();
+            comboBoxUser.DisplayMember = "Name";
+            comboBoxUser.ValueMember = "Id";
+
+            var resActiveUser = (from u in db.Users where u.Status=="Active" select new { u.Id, u.Name }).ToList();
+            comboBoxUser.DataSource = resActiveUser;
+
         }
 
         private void buttonEditCase_Click(object sender, EventArgs e)
         {
+            EditCase.userID = userID;
             EditCase ec = new EditCase();
             ec.ShowDialog();
             gridsUpdate();
@@ -241,29 +235,26 @@ namespace TRP_1._0
                 stat.Worked_Time_in_Minutes = Convert.ToString(sum);
                 db.SaveChanges();
             }
-            //textBoxActionComment.Clear();
 
             //Starting selected case, changing status
             a = Convert.ToInt32(gridView1.GetRowCellValue(gridView1.GetSelectedRows()[0], "Case_No"));
-            //var actionComment = (from tc in db.TimeRegistrations orderby tc.Id descending where tc.Case_No ==a select tc).Take(1).FirstOrDefault();
-            //textBoxActionComment.Text = actionComment.Action_Comment;
-            //this.ActiveControl = textBoxActionComment;
+            if (a != null)
+            {
+                var up = (from c in db.Cases where c.Case_No == a select c).FirstOrDefault();
+                up.Status = "Open";
+                db.SaveChanges();
 
-            var up = (from c in db.Cases where c.Case_No == a select c).FirstOrDefault();
-            up.Status = "Open";
-            db.SaveChanges();
-
-            TimeRegistration tr = new TimeRegistration();
-            tr.Case_No = a;
-            tr.Start_Date_Time = DateTime.Now;
-            tr.Invoice = up.TypeofCas.Invoice_Type;
-            db.TimeRegistrations.Add(tr);
-           // var us = (from u in db.Users where u.Status == "Active" select u).FirstOrDefault();
-            tr.User_Id = userID;
-            db.SaveChanges();
-            gridsUpdate();
+                TimeRegistration tr = new TimeRegistration();
+                tr.Case_No = a;
+                tr.Start_Date_Time = DateTime.Now;
+                tr.Invoice = up.TypeofCas.Invoice_Type;
+                db.TimeRegistrations.Add(tr);
+                // var us = (from u in db.Users where u.Status == "Active" select u).FirstOrDefault();
+                tr.User_Id = userID;
+                db.SaveChanges();
+                gridsUpdate();
+            }
         }
-
 
         private void comboBoxUser_SelectionChangeCommitted(object sender, EventArgs e)
         {

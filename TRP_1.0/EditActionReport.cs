@@ -27,6 +27,7 @@ namespace TRP_1._0
         public EditActionReport()
         {
             InitializeComponent();
+            this.ShowInTaskbar = false;
         }
 
         
@@ -55,7 +56,7 @@ namespace TRP_1._0
             if (page == 1)
                 buttonPrevious.Enabled = false;
             var str = (from t in db.TimeRegistrations
-                       orderby t.Id
+                       orderby t.Id descending
                        where (t.User_Id==userID && t.Start_Date_Time >= dateTimePicker1.Value && t.Start_Date_Time <= dateTimePicker2.Value)
                        select new { t.Id, t.Case_No, t.Case.Customer.Customer_Name, t.Case.Customer.Customer_No, t.Case.Title, t.Case.TypeofCas.Type, t.Case.Case_Comment, t.Time_In_Minutes, t.Action_Comment }).Skip(skip).Take(pageSize).ToList();
             gridControl1.DataSource = str;
@@ -79,7 +80,7 @@ namespace TRP_1._0
             page--;
             skip = pageSize * (page - 1);
             var str = (from t in db.TimeRegistrations
-                       orderby t.Id
+                       orderby t.Id descending
                        where (t.User_Id == userID && t.Start_Date_Time >= dateTimePicker1.Value && t.Start_Date_Time <= dateTimePicker2.Value)
                        select new { t.Id, t.Case_No, t.Case.Customer.Customer_Name, t.Case.Customer.Customer_No, t.Case.Title, t.Case.TypeofCas.Type, t.Case.Case_Comment, t.Time_In_Minutes, t.Action_Comment }).Skip(skip).Take(pageSize).ToList();
             gridControl1.DataSource = str;
@@ -100,7 +101,7 @@ namespace TRP_1._0
             skip = pageSize * (page - 1);
 
             var str = (from t in db.TimeRegistrations
-                       orderby t.Id
+                       orderby t.Id descending
                        where (t.User_Id == userID && t.Start_Date_Time >= dateTimePicker1.Value && t.Start_Date_Time <= dateTimePicker2.Value)
                        select new { t.Id, t.Case_No, t.Case.Customer.Customer_Name, t.Case.Customer.Customer_No, t.Case.Title, t.Case.TypeofCas.Type, t.Case.Case_Comment, t.Time_In_Minutes, t.Action_Comment }).Skip(skip).Take(pageSize).ToList();
             gridControl1.DataSource = str;
@@ -146,6 +147,7 @@ namespace TRP_1._0
         {
             gridControl1.DataSource = "";
             var str = (from t in db.TimeRegistrations
+                       orderby t.Id descending
                        where (t.Start_Date_Time >= dateTimePicker1.Value && t.Start_Date_Time <= dateTimePicker2.Value)
                        select new { t.Case_No, t.Case.Customer.Customer_Name, t.Case.Customer.Customer_No, t.Case.Title, t.Case.TypeofCas.Type, t.Case.Case_Comment, t.Time_In_Minutes, t.Action_Comment }).Take(20).ToList();
             gridControl1.DataSource = str;
@@ -227,6 +229,7 @@ namespace TRP_1._0
             db.SaveChanges();
             MessageBox.Show("Edit Action Successfully Edited");
             var str = (from t in db.TimeRegistrations
+                       orderby t.Id descending
                        where (t.Start_Date_Time >= dateTimePicker1.Value && t.Start_Date_Time <= dateTimePicker2.Value)
                        select new {t.Id, t.Case_No, t.Case.Customer.Customer_Name, t.Case.Customer.Customer_No, t.Case.Title, t.Case.TypeofCas.Type, t.Case.Case_Comment, t.Time_In_Minutes, t.Action_Comment }).Take(20).ToList();
             gridControl1.DataSource = str;

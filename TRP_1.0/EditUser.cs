@@ -17,24 +17,18 @@ namespace TRP_1._0
         public EditUser()
         {
             InitializeComponent();
+            this.ShowInTaskbar = false;
         }
 
         private void EditUser_Load(object sender, EventArgs e)
         {
-            //// TODO: This line of code loads data into the 'tRPDbDataSet.User' table. You can move, or remove it, as needed.
-            //this.userTableAdapter.Fill(this.tRPDbDataSet.User);
             var res = (from u in db.Users select new {u.Id, u.Name, u.Status, u.Language }).ToList();
             gridControlUsers.DataSource = res;
             gridView1.Columns["Id"].Visible = false;
 
         }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-            EditUserDetails eud = new EditUserDetails();
-            this.Hide();
-            eud.Show();
-        }
+        
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -70,6 +64,7 @@ namespace TRP_1._0
                 radioButtonActive.Checked = true;
             else if (user.Status == "Inactive")
                 radioButtonInactive.Checked = true;
+            button1.Enabled = false;
             buttonSave.Enabled = true;
             textBoxName.ReadOnly = true;
             textBoxNumber.ReadOnly = true;
@@ -90,6 +85,7 @@ namespace TRP_1._0
             buttonSave.Enabled = false;
             textBoxName.ReadOnly = false;
             textBoxNumber.ReadOnly = false;
+            button1.Enabled = true;
             textBoxName.Clear();
             textBoxNumber.Clear();
         }

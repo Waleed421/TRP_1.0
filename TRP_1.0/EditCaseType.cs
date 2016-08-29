@@ -17,6 +17,7 @@ namespace TRP_1._0
         public EditCaseType()
         {
             InitializeComponent();
+            this.ShowInTaskbar = false;
         }
 
         private void buttonEdit_Click(object sender, EventArgs e)
@@ -85,6 +86,7 @@ namespace TRP_1._0
                 db.TypeofCases.Add(tc);
                 db.SaveChanges();
                 MessageBox.Show("Case Type successfully added");
+                textBoxType.Clear();
             }
             else
                 MessageBox.Show("Enter Case Type Description");

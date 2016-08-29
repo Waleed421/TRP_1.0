@@ -12,12 +12,13 @@ namespace TRP_1._0
 {
     public partial class EditCase : Form
     {
-        public int userID;
+        public static int userID { get; set; }
         int a = 0;
         TRPDbEntities db = new TRPDbEntities();
         public EditCase()
         {
             InitializeComponent();
+            this.ShowInTaskbar = false;
         }
 
         private void buttonEdit_Click(object sender, EventArgs e)
@@ -31,20 +32,20 @@ namespace TRP_1._0
             textBoxCaseComment.Text = edit.Case_Comment;
             if (edit.Status == "Open")
                 radioButtonOpen.Checked = true;
-            else if (edit.Status== "Closed")
+            else if (edit.Status == "Closed")
                 radioButtonClosed.Checked = true;
             button1.Enabled = true;
         }
 
         private void EditCase_Load(object sender, EventArgs e)
         {
-            var ActiveUser = (from u in db.Users where u.Status == "Active" select new { u.Id, u.Name }).FirstOrDefault();
-            userID = ActiveUser.Id;
+            //var ActiveUser = (from u in db.Users where u.Status == "Active" select new { u.Id, u.Name }).FirstOrDefault();
+            //userID = ActiveUser.Id;
             button1.Enabled = false;
-            var res = (from c in db.Cases where c.Created_By_User_Id==userID select new { c.Case_No, c.Customer.Customer_Name,c.Customer.Customer_No, c.Title, c.TypeofCas.Type, c.Case_Comment, c.Status }).ToList();
+            var res = (from c in db.Cases where c.Created_By_User_Id == userID select new { c.Case_No, c.Customer.Customer_Name, c.Customer.Customer_No, c.Title, c.TypeofCas.Type, c.Case_Comment, c.Status }).ToList();
             gridControl1.DataSource = res;
-            var res1= (from x in db.TypeofCases
-                       select new { x.Id, x.Type }).ToList();
+            var res1 = (from x in db.TypeofCases
+                        select new { x.Id, x.Type }).ToList();
             comboBoxCaseType.DataSource = res1;
             comboBoxCaseType.DisplayMember = "Type";
             comboBoxCaseType.ValueMember = "Id";
@@ -135,6 +136,6 @@ namespace TRP_1._0
             gridControl1.DataSource = res;
         }
 
-       
+
     }
 }
