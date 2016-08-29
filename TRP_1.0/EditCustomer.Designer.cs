@@ -34,7 +34,6 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.Name = new System.Windows.Forms.TextBox();
-            this.Number = new System.Windows.Forms.TextBox();
             this.radioButtonActive = new System.Windows.Forms.RadioButton();
             this.radioButtonInactive = new System.Windows.Forms.RadioButton();
             this.comboBoxUsers = new System.Windows.Forms.ComboBox();
@@ -49,6 +48,7 @@
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.buttonAdd = new System.Windows.Forms.Button();
             this.buttonSave = new System.Windows.Forms.Button();
+            this.Number = new System.Windows.Forms.MaskedTextBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.customerBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tRPDbDataSet)).BeginInit();
@@ -105,15 +105,6 @@
             this.Name.Size = new System.Drawing.Size(179, 23);
             this.Name.TabIndex = 1;
             // 
-            // Number
-            // 
-            this.Number.Location = new System.Drawing.Point(108, 126);
-            this.Number.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.Number.Name = "Number";
-            this.Number.Size = new System.Drawing.Size(179, 23);
-            this.Number.TabIndex = 2;
-            this.Number.Leave += new System.EventHandler(this.Number_Leave);
-            // 
             // radioButtonActive
             // 
             this.radioButtonActive.AutoSize = true;
@@ -140,6 +131,7 @@
             // 
             // comboBoxUsers
             // 
+            this.comboBoxUsers.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxUsers.FormattingEnabled = true;
             this.comboBoxUsers.Location = new System.Drawing.Point(412, 121);
             this.comboBoxUsers.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -154,7 +146,7 @@
             this.button1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(149, 33);
-            this.button1.TabIndex = 5;
+            this.button1.TabIndex = 9;
             this.button1.Text = "Edit Customer";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
@@ -219,7 +211,7 @@
             this.buttonAdd.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.buttonAdd.Name = "buttonAdd";
             this.buttonAdd.Size = new System.Drawing.Size(149, 33);
-            this.buttonAdd.TabIndex = 5;
+            this.buttonAdd.TabIndex = 6;
             this.buttonAdd.Text = "Add Customer";
             this.buttonAdd.UseVisualStyleBackColor = true;
             this.buttonAdd.Click += new System.EventHandler(this.buttonAdd_Click);
@@ -232,23 +224,32 @@
             this.buttonSave.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.buttonSave.Name = "buttonSave";
             this.buttonSave.Size = new System.Drawing.Size(111, 32);
-            this.buttonSave.TabIndex = 26;
+            this.buttonSave.TabIndex = 8;
             this.buttonSave.Text = "Save";
             this.buttonSave.UseVisualStyleBackColor = true;
             this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
+            // 
+            // Number
+            // 
+            this.Number.Location = new System.Drawing.Point(108, 123);
+            this.Number.Mask = "0000000";
+            this.Number.Name = "Number";
+            this.Number.PromptChar = ' ';
+            this.Number.Size = new System.Drawing.Size(179, 23);
+            this.Number.TabIndex = 26;
             // 
             // EditCustomer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(698, 583);
+            this.Controls.Add(this.Number);
             this.Controls.Add(this.buttonSave);
             this.Controls.Add(this.gridControl1);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.buttonAdd);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.comboBoxUsers);
-            this.Controls.Add(this.Number);
             this.Controls.Add(this.Name);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
@@ -257,6 +258,7 @@
             this.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.MaximizeBox = false;
+            this.Name = "EditCustomer";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Customer";
             this.Load += new System.EventHandler(this.EditCustomer_Load);
@@ -278,7 +280,6 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox Name;
-        private System.Windows.Forms.TextBox Number;
         private System.Windows.Forms.RadioButton radioButtonActive;
         private System.Windows.Forms.RadioButton radioButtonInactive;
         private System.Windows.Forms.ComboBox comboBoxUsers;
@@ -293,5 +294,6 @@
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
         private System.Windows.Forms.Button buttonAdd;
         private System.Windows.Forms.Button buttonSave;
+        private System.Windows.Forms.MaskedTextBox Number;
     }
 }

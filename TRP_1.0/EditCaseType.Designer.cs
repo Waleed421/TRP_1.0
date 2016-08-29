@@ -54,7 +54,7 @@
             this.buttonAdd.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.buttonAdd.Name = "buttonAdd";
             this.buttonAdd.Size = new System.Drawing.Size(152, 33);
-            this.buttonAdd.TabIndex = 4;
+            this.buttonAdd.TabIndex = 6;
             this.buttonAdd.Text = "Add Case Type";
             this.buttonAdd.UseVisualStyleBackColor = true;
             this.buttonAdd.Click += new System.EventHandler(this.buttonAdd_Click);
@@ -112,7 +112,7 @@
             this.buttonEdit.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.buttonEdit.Name = "buttonEdit";
             this.buttonEdit.Size = new System.Drawing.Size(121, 36);
-            this.buttonEdit.TabIndex = 5;
+            this.buttonEdit.TabIndex = 8;
             this.buttonEdit.Text = "Edit";
             this.buttonEdit.UseVisualStyleBackColor = true;
             this.buttonEdit.Click += new System.EventHandler(this.buttonEdit_Click);
@@ -150,7 +150,7 @@
             this.buttonSave.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.buttonSave.Name = "buttonSave";
             this.buttonSave.Size = new System.Drawing.Size(121, 33);
-            this.buttonSave.TabIndex = 41;
+            this.buttonSave.TabIndex = 7;
             this.buttonSave.Text = "Save";
             this.buttonSave.UseVisualStyleBackColor = true;
             this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
@@ -173,7 +173,7 @@
             this.radioButtonActive.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.radioButtonActive.Name = "radioButtonActive";
             this.radioButtonActive.Size = new System.Drawing.Size(60, 20);
-            this.radioButtonActive.TabIndex = 43;
+            this.radioButtonActive.TabIndex = 4;
             this.radioButtonActive.TabStop = true;
             this.radioButtonActive.Text = "Active";
             this.radioButtonActive.UseVisualStyleBackColor = true;
@@ -186,7 +186,7 @@
             this.radioButtonInactive.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.radioButtonInactive.Name = "radioButtonInactive";
             this.radioButtonInactive.Size = new System.Drawing.Size(70, 20);
-            this.radioButtonInactive.TabIndex = 44;
+            this.radioButtonInactive.TabIndex = 5;
             this.radioButtonInactive.TabStop = true;
             this.radioButtonInactive.Text = "Inactive";
             this.radioButtonInactive.UseVisualStyleBackColor = true;

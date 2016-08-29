@@ -57,7 +57,7 @@
             this.buttonEdit.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.buttonEdit.Name = "buttonEdit";
             this.buttonEdit.Size = new System.Drawing.Size(78, 43);
-            this.buttonEdit.TabIndex = 9;
+            this.buttonEdit.TabIndex = 5;
             this.buttonEdit.Text = "Edit";
             this.buttonEdit.UseVisualStyleBackColor = true;
             this.buttonEdit.Click += new System.EventHandler(this.buttonEdit_Click);
@@ -69,13 +69,14 @@
             this.button1.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(76, 34);
-            this.button1.TabIndex = 27;
+            this.button1.TabIndex = 4;
             this.button1.Text = "Save";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // comboBoxCaseType
             // 
+            this.comboBoxCaseType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxCaseType.FormattingEnabled = true;
             this.comboBoxCaseType.Location = new System.Drawing.Point(402, 36);
             this.comboBoxCaseType.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
@@ -89,7 +90,7 @@
             this.textBoxCaseComment.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.textBoxCaseComment.Name = "textBoxCaseComment";
             this.textBoxCaseComment.Size = new System.Drawing.Size(168, 23);
-            this.textBoxCaseComment.TabIndex = 17;
+            this.textBoxCaseComment.TabIndex = 1;
             // 
             // radioButtonClosed
             // 
@@ -98,7 +99,7 @@
             this.radioButtonClosed.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.radioButtonClosed.Name = "radioButtonClosed";
             this.radioButtonClosed.Size = new System.Drawing.Size(64, 20);
-            this.radioButtonClosed.TabIndex = 23;
+            this.radioButtonClosed.TabIndex = 3;
             this.radioButtonClosed.TabStop = true;
             this.radioButtonClosed.Text = "Closed";
             this.radioButtonClosed.UseVisualStyleBackColor = true;
@@ -110,7 +111,7 @@
             this.radioButtonOpen.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.radioButtonOpen.Name = "radioButtonOpen";
             this.radioButtonOpen.Size = new System.Drawing.Size(56, 20);
-            this.radioButtonOpen.TabIndex = 22;
+            this.radioButtonOpen.TabIndex = 2;
             this.radioButtonOpen.TabStop = true;
             this.radioButtonOpen.Text = "Open";
             this.radioButtonOpen.UseVisualStyleBackColor = true;

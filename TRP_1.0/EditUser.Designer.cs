@@ -35,7 +35,6 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.textBoxName = new System.Windows.Forms.TextBox();
-            this.textBoxNumber = new System.Windows.Forms.TextBox();
             this.radioButtonActive = new System.Windows.Forms.RadioButton();
             this.radioButtonInactive = new System.Windows.Forms.RadioButton();
             this.button1 = new System.Windows.Forms.Button();
@@ -48,6 +47,7 @@
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.buttonSave = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.textBoxNumber = new System.Windows.Forms.MaskedTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tRPDbDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlUsers)).BeginInit();
@@ -118,14 +118,6 @@
             this.textBoxName.TabIndex = 1;
             this.textBoxName.Leave += new System.EventHandler(this.textBoxName_Leave);
             // 
-            // textBoxNumber
-            // 
-            this.textBoxNumber.Location = new System.Drawing.Point(254, 119);
-            this.textBoxNumber.Margin = new System.Windows.Forms.Padding(4);
-            this.textBoxNumber.Name = "textBoxNumber";
-            this.textBoxNumber.Size = new System.Drawing.Size(435, 23);
-            this.textBoxNumber.TabIndex = 2;
-            // 
             // radioButtonActive
             // 
             this.radioButtonActive.AutoSize = true;
@@ -164,6 +156,7 @@
             // 
             // comboBoxLanguage
             // 
+            this.comboBoxLanguage.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxLanguage.FormattingEnabled = true;
             this.comboBoxLanguage.Items.AddRange(new object[] {
             "English",
@@ -243,11 +236,21 @@
             this.label1.TabIndex = 12;
             this.label1.Text = "Edit User";
             // 
+            // textBoxNumber
+            // 
+            this.textBoxNumber.Location = new System.Drawing.Point(254, 116);
+            this.textBoxNumber.Mask = "0000000";
+            this.textBoxNumber.Name = "textBoxNumber";
+            this.textBoxNumber.PromptChar = ' ';
+            this.textBoxNumber.Size = new System.Drawing.Size(435, 23);
+            this.textBoxNumber.TabIndex = 13;
+            // 
             // EditUser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(702, 580);
+            this.Controls.Add(this.textBoxNumber);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.buttonSave);
             this.Controls.Add(this.gridControlUsers);
@@ -256,7 +259,6 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.radioButtonInactive);
             this.Controls.Add(this.radioButtonActive);
-            this.Controls.Add(this.textBoxNumber);
             this.Controls.Add(this.textBoxName);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
@@ -286,7 +288,6 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox textBoxName;
-        private System.Windows.Forms.TextBox textBoxNumber;
         private System.Windows.Forms.RadioButton radioButtonActive;
         private System.Windows.Forms.RadioButton radioButtonInactive;
         private System.Windows.Forms.Button button1;
@@ -299,5 +300,6 @@
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
         private System.Windows.Forms.Button buttonSave;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.MaskedTextBox textBoxNumber;
     }
 }

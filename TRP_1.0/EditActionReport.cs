@@ -30,13 +30,6 @@ namespace TRP_1._0
             this.ShowInTaskbar = false;
         }
 
-        
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void EditActionReport_Load(object sender, EventArgs e)
         {
             var res1 = (from ct in db.Customers

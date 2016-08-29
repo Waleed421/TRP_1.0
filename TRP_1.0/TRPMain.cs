@@ -15,12 +15,22 @@ namespace TRP_1._0
     public partial class Main : Form
     {
         int? a;
+        int min = 0;
         public int userID;
         TRPDbEntities db = new TRPDbEntities();
         public Main()
         {
             InitializeComponent();
             this.ShowInTaskbar = false;
+        }
+        protected override CreateParams CreateParams
+        {
+            get
+            {
+                var cp = base.CreateParams;
+                cp.ExStyle |= 0x80;  // Turn on WS_EX_TOOLWINDOW
+                return cp;
+            }
         }
 
         private void btnEditActionReport_Click(object sender, EventArgs e)
@@ -101,15 +111,19 @@ namespace TRP_1._0
                 clos.Stop_Date_Time = DateTime.Now;
                 DateTime last = Convert.ToDateTime(clos.Start_Date_Time);
                 TimeSpan difference = DateTime.Now.Subtract(last);
-                clos.Time_In_Minutes = Convert.ToString(difference);
+                clos.Time_In_Minutes = Convert.ToString(difference.Minutes);
                 db.SaveChanges();
                 var sumTime = (from t in db.TimeRegistrations where t.Case_No == stat.Case_No select t).ToList();
-                TimeSpan sum = TimeSpan.Zero;
+                int sum = 0;
                 foreach (var item in sumTime)
                 {
-                    sum += TimeSpan.Parse(item.Time_In_Minutes);
+                    sum += Convert.ToInt32(item.Time_In_Minutes);
                 }
-                stat.Worked_Time_in_Minutes = Convert.ToString(sum);
+                bool res = int.TryParse(stat.Manual_Work_Time, out min);
+                if (res)
+                    stat.Worked_Time_in_Minutes = Convert.ToString(sum + min);
+                else
+                    stat.Worked_Time_in_Minutes = Convert.ToString(sum);
                 db.SaveChanges();
             }
             textBoxActionComment.Clear();
@@ -119,8 +133,8 @@ namespace TRP_1._0
                 c.Title = textCaseTitle.Text;
                 String type = comboBoxCaseType.Text;
                 c.Case_Comment = textCaseComment.Text;
-                //double add = Convert.ToDouble(textTimeInMinutes.Text);
                 c.Manual_Work_Time = textTimeInMinutes.Text;
+                c.Worked_Time_in_Minutes = textTimeInMinutes.Text;
                 c.Type_Id = Convert.ToInt16(comboBoxCaseType.SelectedValue);
                 c.Customer_Id = Convert.ToInt16(comboBoxCustomerName.SelectedValue);
                 c.Date_Time_Created = DateTime.Now;
@@ -135,7 +149,6 @@ namespace TRP_1._0
                 tr.Case_No = time.Case_No;
                 tr.Start_Date_Time = DateTime.Now;
                 tr.Invoice = time.Invoice_Type;
-                //var us = (from u in db.Users where u.Status == "Active" select u).FirstOrDefault();
                 tr.User_Id = userID;
                 db.TimeRegistrations.Add(tr);
                 db.SaveChanges();
@@ -222,17 +235,20 @@ namespace TRP_1._0
                 clos.Stop_Date_Time = DateTime.Now;
                 DateTime last = Convert.ToDateTime(clos.Start_Date_Time);
                 TimeSpan difference = DateTime.Now.Subtract(last);
-                clos.Time_In_Minutes = Convert.ToString(difference);
+                clos.Time_In_Minutes = Convert.ToString(difference.Minutes);
                 db.SaveChanges();
 
                 var sumTime = (from t in db.TimeRegistrations where t.Case_No == stat.Case_No select t).ToList();
-                TimeSpan sum = TimeSpan.Zero;
+                int sum = 0;
                 foreach (var item in sumTime)
                 {
-                    if ((item.Time_In_Minutes) != null)
-                        sum += TimeSpan.Parse(item.Time_In_Minutes);
+                    sum += Convert.ToInt32(item.Time_In_Minutes);
                 }
-                stat.Worked_Time_in_Minutes = Convert.ToString(sum);
+                bool res = int.TryParse(stat.Manual_Work_Time, out min);
+                if (res)
+                    stat.Worked_Time_in_Minutes = Convert.ToString(sum + min);
+                else
+                    stat.Worked_Time_in_Minutes = Convert.ToString(sum);
                 db.SaveChanges();
             }
 
@@ -249,7 +265,6 @@ namespace TRP_1._0
                 tr.Start_Date_Time = DateTime.Now;
                 tr.Invoice = up.TypeofCas.Invoice_Type;
                 db.TimeRegistrations.Add(tr);
-                // var us = (from u in db.Users where u.Status == "Active" select u).FirstOrDefault();
                 tr.User_Id = userID;
                 db.SaveChanges();
                 gridsUpdate();
@@ -276,15 +291,19 @@ namespace TRP_1._0
                 clos.Stop_Date_Time = DateTime.Now;
                 DateTime last = Convert.ToDateTime(clos.Start_Date_Time);
                 TimeSpan difference = DateTime.Now.Subtract(last);
-                clos.Time_In_Minutes = Convert.ToString(difference);
+                clos.Time_In_Minutes = Convert.ToString(difference.Minutes);
                 db.SaveChanges();
                 var sumTime = (from t in db.TimeRegistrations where t.Case_No == stopCase.Case_No select t).ToList();
-                TimeSpan sum = TimeSpan.Zero;
+                int sum = 0;
                 foreach (var item in sumTime)
                 {
-                    sum += TimeSpan.Parse(item.Time_In_Minutes);
+                    sum += Convert.ToInt32(item.Time_In_Minutes);
                 }
-                stopCase.Worked_Time_in_Minutes = Convert.ToString(sum);
+                bool res = int.TryParse(stopCase.Manual_Work_Time, out min);
+                if (res)
+                    stopCase.Worked_Time_in_Minutes = Convert.ToString(sum + min);
+                else
+                    stopCase.Worked_Time_in_Minutes = Convert.ToString(sum);
 
                 db.SaveChanges();
 
@@ -317,15 +336,20 @@ namespace TRP_1._0
                 clos.Stop_Date_Time = DateTime.Now;
                 DateTime last = Convert.ToDateTime(clos.Start_Date_Time);
                 TimeSpan difference = DateTime.Now.Subtract(last);
-                clos.Time_In_Minutes = Convert.ToString(difference);
+                clos.Time_In_Minutes = Convert.ToString(difference.Minutes);
                 db.SaveChanges();
                 var sumTime = (from t in db.TimeRegistrations where t.Case_No == stat.Case_No select t).ToList();
-                TimeSpan sum = TimeSpan.Zero;
+                int sum = 0;
                 foreach (var item in sumTime)
                 {
-                    sum += TimeSpan.Parse(item.Time_In_Minutes);
+                    sum += Convert.ToInt32(item.Time_In_Minutes);
                 }
-                stat.Worked_Time_in_Minutes += sum;
+                bool res = int.TryParse(stat.Manual_Work_Time, out min);
+                if(res) 
+                stat.Worked_Time_in_Minutes = Convert.ToString(sum + min);
+                else
+                    stat.Worked_Time_in_Minutes = Convert.ToString(sum);
+
 
                 db.SaveChanges();
             }
@@ -337,15 +361,14 @@ namespace TRP_1._0
             textBoxActionComment.Text = actionComment.Action_Comment;
             this.ActiveControl = textBoxActionComment;
 
-            var up = (from c in db.Cases where c.Case_No == a select c).FirstOrDefault();
-            up.Status = "Open";
-            db.SaveChanges();
+            var selectedCase = (from c in db.Cases where c.Case_No == a select c).FirstOrDefault();
             TimeRegistration tr = new TimeRegistration();
             tr.Case_No = a;
             tr.Start_Date_Time = DateTime.Now;
-            tr.Invoice = up.TypeofCas.Invoice_Type;
-           // var us = (from u in db.Users where u.Status == "Active" select u).FirstOrDefault();
+            tr.Invoice = selectedCase.TypeofCas.Invoice_Type;
             tr.User_Id = userID;
+
+            selectedCase.Status = "Open";
             db.TimeRegistrations.Add(tr);
             db.SaveChanges();
 

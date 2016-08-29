@@ -52,9 +52,9 @@
             this.buttonStartRecent = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.panelCreateCase = new System.Windows.Forms.Panel();
+            this.textTimeInMinutes = new System.Windows.Forms.MaskedTextBox();
             this.comboBoxCustomerName = new System.Windows.Forms.ComboBox();
             this.comboBoxCaseType = new System.Windows.Forms.ComboBox();
-            this.textTimeInMinutes = new System.Windows.Forms.TextBox();
             this.textCaseComment = new System.Windows.Forms.TextBox();
             this.textCaseTitle = new System.Windows.Forms.TextBox();
             this.buttonCreateCase = new System.Windows.Forms.Button();
@@ -294,9 +294,9 @@
             // panelCreateCase
             // 
             this.panelCreateCase.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.panelCreateCase.Controls.Add(this.textTimeInMinutes);
             this.panelCreateCase.Controls.Add(this.comboBoxCustomerName);
             this.panelCreateCase.Controls.Add(this.comboBoxCaseType);
-            this.panelCreateCase.Controls.Add(this.textTimeInMinutes);
             this.panelCreateCase.Controls.Add(this.textCaseComment);
             this.panelCreateCase.Controls.Add(this.textCaseTitle);
             this.panelCreateCase.Controls.Add(this.buttonCreateCase);
@@ -312,28 +312,32 @@
             this.panelCreateCase.Size = new System.Drawing.Size(675, 108);
             this.panelCreateCase.TabIndex = 3;
             // 
+            // textTimeInMinutes
+            // 
+            this.textTimeInMinutes.Location = new System.Drawing.Point(549, 27);
+            this.textTimeInMinutes.Mask = "00000";
+            this.textTimeInMinutes.Name = "textTimeInMinutes";
+            this.textTimeInMinutes.PromptChar = ' ';
+            this.textTimeInMinutes.Size = new System.Drawing.Size(105, 23);
+            this.textTimeInMinutes.TabIndex = 5;
+            // 
             // comboBoxCustomerName
             // 
+            this.comboBoxCustomerName.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxCustomerName.FormattingEnabled = true;
             this.comboBoxCustomerName.Location = new System.Drawing.Point(99, 27);
             this.comboBoxCustomerName.Name = "comboBoxCustomerName";
             this.comboBoxCustomerName.Size = new System.Drawing.Size(109, 24);
-            this.comboBoxCustomerName.TabIndex = 15;
+            this.comboBoxCustomerName.TabIndex = 1;
             // 
             // comboBoxCaseType
             // 
+            this.comboBoxCaseType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxCaseType.FormattingEnabled = true;
             this.comboBoxCaseType.Location = new System.Drawing.Point(315, 27);
             this.comboBoxCaseType.Name = "comboBoxCaseType";
             this.comboBoxCaseType.Size = new System.Drawing.Size(121, 24);
             this.comboBoxCaseType.TabIndex = 3;
-            // 
-            // textTimeInMinutes
-            // 
-            this.textTimeInMinutes.Location = new System.Drawing.Point(545, 24);
-            this.textTimeInMinutes.Name = "textTimeInMinutes";
-            this.textTimeInMinutes.Size = new System.Drawing.Size(109, 23);
-            this.textTimeInMinutes.TabIndex = 5;
             // 
             // textCaseComment
             // 
@@ -543,7 +547,6 @@
         private System.Windows.Forms.Panel panelEdit;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textTimeInMinutes;
         private System.Windows.Forms.TextBox textCaseComment;
         private System.Windows.Forms.TextBox textCaseTitle;
         private System.Windows.Forms.Button buttonCreateCase;
@@ -580,6 +583,7 @@
         private System.Windows.Forms.TextBox textBoxActionComment;
         private DevExpress.XtraGrid.GridControl gridControlAllCases;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
+        private System.Windows.Forms.MaskedTextBox textTimeInMinutes;
     }
 }
 
