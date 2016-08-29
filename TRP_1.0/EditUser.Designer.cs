@@ -112,7 +112,7 @@
             // textBoxName
             // 
             this.textBoxName.Location = new System.Drawing.Point(254, 81);
-            this.textBoxName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxName.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxName.Name = "textBoxName";
             this.textBoxName.Size = new System.Drawing.Size(435, 23);
             this.textBoxName.TabIndex = 1;
@@ -121,7 +121,7 @@
             // textBoxNumber
             // 
             this.textBoxNumber.Location = new System.Drawing.Point(254, 119);
-            this.textBoxNumber.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxNumber.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxNumber.Name = "textBoxNumber";
             this.textBoxNumber.Size = new System.Drawing.Size(435, 23);
             this.textBoxNumber.TabIndex = 2;
@@ -130,7 +130,7 @@
             // 
             this.radioButtonActive.AutoSize = true;
             this.radioButtonActive.Location = new System.Drawing.Point(254, 152);
-            this.radioButtonActive.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.radioButtonActive.Margin = new System.Windows.Forms.Padding(4);
             this.radioButtonActive.Name = "radioButtonActive";
             this.radioButtonActive.Size = new System.Drawing.Size(68, 20);
             this.radioButtonActive.TabIndex = 3;
@@ -142,7 +142,7 @@
             // 
             this.radioButtonInactive.AutoSize = true;
             this.radioButtonInactive.Location = new System.Drawing.Point(473, 148);
-            this.radioButtonInactive.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.radioButtonInactive.Margin = new System.Windows.Forms.Padding(4);
             this.radioButtonInactive.Name = "radioButtonInactive";
             this.radioButtonInactive.Size = new System.Drawing.Size(79, 20);
             this.radioButtonInactive.TabIndex = 4;
@@ -154,7 +154,7 @@
             // 
             this.button1.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.Location = new System.Drawing.Point(457, 215);
-            this.button1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button1.Margin = new System.Windows.Forms.Padding(4);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(111, 30);
             this.button1.TabIndex = 6;
@@ -171,7 +171,7 @@
             "French",
             "Dutch"});
             this.comboBoxLanguage.Location = new System.Drawing.Point(254, 181);
-            this.comboBoxLanguage.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBoxLanguage.Margin = new System.Windows.Forms.Padding(4);
             this.comboBoxLanguage.Name = "comboBoxLanguage";
             this.comboBoxLanguage.Size = new System.Drawing.Size(435, 24);
             this.comboBoxLanguage.TabIndex = 5;
@@ -194,7 +194,7 @@
             // 
             this.button2.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button2.Location = new System.Drawing.Point(579, 524);
-            this.button2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button2.Margin = new System.Windows.Forms.Padding(4);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(111, 41);
             this.button2.TabIndex = 9;
@@ -204,10 +204,10 @@
             // 
             // gridControlUsers
             // 
-            this.gridControlUsers.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gridControlUsers.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4);
             this.gridControlUsers.Location = new System.Drawing.Point(13, 301);
             this.gridControlUsers.MainView = this.gridView1;
-            this.gridControlUsers.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gridControlUsers.Margin = new System.Windows.Forms.Padding(4);
             this.gridControlUsers.Name = "gridControlUsers";
             this.gridControlUsers.Size = new System.Drawing.Size(677, 215);
             this.gridControlUsers.TabIndex = 10;
@@ -224,7 +224,7 @@
             this.buttonSave.Enabled = false;
             this.buttonSave.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonSave.Location = new System.Drawing.Point(579, 216);
-            this.buttonSave.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonSave.Margin = new System.Windows.Forms.Padding(4);
             this.buttonSave.Name = "buttonSave";
             this.buttonSave.Size = new System.Drawing.Size(111, 28);
             this.buttonSave.TabIndex = 11;
@@ -264,7 +264,8 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
+            this.MaximizeBox = false;
             this.Name = "EditUser";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "User";
