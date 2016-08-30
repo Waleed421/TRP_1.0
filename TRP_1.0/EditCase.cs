@@ -13,7 +13,9 @@ namespace TRP_1._0
     public partial class EditCase : Form
     {
         public static int userID { get; set; }
-        int a = 0;
+        public int a = 0;
+        int min = 0;
+
         TRPDbEntities db = new TRPDbEntities();
         public EditCase()
         {
@@ -39,9 +41,8 @@ namespace TRP_1._0
 
         private void EditCase_Load(object sender, EventArgs e)
         {
-            //var ActiveUser = (from u in db.Users where u.Status == "Active" select new { u.Id, u.Name }).FirstOrDefault();
-            //userID = ActiveUser.Id;
-            button1.Enabled = false;
+            button1.
+                = false;
             var res = (from c in db.Cases where c.Created_By_User_Id == userID select new { c.Case_No, c.Customer.Customer_Name, c.Customer.Customer_No, c.Title, c.TypeofCas.Type, c.Case_Comment, c.Status }).ToList();
             gridControl1.DataSource = res;
             var res1 = (from x in db.TypeofCases
@@ -64,21 +65,25 @@ namespace TRP_1._0
                 if (stat != null)
                 {
                     stat.Status = "Closed";
-                    var clos = (from tra in db.TimeRegistrations orderby tra.Id descending where tra.Case_No == stat.Case_No && tra.User_Id == userID select tra).Take(1).FirstOrDefault();
+                    var clos = (from tra in db.TimeRegistrations orderby tra.Id descending where tra.Case_No == stat.Case_No select tra).Take(1).FirstOrDefault();
                     clos.Stop_Date_Time = DateTime.Now;
                     DateTime last = Convert.ToDateTime(clos.Start_Date_Time);
                     TimeSpan difference = DateTime.Now.Subtract(last);
-                    clos.Time_In_Minutes = Convert.ToString(difference);
+                    clos.Time_In_Minutes = Convert.ToString(difference.Minutes);
                     db.SaveChanges();
 
                     var sumTime = (from t in db.TimeRegistrations where t.Case_No == stat.Case_No select t).ToList();
-                    TimeSpan sum = TimeSpan.Zero;
+                    int sum = 0;
                     foreach (var item in sumTime)
                     {
-                        if ((item.Time_In_Minutes) != null)
-                            sum += TimeSpan.Parse(item.Time_In_Minutes);
+                        TimeSpan interval = TimeSpan.Parse(item.Time_In_Minutes);
+                        sum += interval.Minutes;
                     }
-                    stat.Worked_Time_in_Minutes = Convert.ToString(sum);
+                    bool res1 = int.TryParse(stat.Manual_Work_Time, out min);
+                    if (res1)
+                        stat.Worked_Time_in_Minutes = Convert.ToString(sum + min);
+                    else
+                        stat.Worked_Time_in_Minutes = Convert.ToString(sum);
                     db.SaveChanges();
                 }
 
@@ -106,17 +111,22 @@ namespace TRP_1._0
                     clos.Stop_Date_Time = DateTime.Now;
                     DateTime last = Convert.ToDateTime(clos.Start_Date_Time);
                     TimeSpan difference = DateTime.Now.Subtract(last);
-                    clos.Time_In_Minutes = Convert.ToString(difference);
+                    clos.Time_In_Minutes = Convert.ToString(difference.Minutes);
                     db.SaveChanges();
 
                     var sumTime = (from t in db.TimeRegistrations where t.Case_No == stat.Case_No select t).ToList();
-                    TimeSpan sum = TimeSpan.Zero;
+                    int sum = 0;
+                    
                     foreach (var item in sumTime)
                     {
-                        if ((item.Time_In_Minutes) != null)
-                            sum += TimeSpan.Parse(item.Time_In_Minutes);
+                        TimeSpan interval = TimeSpan.Parse(item.Time_In_Minutes);
+                        sum += interval.Minutes;
                     }
-                    stat.Worked_Time_in_Minutes = Convert.ToString(sum);
+                    bool res1 = int.TryParse(stat.Manual_Work_Time, out min);
+                    if (res1)
+                        stat.Worked_Time_in_Minutes = Convert.ToString(sum + min);
+                    else
+                        stat.Worked_Time_in_Minutes = Convert.ToString(sum);
                     db.SaveChanges();
                 }
 
