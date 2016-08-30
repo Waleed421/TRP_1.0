@@ -14,6 +14,8 @@ namespace TRP_1._0
     {
         public static int userID { get; set; }
         int a = 0;
+        int min = 0;
+
         TRPDbEntities db = new TRPDbEntities();
         public EditCase()
         {
@@ -68,17 +70,21 @@ namespace TRP_1._0
                     clos.Stop_Date_Time = DateTime.Now;
                     DateTime last = Convert.ToDateTime(clos.Start_Date_Time);
                     TimeSpan difference = DateTime.Now.Subtract(last);
-                    clos.Time_In_Minutes = Convert.ToString(difference);
+                    clos.Time_In_Minutes = Convert.ToString(difference.Minutes);
                     db.SaveChanges();
 
                     var sumTime = (from t in db.TimeRegistrations where t.Case_No == stat.Case_No select t).ToList();
-                    TimeSpan sum = TimeSpan.Zero;
+                    int sum = 0;
                     foreach (var item in sumTime)
                     {
-                        if ((item.Time_In_Minutes) != null)
-                            sum += TimeSpan.Parse(item.Time_In_Minutes);
+                        TimeSpan interval = TimeSpan.Parse(item.Time_In_Minutes);
+                        sum += interval.Minutes;
                     }
-                    stat.Worked_Time_in_Minutes = Convert.ToString(sum);
+                    bool res1 = int.TryParse(stat.Manual_Work_Time, out min);
+                    if (res1)
+                        stat.Worked_Time_in_Minutes = Convert.ToString(sum + min);
+                    else
+                        stat.Worked_Time_in_Minutes = Convert.ToString(sum);
                     db.SaveChanges();
                 }
 
@@ -106,17 +112,22 @@ namespace TRP_1._0
                     clos.Stop_Date_Time = DateTime.Now;
                     DateTime last = Convert.ToDateTime(clos.Start_Date_Time);
                     TimeSpan difference = DateTime.Now.Subtract(last);
-                    clos.Time_In_Minutes = Convert.ToString(difference);
+                    clos.Time_In_Minutes = Convert.ToString(difference.Minutes);
                     db.SaveChanges();
 
                     var sumTime = (from t in db.TimeRegistrations where t.Case_No == stat.Case_No select t).ToList();
-                    TimeSpan sum = TimeSpan.Zero;
+                    int sum = 0;
+                    
                     foreach (var item in sumTime)
                     {
-                        if ((item.Time_In_Minutes) != null)
-                            sum += TimeSpan.Parse(item.Time_In_Minutes);
+                        TimeSpan interval = TimeSpan.Parse(item.Time_In_Minutes);
+                        sum += interval.Minutes;
                     }
-                    stat.Worked_Time_in_Minutes = Convert.ToString(sum);
+                    bool res1 = int.TryParse(stat.Manual_Work_Time, out min);
+                    if (res1)
+                        stat.Worked_Time_in_Minutes = Convert.ToString(sum + min);
+                    else
+                        stat.Worked_Time_in_Minutes = Convert.ToString(sum);
                     db.SaveChanges();
                 }
 

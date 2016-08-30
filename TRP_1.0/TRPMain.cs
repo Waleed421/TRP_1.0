@@ -14,7 +14,7 @@ namespace TRP_1._0
 {
     public partial class Main : Form
     {
-        int? a;
+        public int a;
         int min = 0;
         public int userID;
         TRPDbEntities db = new TRPDbEntities();
@@ -38,6 +38,60 @@ namespace TRP_1._0
             EditActionReport.userID = userID;
             EditActionReport e1 = new EditActionReport();
             e1.ShowDialog();
+        }
+        private void stopCase()
+        {
+            //Stopping currently active case, changing status
+            var stat = (from s in db.Cases where s.Status == "Open" && s.Created_By_User_Id == userID select s).FirstOrDefault();
+            if (stat != null)
+            {
+                stat.Status = "Closed";
+                //stat.Last_Edit_Date_Time = DateTime.Now;
+                //stat.Last_Edit_By_User_Id = Convert.ToInt16(comboBoxUser.SelectedValue);
+                var clos = (from t in db.TimeRegistrations orderby t.Id descending where t.Case_No == stat.Case_No select t).Take(1).FirstOrDefault();
+                clos.Stop_Date_Time = DateTime.Now;
+                DateTime last = Convert.ToDateTime(clos.Start_Date_Time);
+                TimeSpan difference = DateTime.Now.Subtract(last);
+                clos.Time_In_Minutes = Convert.ToString(difference.Minutes);
+                db.SaveChanges();
+                var sumTime = (from t in db.TimeRegistrations where t.Case_No == stat.Case_No select t).ToList();
+                int sum = 0;
+                foreach (var item in sumTime)
+                {
+                    TimeSpan interval = TimeSpan.Parse(item.Time_In_Minutes);
+                    sum += interval.Minutes;
+                }
+                bool res = int.TryParse(stat.Manual_Work_Time, out min);
+                if (res)
+                    stat.Worked_Time_in_Minutes = Convert.ToString(sum + min);
+                else
+                    stat.Worked_Time_in_Minutes = Convert.ToString(sum);
+
+                db.SaveChanges();
+            }
+            textBoxActionComment.Clear();
+        }
+        private void startCase()
+        {
+            //Starting selected case, changing status
+            var actionComment = (from tc in db.TimeRegistrations orderby tc.Id descending where tc.Case_No == a select tc).Take(1).FirstOrDefault();
+            textBoxActionComment.Text = actionComment.Action_Comment;
+            this.ActiveControl = textBoxActionComment;
+            if (a != null)
+            {
+                var up = (from c in db.Cases where c.Case_No == a select c).FirstOrDefault();
+                up.Status = "Open";
+                db.SaveChanges();
+
+                TimeRegistration tr = new TimeRegistration();
+                tr.Case_No = a;
+                tr.Start_Date_Time = DateTime.Now;
+                tr.Invoice = up.TypeofCas.Invoice_Type;
+                db.TimeRegistrations.Add(tr);
+                tr.User_Id = userID;
+                db.SaveChanges();
+                gridsUpdate();
+            }
         }
         private void gridsUpdate()
         {
@@ -101,32 +155,33 @@ namespace TRP_1._0
         private void buttonCreateCase_Click(object sender, EventArgs e)
         {
             //Stopping currently active case, changing status
-            var stat = (from s in db.Cases where s.Status == "Open" && s.Created_By_User_Id == userID select s).FirstOrDefault();
-            if (stat != null)
-            {
-                stat.Status = "Closed";
-                stat.Last_Edit_Date_Time = DateTime.Now;
-                stat.Last_Edit_By_User_Id = Convert.ToInt16(comboBoxUser.SelectedValue);
-                var clos = (from t in db.TimeRegistrations orderby t.Id descending where t.Case_No == stat.Case_No select t).Take(1).FirstOrDefault();
-                clos.Stop_Date_Time = DateTime.Now;
-                DateTime last = Convert.ToDateTime(clos.Start_Date_Time);
-                TimeSpan difference = DateTime.Now.Subtract(last);
-                clos.Time_In_Minutes = Convert.ToString(difference.Minutes);
-                db.SaveChanges();
-                var sumTime = (from t in db.TimeRegistrations where t.Case_No == stat.Case_No select t).ToList();
-                int sum = 0;
-                foreach (var item in sumTime)
-                {
-                    sum += Convert.ToInt32(item.Time_In_Minutes);
-                }
-                bool res = int.TryParse(stat.Manual_Work_Time, out min);
-                if (res)
-                    stat.Worked_Time_in_Minutes = Convert.ToString(sum + min);
-                else
-                    stat.Worked_Time_in_Minutes = Convert.ToString(sum);
-                db.SaveChanges();
-            }
-            textBoxActionComment.Clear();
+            //var stat = (from s in db.Cases where s.Status == "Open" && s.Created_By_User_Id == userID select s).FirstOrDefault();
+            //if (stat != null)
+            //{
+            //    stat.Status = "Closed";
+            //    stat.Last_Edit_Date_Time = DateTime.Now;
+            //    stat.Last_Edit_By_User_Id = Convert.ToInt16(comboBoxUser.SelectedValue);
+            //    var clos = (from t in db.TimeRegistrations orderby t.Id descending where t.Case_No == stat.Case_No select t).Take(1).FirstOrDefault();
+            //    clos.Stop_Date_Time = DateTime.Now;
+            //    DateTime last = Convert.ToDateTime(clos.Start_Date_Time);
+            //    TimeSpan difference = DateTime.Now.Subtract(last);
+            //    clos.Time_In_Minutes = Convert.ToString(difference.Minutes);
+            //    db.SaveChanges();
+            //    var sumTime = (from t in db.TimeRegistrations where t.Case_No == stat.Case_No select t).ToList();
+            //    int sum = 0;
+            //    foreach (var item in sumTime)
+            //    {
+            //        sum += Convert.ToInt32(item.Time_In_Minutes);
+            //    }
+            //    bool res = int.TryParse(stat.Manual_Work_Time, out min);
+            //    if (res)
+            //        stat.Worked_Time_in_Minutes = Convert.ToString(sum + min);
+            //    else
+            //        stat.Worked_Time_in_Minutes = Convert.ToString(sum);
+            //    db.SaveChanges();
+            //}
+            //textBoxActionComment.Clear();
+            stopCase();
             if (textCaseTitle.Text != "")
             {
                 Case c = new Case();
@@ -139,6 +194,8 @@ namespace TRP_1._0
                 c.Customer_Id = Convert.ToInt16(comboBoxCustomerName.SelectedValue);
                 c.Date_Time_Created = DateTime.Now;
                 c.Created_By_User_Id = Convert.ToInt16(comboBoxUser.SelectedValue);
+                c.Last_Edit_Date_Time = DateTime.Now;
+                c.Last_Edit_By_User_Id= Convert.ToInt16(comboBoxUser.SelectedValue);
                 c.Status = "Open";
                 MessageBox.Show("New Case Added");
                 db.Cases.Add(c);
@@ -159,7 +216,9 @@ namespace TRP_1._0
             textCaseTitle.Clear();
             textTimeInMinutes.Clear();
             textCaseComment.Clear();
-
+            buttonStartRecent.Enabled = true;
+            if (gridView1.RowCount > 0)
+                buttonStartSearched.Enabled = true;
         }
 
         private void Main_Load(object sender, EventArgs e)
@@ -187,8 +246,14 @@ namespace TRP_1._0
             comboBoxCustomerName.DataSource = res1;
             comboBoxCustomerName.DisplayMember = "Customer_Name";
             comboBoxCustomerName.ValueMember = "Id";
-
-            
+            if (gridView1.RowCount == 0)
+            {
+                buttonStartSearched.Enabled = false;
+            }
+            if(gridView2.RowCount == 0)
+            {
+                buttonStartRecent.Enabled = false;
+            }
         }
 
         private void buttonChangeUser_Click(object sender, EventArgs e)
@@ -209,6 +274,8 @@ namespace TRP_1._0
             EditCase ec = new EditCase();
             ec.ShowDialog();
             gridsUpdate();
+            if (gridView3.RowCount == 0)
+                textBoxActionComment.Clear();
         }
 
         private void buttonEditCustomer_Click(object sender, EventArgs e)
@@ -226,49 +293,55 @@ namespace TRP_1._0
         private void buttonStartSearched_Click(object sender, EventArgs e)
         {
             //Stopping currently active case, changing status
-            var stat = (from s in db.Cases where s.Status == "Open" && s.Created_By_User_Id == userID select s).FirstOrDefault();
+            //var stat = (from s in db.Cases where s.Status == "Open" && s.Created_By_User_Id == userID select s).FirstOrDefault();
 
-            if (stat != null)
+            //if (stat != null)
+            //{
+            //    stat.Status = "Closed";
+            //    var clos = (from t in db.TimeRegistrations orderby t.Id descending where t.Case_No == stat.Case_No && t.User_Id == userID select t).Take(1).FirstOrDefault();
+            //    clos.Stop_Date_Time = DateTime.Now;
+            //    DateTime last = Convert.ToDateTime(clos.Start_Date_Time);
+            //    TimeSpan difference = DateTime.Now.Subtract(last);
+            //    clos.Time_In_Minutes = Convert.ToString(difference.Minutes);
+            //    db.SaveChanges();
+
+            //    var sumTime = (from t in db.TimeRegistrations where t.Case_No == stat.Case_No select t).ToList();
+            //    int sum = 0;
+            //    foreach (var item in sumTime)
+            //    {
+            //        sum += Convert.ToInt32(item.Time_In_Minutes);
+            //    }
+            //    bool res = int.TryParse(stat.Manual_Work_Time, out min);
+            //    if (res)
+            //        stat.Worked_Time_in_Minutes = Convert.ToString(sum + min);
+            //    else
+            //        stat.Worked_Time_in_Minutes = Convert.ToString(sum);
+            //    db.SaveChanges();
+            //}
+            stopCase();
+            if (gridView1.RowCount > 0)
             {
-                stat.Status = "Closed";
-                var clos = (from t in db.TimeRegistrations orderby t.Id descending where t.Case_No == stat.Case_No && t.User_Id == userID select t).Take(1).FirstOrDefault();
-                clos.Stop_Date_Time = DateTime.Now;
-                DateTime last = Convert.ToDateTime(clos.Start_Date_Time);
-                TimeSpan difference = DateTime.Now.Subtract(last);
-                clos.Time_In_Minutes = Convert.ToString(difference.Minutes);
-                db.SaveChanges();
-
-                var sumTime = (from t in db.TimeRegistrations where t.Case_No == stat.Case_No select t).ToList();
-                int sum = 0;
-                foreach (var item in sumTime)
-                {
-                    sum += Convert.ToInt32(item.Time_In_Minutes);
-                }
-                bool res = int.TryParse(stat.Manual_Work_Time, out min);
-                if (res)
-                    stat.Worked_Time_in_Minutes = Convert.ToString(sum + min);
-                else
-                    stat.Worked_Time_in_Minutes = Convert.ToString(sum);
-                db.SaveChanges();
+                //Starting selected case, changing status
+                var id = gridView1.GetRowCellValue(gridView1.GetSelectedRows()[0], "Case_No");
+                a = Convert.ToInt32(id);
+                startCase();
             }
+            
+            //if (a != null)
+            //{
+            //    var up = (from c in db.Cases where c.Case_No == a select c).FirstOrDefault();
+            //    up.Status = "Open";
+            //    db.SaveChanges();
 
-            //Starting selected case, changing status
-            a = Convert.ToInt32(gridView1.GetRowCellValue(gridView1.GetSelectedRows()[0], "Case_No"));
-            if (a != null)
-            {
-                var up = (from c in db.Cases where c.Case_No == a select c).FirstOrDefault();
-                up.Status = "Open";
-                db.SaveChanges();
-
-                TimeRegistration tr = new TimeRegistration();
-                tr.Case_No = a;
-                tr.Start_Date_Time = DateTime.Now;
-                tr.Invoice = up.TypeofCas.Invoice_Type;
-                db.TimeRegistrations.Add(tr);
-                tr.User_Id = userID;
-                db.SaveChanges();
-                gridsUpdate();
-            }
+            //    TimeRegistration tr = new TimeRegistration();
+            //    tr.Case_No = a;
+            //    tr.Start_Date_Time = DateTime.Now;
+            //    tr.Invoice = up.TypeofCas.Invoice_Type;
+            //    db.TimeRegistrations.Add(tr);
+            //    tr.User_Id = userID;
+            //    db.SaveChanges();
+            //    gridsUpdate();
+            //}
         }
 
         private void comboBoxUser_SelectionChangeCommitted(object sender, EventArgs e)
@@ -283,31 +356,32 @@ namespace TRP_1._0
 
         private void btnStopDateTime_Click(object sender, EventArgs e)
         {
-            var stopCase = (from c in db.Cases where c.Status == "Open" && c.Created_By_User_Id == userID select c).FirstOrDefault();
-            if (stopCase != null)
-            {
-                stopCase.Status = "Closed";
-                var clos = (from t in db.TimeRegistrations orderby t.Id descending where t.Case_No == stopCase.Case_No select t).Take(1).FirstOrDefault();
-                clos.Stop_Date_Time = DateTime.Now;
-                DateTime last = Convert.ToDateTime(clos.Start_Date_Time);
-                TimeSpan difference = DateTime.Now.Subtract(last);
-                clos.Time_In_Minutes = Convert.ToString(difference.Minutes);
-                db.SaveChanges();
-                var sumTime = (from t in db.TimeRegistrations where t.Case_No == stopCase.Case_No select t).ToList();
-                int sum = 0;
-                foreach (var item in sumTime)
-                {
-                    sum += Convert.ToInt32(item.Time_In_Minutes);
-                }
-                bool res = int.TryParse(stopCase.Manual_Work_Time, out min);
-                if (res)
-                    stopCase.Worked_Time_in_Minutes = Convert.ToString(sum + min);
-                else
-                    stopCase.Worked_Time_in_Minutes = Convert.ToString(sum);
+            //var stopCase = (from c in db.Cases where c.Status == "Open" && c.Created_By_User_Id == userID select c).FirstOrDefault();
+            //if (stopCase != null)
+            //{
+            //    stopCase.Status = "Closed";
+            //    var clos = (from t in db.TimeRegistrations orderby t.Id descending where t.Case_No == stopCase.Case_No select t).Take(1).FirstOrDefault();
+            //    clos.Stop_Date_Time = DateTime.Now;
+            //    DateTime last = Convert.ToDateTime(clos.Start_Date_Time);
+            //    TimeSpan difference = DateTime.Now.Subtract(last);
+            //    clos.Time_In_Minutes = Convert.ToString(difference.Minutes);
+            //    db.SaveChanges();
+            //    var sumTime = (from t in db.TimeRegistrations where t.Case_No == stopCase.Case_No select t).ToList();
+            //    int sum = 0;
+            //    foreach (var item in sumTime)
+            //    {
+            //        sum += Convert.ToInt32(item.Time_In_Minutes);
+            //    }
+            //    bool res = int.TryParse(stopCase.Manual_Work_Time, out min);
+            //    if (res)
+            //        stopCase.Worked_Time_in_Minutes = Convert.ToString(sum + min);
+            //    else
+            //        stopCase.Worked_Time_in_Minutes = Convert.ToString(sum);
 
-                db.SaveChanges();
+            //    db.SaveChanges();
 
-            }
+            //}
+            stopCase();
             textBoxActionComment.Clear();
             gridsUpdate();
 
@@ -328,49 +402,55 @@ namespace TRP_1._0
         private void buttonStartRecent_Click(object sender, EventArgs e)
         {
             //Stopping currently active case, changing status
-            var stat = (from s in db.Cases where s.Status == "Open" && s.Created_By_User_Id == userID select s).FirstOrDefault();
-            if (stat != null)
-            {
-                stat.Status = "Closed";
-                var clos = (from t in db.TimeRegistrations orderby t.Id descending where t.Case_No == stat.Case_No select t).Take(1).FirstOrDefault();
-                clos.Stop_Date_Time = DateTime.Now;
-                DateTime last = Convert.ToDateTime(clos.Start_Date_Time);
-                TimeSpan difference = DateTime.Now.Subtract(last);
-                clos.Time_In_Minutes = Convert.ToString(difference.Minutes);
-                db.SaveChanges();
-                var sumTime = (from t in db.TimeRegistrations where t.Case_No == stat.Case_No select t).ToList();
-                int sum = 0;
-                foreach (var item in sumTime)
-                {
-                    sum += Convert.ToInt32(item.Time_In_Minutes);
-                }
-                bool res = int.TryParse(stat.Manual_Work_Time, out min);
-                if(res) 
-                stat.Worked_Time_in_Minutes = Convert.ToString(sum + min);
-                else
-                    stat.Worked_Time_in_Minutes = Convert.ToString(sum);
+            //var stat = (from s in db.Cases where s.Status == "Open" && s.Created_By_User_Id == userID select s).FirstOrDefault();
+            //if (stat != null)
+            //{
+            //    stat.Status = "Closed";
+            //    var clos = (from t in db.TimeRegistrations orderby t.Id descending where t.Case_No == stat.Case_No select t).Take(1).FirstOrDefault();
+            //    clos.Stop_Date_Time = DateTime.Now;
+            //    DateTime last = Convert.ToDateTime(clos.Start_Date_Time);
+            //    TimeSpan difference = DateTime.Now.Subtract(last);
+            //    clos.Time_In_Minutes = Convert.ToString(difference.Minutes);
+            //    db.SaveChanges();
+            //    var sumTime = (from t in db.TimeRegistrations where t.Case_No == stat.Case_No select t).ToList();
+            //    int sum = 0;
+            //    foreach (var item in sumTime)
+            //    {
+            //        sum += Convert.ToInt32(item.Time_In_Minutes);
+            //    }
+            //    bool res = int.TryParse(stat.Manual_Work_Time, out min);
+            //    if(res) 
+            //    stat.Worked_Time_in_Minutes = Convert.ToString(sum + min);
+            //    else
+            //        stat.Worked_Time_in_Minutes = Convert.ToString(sum);
 
 
-                db.SaveChanges();
-            }
-            textBoxActionComment.Clear();
-
+            //    db.SaveChanges();
+            //}
+            //textBoxActionComment.Clear();
+            stopCase();
             //Starting selected case, changing status
-            a = Convert.ToInt32(gridView2.GetRowCellValue(gridView2.GetSelectedRows()[0], "Case_No"));
-            var actionComment = (from tc in db.TimeRegistrations orderby tc.Id descending where tc.Case_No == a select tc).Take(1).FirstOrDefault();
-            textBoxActionComment.Text = actionComment.Action_Comment;
-            this.ActiveControl = textBoxActionComment;
+            if (gridView2.RowCount > 0)
+            {
+                //Starting selected case, changing status
+                var id = gridView2.GetRowCellValue(gridView2.GetSelectedRows()[0], "Case_No");
+                a = Convert.ToInt32(id);
+                startCase();
+            }
+            //var actionComment = (from tc in db.TimeRegistrations orderby tc.Id descending where tc.Case_No == a select tc).Take(1).FirstOrDefault();
+            //textBoxActionComment.Text = actionComment.Action_Comment;
+            //this.ActiveControl = textBoxActionComment;
 
-            var selectedCase = (from c in db.Cases where c.Case_No == a select c).FirstOrDefault();
-            TimeRegistration tr = new TimeRegistration();
-            tr.Case_No = a;
-            tr.Start_Date_Time = DateTime.Now;
-            tr.Invoice = selectedCase.TypeofCas.Invoice_Type;
-            tr.User_Id = userID;
+            //var selectedCase = (from c in db.Cases where c.Case_No == a select c).FirstOrDefault();
+            //TimeRegistration tr = new TimeRegistration();
+            //tr.Case_No = a;
+            //tr.Start_Date_Time = DateTime.Now;
+            //tr.Invoice = selectedCase.TypeofCas.Invoice_Type;
+            //tr.User_Id = userID;
 
-            selectedCase.Status = "Open";
-            db.TimeRegistrations.Add(tr);
-            db.SaveChanges();
+            //selectedCase.Status = "Open";
+            //db.TimeRegistrations.Add(tr);
+            //db.SaveChanges();
 
             gridsUpdate();
 

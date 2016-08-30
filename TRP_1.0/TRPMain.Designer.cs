@@ -122,6 +122,7 @@
             // 
             // comboBoxUser
             // 
+            this.comboBoxUser.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxUser.FormattingEnabled = true;
             this.comboBoxUser.Location = new System.Drawing.Point(542, -1);
             this.comboBoxUser.Name = "comboBoxUser";
