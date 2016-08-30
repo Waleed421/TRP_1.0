@@ -77,14 +77,14 @@ namespace TRP_1._0
             textBoxActionComment.Text = actionComment.Action_Comment;
             this.ActiveControl = textBoxActionComment;
 
-            var up = (from c in db.Cases where c.Case_No == a select c).FirstOrDefault();
-            up.Status = "Open";
+            var up = (from c in db.Cases join y in db.TypeofCases on c.Type_Id equals y.Id where c.Case_No == a select new { c, y}).FirstOrDefault();
+            up.c.Status = "Open";
             db.SaveChanges();
 
             TimeRegistration tr = new TimeRegistration();
             tr.Case_No = a;
             tr.Start_Date_Time = DateTime.Now;
-            tr.Invoice = up.TypeofCas.Invoice_Type;
+            tr.Invoice = up.y.Invoice_Type;
             db.TimeRegistrations.Add(tr);
             tr.User_Id = userID;
             db.SaveChanges();
