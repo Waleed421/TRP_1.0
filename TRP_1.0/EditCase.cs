@@ -41,7 +41,8 @@ namespace TRP_1._0
 
         private void EditCase_Load(object sender, EventArgs e)
         {
-            button1.Enabled = false;
+            button1.
+                = false;
             var res = (from c in db.Cases where c.Created_By_User_Id == userID select new { c.Case_No, c.Customer.Customer_Name, c.Customer.Customer_No, c.Title, c.TypeofCas.Type, c.Case_Comment, c.Status }).ToList();
             gridControl1.DataSource = res;
             var res1 = (from x in db.TypeofCases
