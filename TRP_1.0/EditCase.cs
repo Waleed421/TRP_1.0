@@ -41,8 +41,7 @@ namespace TRP_1._0
 
         private void EditCase_Load(object sender, EventArgs e)
         {
-            button1.
-= false;
+
             var res = (from c in db.Cases where c.Created_By_User_Id == userID select new { c.Case_No, c.Customer.Customer_Name, c.Customer.Customer_No, c.Title, c.TypeofCas.Type, c.Case_Comment, c.Status }).ToList();
             gridControl1.DataSource = res;
             var res1 = (from x in db.TypeofCases
@@ -116,7 +115,7 @@ namespace TRP_1._0
 
                     var sumTime = (from t in db.TimeRegistrations where t.Case_No == stat.Case_No select t).ToList();
                     int sum = 0;
-                    
+
                     foreach (var item in sumTime)
                     {
                         TimeSpan interval = TimeSpan.Parse(item.Time_In_Minutes);

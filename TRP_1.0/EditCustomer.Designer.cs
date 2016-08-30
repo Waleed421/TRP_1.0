@@ -258,14 +258,6 @@
             this.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.MaximizeBox = false;
-<<<<<<< HEAD
-<<<<<<< HEAD
-            this.Text = "EditCustomer";
-=======
->>>>>>> origin/master
-=======
-            this.Name = "EditCustomer";
->>>>>>> parent of 06b6031... App Config Changes
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Customer";
             this.Load += new System.EventHandler(this.EditCustomer_Load);
