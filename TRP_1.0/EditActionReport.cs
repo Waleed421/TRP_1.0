@@ -182,7 +182,15 @@ namespace TRP_1._0
             comboBoxCaseTitle.Enabled = false;
         }
 
-        
+        private void label12_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label13_Click(object sender, EventArgs e)
+        {
+
+        }
 
         private void comboBoxCaseTitle_SelectionChangeCommitted(object sender, EventArgs e)
         {

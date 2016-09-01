@@ -235,20 +235,19 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Button buttonAdd;
-        private System.Windows.Forms.RadioButton radioButtonNo;
-        private System.Windows.Forms.RadioButton radioButtonYes;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Button buttonEdit;
         private System.Windows.Forms.TextBox textBoxType;
         private DevExpress.XtraGrid.GridControl gridControl1;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
-        private System.Windows.Forms.Button buttonSave;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.RadioButton radioButtonActive;
-        private System.Windows.Forms.RadioButton radioButtonInactive;
         private System.Windows.Forms.Panel panel1;
+        public System.Windows.Forms.Button buttonAdd;
+        public System.Windows.Forms.RadioButton radioButtonNo;
+        public System.Windows.Forms.RadioButton radioButtonYes;
+        public System.Windows.Forms.Label label6;
+        public System.Windows.Forms.Label label8;
+        public System.Windows.Forms.Button buttonEdit;
+        public System.Windows.Forms.Button buttonSave;
+        public System.Windows.Forms.Label label1;
+        public System.Windows.Forms.RadioButton radioButtonActive;
+        public System.Windows.Forms.RadioButton radioButtonInactive;
     }
 }

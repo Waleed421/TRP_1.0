@@ -9,6 +9,10 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using TRP_1._0;
 using DevExpress.XtraGrid.Columns;
+using System.Globalization;
+using System.Threading;
+using System.Reflection;
+
 
 namespace TRP_1._0
 {
@@ -17,28 +21,39 @@ namespace TRP_1._0
         public int a;
         int min = 0;
         public int userID;
+        EditActionReport ear = new EditActionReport();
+        EditCaseType ect = new EditCaseType();
+        EditCase ec = new EditCase();
+        EditUser eu = new EditUser();
+        EditCustomer ecr = new EditCustomer();
+
         TRPDbEntities db = new TRPDbEntities();
+
         public Main()
         {
+            // C#
+            // Sets the UI culture to French (France).
+            //Thread.CurrentThread.CurrentUICulture = new CultureInfo("fr-FR");
             InitializeComponent();
             this.ShowInTaskbar = false;
         }
-        protected override CreateParams CreateParams
-        {
-            get
-            {
-                var cp = base.CreateParams;
-                cp.ExStyle |= 0x80;  // Turn on WS_EX_TOOLWINDOW
-                return cp;
-            }
-        }
+        //protected override CreateParams CreateParams
+        //{
+        //    get
+        //    {
+        //        var cp = base.CreateParams;
+        //        cp.ExStyle |= 0x80;  // Turn on WS_EX_TOOLWINDOW
+        //        return cp;
+        //    }
+        //}
 
         private void btnEditActionReport_Click(object sender, EventArgs e)
         {
             EditActionReport.userID = userID;
-            EditActionReport e1 = new EditActionReport();
-            e1.ShowDialog();
+            //EditActionReport e1 = new EditActionReport();
+            ear.ShowDialog();
         }
+
         private void stopCase()
         {
             //Stopping currently active case, changing status
@@ -189,14 +204,19 @@ namespace TRP_1._0
             textCaseTitle.Clear();
             textTimeInMinutes.Clear();
             textCaseComment.Clear();
-            buttonStartRecent.Enabled = true;           
+            buttonStartRecent.Enabled = true;
         }
 
         private void Main_Load(object sender, EventArgs e)
         {
+            this.FormBorderStyle = FormBorderStyle.None;
             gridView3.OptionsView.ShowGroupPanel = false;
             gridView2.OptionsView.ShowGroupPanel = false;
-
+            //foreach (Control c in this.Controls)
+            //{
+            //    ComponentResourceManager resources = new ComponentResourceManager(typeof(Main));
+            //    resources.ApplyResources(c, c.Name, new System.Globalization.CultureInfo("fr - FR"));
+            //}
             comboBoxUser.DisplayMember = "Name";
             comboBoxUser.ValueMember = "Id";
 
@@ -229,7 +249,7 @@ namespace TRP_1._0
 
         private void buttonChangeUser_Click(object sender, EventArgs e)
         {
-            EditUser eu = new EditUser();
+            //EditUser eu = new EditUser();
             eu.ShowDialog();
             comboBoxUser.DisplayMember = "Name";
             comboBoxUser.ValueMember = "Id";
@@ -242,7 +262,7 @@ namespace TRP_1._0
         private void buttonEditCase_Click(object sender, EventArgs e)
         {
             EditCase.userID = userID;
-            EditCase ec = new EditCase();
+           // EditCase ec = new EditCase();
             ec.ShowDialog();
             gridsUpdate();
             if (gridView3.RowCount == 0)
@@ -251,13 +271,13 @@ namespace TRP_1._0
 
         private void buttonEditCustomer_Click(object sender, EventArgs e)
         {
-            EditCustomer ec = new EditCustomer();
-            ec.ShowDialog();
+            //EditCustomer ec = new EditCustomer();
+            ecr.ShowDialog();
         }
 
         private void buttonCaseType_Click(object sender, EventArgs e)
         {
-            EditCaseType ect = new EditCaseType();
+            //EditCaseType ect = new EditCaseType();
             ect.ShowDialog();
         }
 
@@ -271,7 +291,7 @@ namespace TRP_1._0
                 a = Convert.ToInt32(id);
                 startCase();
             }
-           
+
         }
 
         private void comboBoxUser_SelectionChangeCommitted(object sender, EventArgs e)
@@ -280,8 +300,122 @@ namespace TRP_1._0
             var res = (from u in db.Users where u.Id == userID select u).FirstOrDefault();
             res.Status = "Active";
             db.SaveChanges();
+            if (res.Language == "French")
+            {
+                ChangeLanguage("fr");
+            }
+            else if (res.Language == "Dutch")
+            {
+                ChangeLanguage("Dutch");
+            }
             textBoxActionComment.Clear();
             gridsUpdate();
+        }
+
+        private void ChangeLanguage(string Lang)
+        {
+            switch (Lang)
+            {
+                case "fr":
+                    label1.Text = ResourceLangfr.timeRegistrationProgramTitle;
+                    label2.Text = ResourceLangfr.otherCaseSelection;
+                    label7.Text = ResourceLangfr.activeUser;
+                    buttonStartSearched.Text = ResourceLangfr.startDateTime;
+                    label3.Text = ResourceLangfr.activeCase;
+                    label12.Text = ResourceLangfr.actionComment;
+                    label17.Text = ResourceLangfr.recentCases;
+                    btnStopDateTime.Text = ResourceLangfr.stopDateTime;
+                    buttonStartRecent.Text = ResourceLangfr.startDateTime;
+                    label4.Text= ResourceLangfr.createCaseLine;
+                    label6.Text = ResourceLangfr.customerName;
+                    label9.Text = ResourceLangfr.caseType;
+                    label11.Text = ResourceLangfr.timeInMinutes;
+                    label8.Text = ResourceLangfr.caseTitle;
+                    label10.Text = ResourceLangfr.caseComment;
+                    buttonCreateCase.Text = ResourceLangfr.createCase;
+                    label5.Text = ResourceLangfr.edit;
+                    buttonChangeUser.Text = ResourceLangfr.user;
+                    buttonEditCase.Text = ResourceLangfr.cases;
+                    buttonEditCustomer.Text = ResourceLangfr.customer;
+                    buttonCaseType.Text = ResourceLangfr.caseType;
+                    btnEditActionReport.Text = ResourceLangfr.editActionReport;
+                    ear.label1.Text = ResourceLangfr.editActionReport;
+                    ear.label3.Text = ResourceLangfr.startDate;
+                    ear.label4.Text = ResourceLangfr.endDate;
+                    ear.buttonSearch.Text = ResourceLangfr.search;
+                    ear.label2.Text = ResourceLangfr.user;
+                    ear.buttonPrevious.Text = ResourceLangfr.previous;
+                    ear.buttonNext.Text = ResourceLangfr.next;
+                    ear.buttonEdit.Text = ResourceLangfr.edit;
+                    ear.label6.Text = ResourceLangfr.customerName;
+                    ear.label8.Text = ResourceLangfr.caseNo;
+                    ear.label12.Text = ResourceLangfr.startDateTime;
+                    ear.label7.Text = ResourceLangfr.customerNo;
+                    ear.label11.Text = ResourceLangfr.caseType;
+                    ear.label13.Text = ResourceLangfr.timeInMinutes;
+                    ear.label9.Text = ResourceLangfr.caseTitle;
+                    ear.label10.Text = ResourceLangfr.caseComment;
+                    ear.label14.Text = ResourceLangfr.actionComment;
+                    ear.btnAddActionLine.Text = ResourceLangfr.add;
+                    ear.buttonSave.Text = ResourceLangfr.update;
+                    ec.label1.Text = ResourceLangfr.customerName;
+                    ec.label4.Text = ResourceLangfr.caseType;
+                    ec.label2.Text = ResourceLangfr.customerNo;
+                    ec.label5.Text = ResourceLangfr.caseComment;
+                    ec.label3.Text = ResourceLangfr.caseTitle;
+                    ec.label6.Text = ResourceLangfr.caseStatus;
+                    ec.radioButtonOpen.Text = ResourceLangfr.open;
+                    ec.radioButtonClosed.Text = ResourceLangfr.closed;
+                    ec.button1.Text = ResourceLangfr.save;
+                    ec.buttonEdit.Text = ResourceLangfr.edit;
+                    ect.label6.Text = ResourceLangfr.description;
+                    ect.label8.Text = ResourceLangfr.invoice;
+                    ect.radioButtonYes.Text = ResourceLangfr.yes;
+                    ect.radioButtonNo.Text = ResourceLangfr.no;
+                    ect.buttonAdd.Text = ResourceLangfr.addCaseType;
+                    ect.buttonSave.Text = ResourceLangfr.save;
+                    ect.buttonEdit.Text = ResourceLangfr.edit;
+                    ecr.label6.Text = ResourceLangfr.name;
+                    ecr.label8.Text = ResourceLangfr.status;
+                    ecr.radioButtonActive.Text = ResourceLangfr.active;
+                    ecr.radioButtonInactive.Text = ResourceLangfr.inactive;
+                    ecr.label7.Text = ResourceLangfr.number;
+                    ecr.label4.Text = ResourceLangfr.manager;
+                    ecr.buttonAdd.Text = ResourceLangfr.addCustomer;
+                    ecr.buttonSave.Text = ResourceLangfr.save;
+                    ecr.button1.Text = ResourceLangfr.editCustomer;
+                    eu.label3.Text = ResourceLangfr.addNewUser;
+                    eu.label1.Text = ResourceLangfr.editUser;
+                    eu.label4.Text = ResourceLangfr.name;
+                    eu.label5.Text = ResourceLangfr.number;
+                    eu.label6.Text = ResourceLangfr.status;
+                    eu.radioButtonActive.Text = ResourceLangfr.active;
+                    eu.radioButtonInactive.Text = ResourceLangfr.inactive;
+                    eu.label7.Text = ResourceLangfr.language;
+                    eu.button1.Text = ResourceLangfr.addUser;
+                    eu.buttonSave.Text = ResourceLangfr.save;
+                    eu.button2.Text = ResourceLangfr.editUser;
+
+                    break;
+                case "du":
+                    break;
+                case "en":
+                default:
+                    break;
+            }
+
+
+
+
+        }
+
+        private void applyResources(ComponentResourceManager resources, Control.ControlCollection controls)
+        {
+            foreach (Control ctl in controls)
+            {
+                resources.ApplyResources(ctl, ctl.Name);
+                applyResources(resources, ctl.Controls);
+            }
         }
 
         private void btnStopDateTime_Click(object sender, EventArgs e)

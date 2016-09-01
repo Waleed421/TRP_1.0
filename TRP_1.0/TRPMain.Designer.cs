@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.label1 = new System.Windows.Forms.Label();
             this.panelOtherCase = new System.Windows.Forms.Panel();
             this.label7 = new System.Windows.Forms.Label();
@@ -90,13 +91,8 @@
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(199, 9);
+            resources.ApplyResources(this.label1, "label1");
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(322, 23);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "TIME REGISTRATION PROGRAM";
             // 
             // panelOtherCase
             // 
@@ -105,38 +101,27 @@
             this.panelOtherCase.Controls.Add(this.gridControlAllCases);
             this.panelOtherCase.Controls.Add(this.buttonStartSearched);
             this.panelOtherCase.Controls.Add(this.label2);
-            this.panelOtherCase.Location = new System.Drawing.Point(11, 45);
+            resources.ApplyResources(this.panelOtherCase, "panelOtherCase");
             this.panelOtherCase.Name = "panelOtherCase";
-            this.panelOtherCase.Size = new System.Drawing.Size(677, 191);
-            this.panelOtherCase.TabIndex = 1;
             // 
             // label7
             // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(460, 0);
+            resources.ApplyResources(this.label7, "label7");
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(83, 16);
-            this.label7.TabIndex = 7;
-            this.label7.Text = "Active User";
             // 
             // comboBoxUser
             // 
             this.comboBoxUser.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxUser.FormattingEnabled = true;
-            this.comboBoxUser.Location = new System.Drawing.Point(542, -1);
+            resources.ApplyResources(this.comboBoxUser, "comboBoxUser");
             this.comboBoxUser.Name = "comboBoxUser";
-            this.comboBoxUser.Size = new System.Drawing.Size(135, 21);
-            this.comboBoxUser.TabIndex = 6;
             this.comboBoxUser.SelectionChangeCommitted += new System.EventHandler(this.comboBoxUser_SelectionChangeCommitted);
             // 
             // gridControlAllCases
             // 
-            this.gridControlAllCases.Location = new System.Drawing.Point(2, 22);
+            resources.ApplyResources(this.gridControlAllCases, "gridControlAllCases");
             this.gridControlAllCases.MainView = this.gridView1;
             this.gridControlAllCases.Name = "gridControlAllCases";
-            this.gridControlAllCases.Size = new System.Drawing.Size(541, 166);
-            this.gridControlAllCases.TabIndex = 23;
             this.gridControlAllCases.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
             // 
@@ -147,33 +132,20 @@
             // 
             // buttonStartSearched
             // 
-            this.buttonStartSearched.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonStartSearched.Location = new System.Drawing.Point(549, 75);
+            resources.ApplyResources(this.buttonStartSearched, "buttonStartSearched");
             this.buttonStartSearched.Name = "buttonStartSearched";
-            this.buttonStartSearched.Size = new System.Drawing.Size(107, 45);
-            this.buttonStartSearched.TabIndex = 22;
-            this.buttonStartSearched.Text = "Start Date/Time Stamp";
             this.buttonStartSearched.UseVisualStyleBackColor = true;
             this.buttonStartSearched.Click += new System.EventHandler(this.buttonStartSearched_Click);
             // 
             // label2
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(3, 0);
+            resources.ApplyResources(this.label2, "label2");
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(179, 19);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "Other Case Selection";
             // 
             // btnEditActionReport
             // 
-            this.btnEditActionReport.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEditActionReport.Location = new System.Drawing.Point(518, 4);
+            resources.ApplyResources(this.btnEditActionReport, "btnEditActionReport");
             this.btnEditActionReport.Name = "btnEditActionReport";
-            this.btnEditActionReport.Size = new System.Drawing.Size(138, 38);
-            this.btnEditActionReport.TabIndex = 11;
-            this.btnEditActionReport.Text = "Edit Action Report";
             this.btnEditActionReport.UseVisualStyleBackColor = true;
             this.btnEditActionReport.Click += new System.EventHandler(this.btnEditActionReport_Click);
             // 
@@ -196,47 +168,32 @@
             this.panelCaseList.Controls.Add(this.gridControlRecentCases);
             this.panelCaseList.Controls.Add(this.label17);
             this.panelCaseList.Controls.Add(this.buttonStartRecent);
-            this.panelCaseList.Location = new System.Drawing.Point(13, 261);
+            resources.ApplyResources(this.panelCaseList, "panelCaseList");
             this.panelCaseList.Name = "panelCaseList";
-            this.panelCaseList.Size = new System.Drawing.Size(675, 229);
-            this.panelCaseList.TabIndex = 2;
             // 
             // btnStopDateTime
             // 
-            this.btnStopDateTime.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnStopDateTime.Location = new System.Drawing.Point(550, 46);
+            resources.ApplyResources(this.btnStopDateTime, "btnStopDateTime");
             this.btnStopDateTime.Name = "btnStopDateTime";
-            this.btnStopDateTime.Size = new System.Drawing.Size(104, 44);
-            this.btnStopDateTime.TabIndex = 5;
-            this.btnStopDateTime.Text = "Stop Date/Time";
             this.btnStopDateTime.UseVisualStyleBackColor = true;
             this.btnStopDateTime.Click += new System.EventHandler(this.btnStopDateTime_Click);
             // 
             // textBoxActionComment
             // 
-            this.textBoxActionComment.Location = new System.Drawing.Point(550, 19);
+            resources.ApplyResources(this.textBoxActionComment, "textBoxActionComment");
             this.textBoxActionComment.Name = "textBoxActionComment";
-            this.textBoxActionComment.Size = new System.Drawing.Size(104, 21);
-            this.textBoxActionComment.TabIndex = 6;
             this.textBoxActionComment.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBoxActionComment_KeyDown);
             // 
             // label12
             // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(547, 0);
+            resources.ApplyResources(this.label12, "label12");
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(102, 16);
-            this.label12.TabIndex = 27;
-            this.label12.Text = "Action Comment";
             // 
             // gridControl1
             // 
-            this.gridControl1.Location = new System.Drawing.Point(0, 3);
+            resources.ApplyResources(this.gridControl1, "gridControl1");
             this.gridControl1.MainView = this.gridView3;
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(541, 46);
-            this.gridControl1.TabIndex = 24;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView3});
             // 
@@ -248,11 +205,9 @@
             // 
             // gridControlRecentCases
             // 
-            this.gridControlRecentCases.Location = new System.Drawing.Point(1, 74);
+            resources.ApplyResources(this.gridControlRecentCases, "gridControlRecentCases");
             this.gridControlRecentCases.MainView = this.gridView2;
             this.gridControlRecentCases.Name = "gridControlRecentCases";
-            this.gridControlRecentCases.Size = new System.Drawing.Size(540, 130);
-            this.gridControlRecentCases.TabIndex = 26;
             this.gridControlRecentCases.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView2});
             // 
@@ -263,34 +218,20 @@
             // 
             // label17
             // 
-            this.label17.AutoSize = true;
-            this.label17.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.Location = new System.Drawing.Point(1, 52);
+            resources.ApplyResources(this.label17, "label17");
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(118, 19);
-            this.label17.TabIndex = 24;
-            this.label17.Text = "Recent Cases";
             // 
             // buttonStartRecent
             // 
-            this.buttonStartRecent.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonStartRecent.Location = new System.Drawing.Point(550, 136);
+            resources.ApplyResources(this.buttonStartRecent, "buttonStartRecent");
             this.buttonStartRecent.Name = "buttonStartRecent";
-            this.buttonStartRecent.Size = new System.Drawing.Size(104, 42);
-            this.buttonStartRecent.TabIndex = 23;
-            this.buttonStartRecent.Text = "Start Date/Time Stamp";
             this.buttonStartRecent.UseVisualStyleBackColor = true;
             this.buttonStartRecent.Click += new System.EventHandler(this.buttonStartRecent_Click);
             // 
             // label3
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(12, 239);
+            resources.ApplyResources(this.label3, "label3");
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(104, 19);
-            this.label3.TabIndex = 1;
-            this.label3.Text = "Active Case";
             // 
             // panelCreateCase
             // 
@@ -307,118 +248,74 @@
             this.panelCreateCase.Controls.Add(this.label8);
             this.panelCreateCase.Controls.Add(this.label6);
             this.panelCreateCase.Controls.Add(this.label4);
-            this.panelCreateCase.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panelCreateCase.Location = new System.Drawing.Point(13, 471);
+            resources.ApplyResources(this.panelCreateCase, "panelCreateCase");
             this.panelCreateCase.Name = "panelCreateCase";
-            this.panelCreateCase.Size = new System.Drawing.Size(675, 108);
-            this.panelCreateCase.TabIndex = 3;
             // 
             // textTimeInMinutes
             // 
-            this.textTimeInMinutes.Location = new System.Drawing.Point(549, 27);
-            this.textTimeInMinutes.Mask = "00000";
+            resources.ApplyResources(this.textTimeInMinutes, "textTimeInMinutes");
             this.textTimeInMinutes.Name = "textTimeInMinutes";
-            this.textTimeInMinutes.PromptChar = ' ';
-            this.textTimeInMinutes.Size = new System.Drawing.Size(105, 23);
-            this.textTimeInMinutes.TabIndex = 5;
             // 
             // comboBoxCustomerName
             // 
             this.comboBoxCustomerName.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxCustomerName.FormattingEnabled = true;
-            this.comboBoxCustomerName.Location = new System.Drawing.Point(99, 27);
+            resources.ApplyResources(this.comboBoxCustomerName, "comboBoxCustomerName");
             this.comboBoxCustomerName.Name = "comboBoxCustomerName";
-            this.comboBoxCustomerName.Size = new System.Drawing.Size(109, 24);
-            this.comboBoxCustomerName.TabIndex = 1;
             // 
             // comboBoxCaseType
             // 
             this.comboBoxCaseType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxCaseType.FormattingEnabled = true;
-            this.comboBoxCaseType.Location = new System.Drawing.Point(315, 27);
+            resources.ApplyResources(this.comboBoxCaseType, "comboBoxCaseType");
             this.comboBoxCaseType.Name = "comboBoxCaseType";
-            this.comboBoxCaseType.Size = new System.Drawing.Size(121, 24);
-            this.comboBoxCaseType.TabIndex = 3;
             // 
             // textCaseComment
             // 
-            this.textCaseComment.Location = new System.Drawing.Point(315, 75);
+            resources.ApplyResources(this.textCaseComment, "textCaseComment");
             this.textCaseComment.Name = "textCaseComment";
-            this.textCaseComment.Size = new System.Drawing.Size(121, 23);
-            this.textCaseComment.TabIndex = 4;
             // 
             // textCaseTitle
             // 
-            this.textCaseTitle.Location = new System.Drawing.Point(99, 75);
+            resources.ApplyResources(this.textCaseTitle, "textCaseTitle");
             this.textCaseTitle.Name = "textCaseTitle";
-            this.textCaseTitle.Size = new System.Drawing.Size(109, 23);
-            this.textCaseTitle.TabIndex = 2;
             // 
             // buttonCreateCase
             // 
-            this.buttonCreateCase.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonCreateCase.Location = new System.Drawing.Point(550, 63);
+            resources.ApplyResources(this.buttonCreateCase, "buttonCreateCase");
             this.buttonCreateCase.Name = "buttonCreateCase";
-            this.buttonCreateCase.Size = new System.Drawing.Size(104, 35);
-            this.buttonCreateCase.TabIndex = 6;
-            this.buttonCreateCase.Text = "Create Case";
             this.buttonCreateCase.UseVisualStyleBackColor = true;
             this.buttonCreateCase.Click += new System.EventHandler(this.buttonCreateCase_Click);
             // 
             // label11
             // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(440, 27);
+            resources.ApplyResources(this.label11, "label11");
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(99, 16);
-            this.label11.TabIndex = 6;
-            this.label11.Text = "Time in Minutes";
             // 
             // label10
             // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(214, 78);
+            resources.ApplyResources(this.label10, "label10");
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(95, 16);
-            this.label10.TabIndex = 5;
-            this.label10.Text = "Case Comment";
             // 
             // label9
             // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(214, 32);
+            resources.ApplyResources(this.label9, "label9");
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(68, 16);
-            this.label9.TabIndex = 4;
-            this.label9.Text = "Case Type";
             // 
             // label8
             // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(3, 82);
+            resources.ApplyResources(this.label8, "label8");
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(65, 16);
-            this.label8.TabIndex = 3;
-            this.label8.Text = "Case Title";
             // 
             // label6
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(2, 32);
+            resources.ApplyResources(this.label6, "label6");
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(100, 16);
-            this.label6.TabIndex = 1;
-            this.label6.Text = "Customer Name";
             // 
             // label4
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(1, 0);
+            resources.ApplyResources(this.label4, "label4");
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(147, 19);
-            this.label4.TabIndex = 0;
-            this.label4.Text = "Create Case Line";
             // 
             // panelEdit
             // 
@@ -428,64 +325,41 @@
             this.panelEdit.Controls.Add(this.buttonEditCase);
             this.panelEdit.Controls.Add(this.buttonChangeUser);
             this.panelEdit.Controls.Add(this.label5);
-            this.panelEdit.Location = new System.Drawing.Point(11, 585);
+            resources.ApplyResources(this.panelEdit, "panelEdit");
             this.panelEdit.Name = "panelEdit";
-            this.panelEdit.Size = new System.Drawing.Size(677, 57);
-            this.panelEdit.TabIndex = 4;
             // 
             // buttonCaseType
             // 
-            this.buttonCaseType.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonCaseType.Location = new System.Drawing.Point(414, 5);
+            resources.ApplyResources(this.buttonCaseType, "buttonCaseType");
             this.buttonCaseType.Name = "buttonCaseType";
-            this.buttonCaseType.Size = new System.Drawing.Size(83, 37);
-            this.buttonCaseType.TabIndex = 10;
-            this.buttonCaseType.Text = "Case Type";
             this.buttonCaseType.UseVisualStyleBackColor = true;
             this.buttonCaseType.Click += new System.EventHandler(this.buttonCaseType_Click);
             // 
             // buttonEditCustomer
             // 
-            this.buttonEditCustomer.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonEditCustomer.Location = new System.Drawing.Point(314, 5);
+            resources.ApplyResources(this.buttonEditCustomer, "buttonEditCustomer");
             this.buttonEditCustomer.Name = "buttonEditCustomer";
-            this.buttonEditCustomer.Size = new System.Drawing.Size(79, 38);
-            this.buttonEditCustomer.TabIndex = 9;
-            this.buttonEditCustomer.Text = "Customer";
             this.buttonEditCustomer.UseVisualStyleBackColor = true;
             this.buttonEditCustomer.Click += new System.EventHandler(this.buttonEditCustomer_Click);
             // 
             // buttonEditCase
             // 
-            this.buttonEditCase.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonEditCase.Location = new System.Drawing.Point(204, 5);
+            resources.ApplyResources(this.buttonEditCase, "buttonEditCase");
             this.buttonEditCase.Name = "buttonEditCase";
-            this.buttonEditCase.Size = new System.Drawing.Size(75, 37);
-            this.buttonEditCase.TabIndex = 8;
-            this.buttonEditCase.Text = "Case";
             this.buttonEditCase.UseVisualStyleBackColor = true;
             this.buttonEditCase.Click += new System.EventHandler(this.buttonEditCase_Click);
             // 
             // buttonChangeUser
             // 
-            this.buttonChangeUser.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonChangeUser.Location = new System.Drawing.Point(83, 4);
+            resources.ApplyResources(this.buttonChangeUser, "buttonChangeUser");
             this.buttonChangeUser.Name = "buttonChangeUser";
-            this.buttonChangeUser.Size = new System.Drawing.Size(87, 38);
-            this.buttonChangeUser.TabIndex = 7;
-            this.buttonChangeUser.Text = "User";
             this.buttonChangeUser.UseVisualStyleBackColor = true;
             this.buttonChangeUser.Click += new System.EventHandler(this.buttonChangeUser_Click);
             // 
             // label5
             // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(3, 12);
+            resources.ApplyResources(this.label5, "label5");
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(41, 19);
-            this.label5.TabIndex = 0;
-            this.label5.Text = "Edit";
             // 
             // casesTableAdapter
             // 
@@ -502,20 +376,16 @@
             // 
             // Main
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(696, 643);
             this.Controls.Add(this.panelEdit);
             this.Controls.Add(this.panelCreateCase);
             this.Controls.Add(this.panelCaseList);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.panelOtherCase);
             this.Controls.Add(this.label1);
-            this.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.MaximizeBox = false;
             this.Name = "Main";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Time Registration Program";
             this.Load += new System.EventHandler(this.Main_Load);
             this.panelOtherCase.ResumeLayout(false);
             this.panelOtherCase.PerformLayout();
@@ -540,33 +410,14 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panelOtherCase;
         private System.Windows.Forms.Panel panelCaseList;
         private System.Windows.Forms.Panel panelCreateCase;
         private System.Windows.Forms.Panel panelEdit;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox textCaseComment;
         private System.Windows.Forms.TextBox textCaseTitle;
-        private System.Windows.Forms.Button buttonCreateCase;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Button btnEditActionReport;
-        private System.Windows.Forms.Button buttonCaseType;
-        private System.Windows.Forms.Button buttonEditCustomer;
-        private System.Windows.Forms.Button buttonEditCase;
         private System.Windows.Forms.Button buttonChangeUser;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Button btnStopDateTime;
-        private System.Windows.Forms.Button buttonStartSearched;
-        private System.Windows.Forms.Button buttonStartRecent;
-        private System.Windows.Forms.Label label17;
         private System.Windows.Forms.ComboBox comboBoxCaseType;
         private TRPDbDataSet tRPDbDataSet;
         private System.Windows.Forms.BindingSource casesBindingSource;
@@ -576,15 +427,33 @@
         private System.Windows.Forms.ComboBox comboBoxCustomerName;
         private DevExpress.XtraGrid.GridControl gridControlRecentCases;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView2;
-        private System.Windows.Forms.Label label7;
         private System.Windows.Forms.ComboBox comboBoxUser;
         private DevExpress.XtraGrid.GridControl gridControl1;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView3;
-        private System.Windows.Forms.Label label12;
         private System.Windows.Forms.TextBox textBoxActionComment;
         private DevExpress.XtraGrid.GridControl gridControlAllCases;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
         private System.Windows.Forms.MaskedTextBox textTimeInMinutes;
+        public System.Windows.Forms.Label label1;
+        public System.Windows.Forms.Label label2;
+        public System.Windows.Forms.Label label3;
+        public System.Windows.Forms.Button buttonCreateCase;
+        public System.Windows.Forms.Label label11;
+        public System.Windows.Forms.Label label10;
+        public System.Windows.Forms.Label label9;
+        public System.Windows.Forms.Label label6;
+        public System.Windows.Forms.Label label4;
+        public System.Windows.Forms.Button btnEditActionReport;
+        public System.Windows.Forms.Button buttonCaseType;
+        public System.Windows.Forms.Button buttonEditCustomer;
+        public System.Windows.Forms.Button buttonEditCase;
+        public System.Windows.Forms.Label label5;
+        public System.Windows.Forms.Button btnStopDateTime;
+        public System.Windows.Forms.Button buttonStartSearched;
+        public System.Windows.Forms.Button buttonStartRecent;
+        public System.Windows.Forms.Label label17;
+        public System.Windows.Forms.Label label7;
+        public System.Windows.Forms.Label label12;
     }
 }
 

@@ -258,6 +258,7 @@
             this.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.MaximizeBox = false;
+            this.Text = "EditCustomer";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Customer";
             this.Load += new System.EventHandler(this.EditCustomer_Load);
@@ -274,15 +275,8 @@
         }
 
         #endregion
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox Name;
-        private System.Windows.Forms.RadioButton radioButtonActive;
-        private System.Windows.Forms.RadioButton radioButtonInactive;
         private System.Windows.Forms.ComboBox comboBoxUsers;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.GroupBox groupBox1;
         private TRPDbDataSet tRPDbDataSet;
         private System.Windows.Forms.BindingSource customerBindingSource;
@@ -291,8 +285,15 @@
         private TRPDbDataSetTableAdapters.CasesTableAdapter casesTableAdapter;
         private DevExpress.XtraGrid.GridControl gridControl1;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
-        private System.Windows.Forms.Button buttonAdd;
-        private System.Windows.Forms.Button buttonSave;
         private System.Windows.Forms.MaskedTextBox Number;
+        public System.Windows.Forms.Label label4;
+        public System.Windows.Forms.Label label6;
+        public System.Windows.Forms.Label label7;
+        public System.Windows.Forms.Label label8;
+        public System.Windows.Forms.RadioButton radioButtonActive;
+        public System.Windows.Forms.RadioButton radioButtonInactive;
+        public System.Windows.Forms.Button button1;
+        public System.Windows.Forms.Button buttonAdd;
+        public System.Windows.Forms.Button buttonSave;
     }
 }

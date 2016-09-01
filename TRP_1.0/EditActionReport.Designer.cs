@@ -214,6 +214,7 @@
             this.label12.Size = new System.Drawing.Size(100, 16);
             this.label12.TabIndex = 16;
             this.label12.Text = "Start Date/Time";
+            this.label12.Click += new System.EventHandler(this.label12_Click);
             // 
             // label13
             // 
@@ -224,6 +225,7 @@
             this.label13.Size = new System.Drawing.Size(99, 16);
             this.label13.TabIndex = 17;
             this.label13.Text = "Time in Minutes";
+            this.label13.Click += new System.EventHandler(this.label13_Click);
             // 
             // label14
             // 
@@ -435,24 +437,8 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button buttonPrevious;
-        private System.Windows.Forms.Button buttonNext;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.DateTimePicker dateTimePicker2;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.Label label14;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.DateTimePicker dateTimePicker3;
         private System.Windows.Forms.TextBox textBox3;
@@ -460,16 +446,31 @@
         private System.Windows.Forms.ComboBox comboBoxCaseType;
         private System.Windows.Forms.TextBox textBox6;
         private System.Windows.Forms.TextBox textBox7;
-        private System.Windows.Forms.Button btnAddActionLine;
         private System.Windows.Forms.Label labelActive;
-        private System.Windows.Forms.Button buttonSave;
-        private System.Windows.Forms.Button buttonSearch;
-        private System.Windows.Forms.Button buttonEdit;
         private System.Windows.Forms.ComboBox comboBoxCaseTitle;
         private System.Windows.Forms.ComboBox comboBoxName;
         private DevExpress.Xpo.XPCollection xpCollection1;
         private DevExpress.Xpo.XPPageSelector xpPageSelector1;
         private DevExpress.XtraGrid.GridControl gridControl1;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
+        public System.Windows.Forms.Label label1;
+        public System.Windows.Forms.Button buttonPrevious;
+        public System.Windows.Forms.Button buttonNext;
+        public System.Windows.Forms.Label label2;
+        public System.Windows.Forms.Label label3;
+        public System.Windows.Forms.Label label4;
+        public System.Windows.Forms.Label label6;
+        public System.Windows.Forms.Label label7;
+        public System.Windows.Forms.Label label8;
+        public System.Windows.Forms.Label label9;
+        public System.Windows.Forms.Label label10;
+        public System.Windows.Forms.Label label11;
+        public System.Windows.Forms.Label label12;
+        public System.Windows.Forms.Label label13;
+        public System.Windows.Forms.Label label14;
+        public System.Windows.Forms.Button btnAddActionLine;
+        public System.Windows.Forms.Button buttonSave;
+        public System.Windows.Forms.Button buttonSearch;
+        public System.Windows.Forms.Button buttonEdit;
     }
 }

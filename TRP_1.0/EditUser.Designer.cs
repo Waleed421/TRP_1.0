@@ -160,7 +160,6 @@
             this.comboBoxLanguage.FormattingEnabled = true;
             this.comboBoxLanguage.Items.AddRange(new object[] {
             "English",
-            "German",
             "French",
             "Dutch"});
             this.comboBoxLanguage.Location = new System.Drawing.Point(254, 181);
@@ -282,24 +281,24 @@
         }
 
         #endregion
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox textBoxName;
-        private System.Windows.Forms.RadioButton radioButtonActive;
-        private System.Windows.Forms.RadioButton radioButtonInactive;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ComboBox comboBoxLanguage;
         private TRPDbDataSet tRPDbDataSet;
         private System.Windows.Forms.BindingSource userBindingSource;
         private TRPDbDataSetTableAdapters.UserTableAdapter userTableAdapter;
-        private System.Windows.Forms.Button button2;
         private DevExpress.XtraGrid.GridControl gridControlUsers;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
-        private System.Windows.Forms.Button buttonSave;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.MaskedTextBox textBoxNumber;
+        public System.Windows.Forms.Label label3;
+        public System.Windows.Forms.Label label4;
+        public System.Windows.Forms.Label label5;
+        public System.Windows.Forms.Label label6;
+        public System.Windows.Forms.Label label7;
+        public System.Windows.Forms.RadioButton radioButtonActive;
+        public System.Windows.Forms.RadioButton radioButtonInactive;
+        public System.Windows.Forms.Button button1;
+        public System.Windows.Forms.Button button2;
+        public System.Windows.Forms.Button buttonSave;
+        public System.Windows.Forms.Label label1;
     }
 }

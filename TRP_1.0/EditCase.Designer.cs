@@ -262,22 +262,22 @@
         }
 
         #endregion
-        private System.Windows.Forms.Button buttonEdit;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ComboBox comboBoxCaseType;
         private System.Windows.Forms.TextBox textBoxCaseComment;
-        private System.Windows.Forms.RadioButton radioButtonClosed;
-        private System.Windows.Forms.RadioButton radioButtonOpen;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
         private DevExpress.XtraGrid.GridControl gridControl1;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
         private System.Windows.Forms.TextBox CustomerName;
         private System.Windows.Forms.TextBox CustomerNo;
         private System.Windows.Forms.TextBox CaseTitle;
+        public System.Windows.Forms.Button buttonEdit;
+        public System.Windows.Forms.Button button1;
+        public System.Windows.Forms.RadioButton radioButtonClosed;
+        public System.Windows.Forms.RadioButton radioButtonOpen;
+        public System.Windows.Forms.Label label6;
+        public System.Windows.Forms.Label label5;
+        public System.Windows.Forms.Label label4;
+        public System.Windows.Forms.Label label3;
+        public System.Windows.Forms.Label label2;
+        public System.Windows.Forms.Label label1;
     }
 }
